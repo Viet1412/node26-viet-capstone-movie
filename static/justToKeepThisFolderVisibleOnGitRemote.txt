@@ -1,0 +1,1 @@
+This file is put here just to keep folder "static" exist when pushing to Git remote repo.
