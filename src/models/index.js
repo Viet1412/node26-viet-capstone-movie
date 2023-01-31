@@ -23,48 +23,46 @@ const sequelize = new Sequelize(
 })();
 
 //Initiate Models
-const User = require("./User")(sequelize);
-const Picture = require("./Picture")(sequelize);
-const Comment = require("./Comment")(sequelize);
-const SavePicture = require("./SavePicture")(sequelize);
+const User = require("./mainModels/User")(sequelize);
+const Movie = require("./mainModels/Movie")(sequelize);
+const TicketBooking = require("./mainModels/TicketBooking")(sequelize);
+const CinemaSystem = require("./mainModels/CinemaSystem")(sequelize);
 
-//Create Relations
-//User creates Pictures
-User.hasMany(Picture, { as: "ownPictures", foreignKey: "ownerId" });
-Picture.belongsTo(User, { as: "owner", foreignKey: "ownerId" });
+// //Create Relations
+// //User creates Pictures
+// User.hasMany(Picture, { as: "ownPictures", foreignKey: "ownerId" });
+// Picture.belongsTo(User, { as: "owner", foreignKey: "ownerId" });
 
-//Picture has comments
-Picture.hasMany(Comment, { as: "hasComments", foreignKey: "pictureId" });
-Comment.belongsTo(Picture, { as: "onPicture", foreignKey: "pictureId" });
+// //Picture has comments
+// Picture.hasMany(Comment, { as: "hasComments", foreignKey: "pictureId" });
+// Comment.belongsTo(Picture, { as: "onPicture", foreignKey: "pictureId" });
 
-//User gives comments to Picture
-User.belongsToMany(Picture, {
-  as: "givesComments",
-  through: Comment,
-  foreignKey: "userId",
-});
-Picture.belongsToMany(User, {
-  as: "hasCommentsFromUsers",
-  through: Comment,
-  foreignKey: "pictureId",
-});
+// //User gives comments to Picture
+// User.belongsToMany(Picture, {
+//   as: "givesComments",
+//   through: Comment,
+//   foreignKey: "userId",
+// });
+// Picture.belongsToMany(User, {
+//   as: "hasCommentsFromUsers",
+//   through: Comment,
+//   foreignKey: "pictureId",
+// });
 
-//User saves Picture
-User.belongsToMany(Picture, {
-  as: "savesPictures",
-  through: SavePicture,
-  foreignKey: "userId",
-});
-Picture.belongsToMany(User, {
-  as: "savedByUsers",
-  through: SavePicture,
-  foreignKey: "pictureId",
-});
+// //User saves Picture
+// User.belongsToMany(Picture, {
+//   as: "savesPictures",
+//   through: SavePicture,
+//   foreignKey: "userId",
+// });
+// Picture.belongsToMany(User, {
+//   as: "savedByUsers",
+//   through: SavePicture,
+//   foreignKey: "pictureId",
+// });
 
 module.exports = {
   sequelize,
   User,
-  Picture,
-  Comment,
-  SavePicture,
+  TicketBooking,
 };

@@ -1,5 +1,6 @@
 const { genSaltSync, hashSync } = require("bcrypt");
 const { DataTypes } = require("sequelize");
+const { AppError } = require("../../helpers/error");
 
 module.exports = (sequelize) => {
   return sequelize.define(
@@ -9,6 +10,31 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+      },
+      account: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: "account",
+        validate: {
+          isGoodString: (value) => {
+            if (value.length < 3 || !value.trim() || value.includes(" ")) {
+              throw new AppError(
+                400,
+                "Your account must be longer than 2 letters, and has no space between letters"
+              );
+            }
+          },
+        },
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: "email",
+        validate: {
+          isEmail: {
+            msg: "Invalid Email",
+          },
+        },
       },
       firstName: {
         type: DataTypes.STRING(50),
@@ -20,16 +46,6 @@ module.exports = (sequelize) => {
       },
       age: {
         type: DataTypes.TINYINT,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: "email",
-        validate: {
-          isEmail: {
-            msg: "Invalid Email",
-          },
-        },
       },
       password: {
         type: DataTypes.STRING,

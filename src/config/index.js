@@ -3,6 +3,7 @@ require("dotenv").config();
 const configs = {
   PORT: process.env.PORT,
   SECRET_KEY: process.env.SECRET_KEY,
+  BASE_URL: process.env.BASE_URL,
 
   DB_USER: process.env.DB_USER,
   DB_PASSWORD: process.env.DB_PASSWORD,

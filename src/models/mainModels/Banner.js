@@ -1,32 +1,32 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 
 module.exports = (sequelize) => {
   return sequelize.define(
-    "Picture",
+    "Banner",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.TINYINT,
         primaryKey: true,
         autoIncrement: true,
       },
       name: {
-        type: DataTypes.STRING,
-      },
-      url: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: "url",
+        type: DataTypes.STRING(50),
       },
       description: {
         type: DataTypes.STRING,
       },
-      ownerId: {
+      url: {
+        type: DataTypes.STRING,
+        unique: "url",
+        allowNull: false,
+      },
+      movieId: {
         type: DataTypes.INTEGER,
-        field: "owner_id",
+        field: "movie_id",
       },
     },
     {
-      tableName: "pictures",
+      tableName: "banners",
       timestamps: false,
     }
   );

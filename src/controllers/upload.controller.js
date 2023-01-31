@@ -1,3 +1,4 @@
+const configs = require("../config");
 const { AppError } = require("../helpers/error");
 const respone = require("../helpers/response");
 
@@ -12,7 +13,7 @@ const uploadController = () => {
     const urlOfUploadedFiles = [];
     for (let index = 0; index < files.length; index++) {
       files[index].path = files[index].path.replace(/\\/g, "/");
-      urlOfUploadedFiles.push(`http://localhost:4000/${files[index].path}`);
+      urlOfUploadedFiles.push(`${configs.BASE_URL}${files[index].path}`);
     }
 
     res.status(201).json(respone(urlOfUploadedFiles));

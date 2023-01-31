@@ -17,30 +17,30 @@ const generateDataToTest = {
     }
   },
 
-  pictures: async () => {
-    await Picture.destroy({ truncate: true });
+  // pictures: async () => {
+  //   await Picture.destroy({ truncate: true });
 
-    for (let index = 0; index < 20; index++) {
-      await Picture.create({
-        name: `picture ${index + 1}`,
-        url: `http://url ${index + 1}`,
-        description: `description of picture ${index + 1}`,
-        ownerId: `${(index % 10) + 1}`,
-      });
-    }
-  },
+  //   for (let index = 0; index < 20; index++) {
+  //     await Picture.create({
+  //       name: `picture ${index + 1}`,
+  //       url: `http://url ${index + 1}`,
+  //       description: `description of picture ${index + 1}`,
+  //       ownerId: `${(index % 10) + 1}`,
+  //     });
+  //   }
+  // },
 
-  comments: async () => {
-    // await Comment.destroy({ truncate: true });
+  // comments: async () => {
+  //   // await Comment.destroy({ truncate: true });
 
-    for (let index = 0; index < 20; index++) {
-      await Comment.create({
-        userId: `${(index % 10) + 1}`,
-        pictureId: `${20-index}`,
-        content: `comment to picture ${20-index}`,
-      });
-    }
-  },
+  //   for (let index = 0; index < 20; index++) {
+  //     await Comment.create({
+  //       userId: `${(index % 10) + 1}`,
+  //       pictureId: `${20-index}`,
+  //       content: `comment to picture ${20-index}`,
+  //     });
+  //   }
+  // },
 };
 
 module.exports = generateDataToTest;
