@@ -16,6 +16,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         unique: "poster",
       },
+      trailer: {
+        type: DataTypes.STRING,
+        unique: "trailer",
+      },
       director: {
         type: DataTypes.STRING(100),
       },
@@ -28,10 +32,10 @@ module.exports = (sequelize) => {
       rating: {
         type: DataTypes.TINYINT,
       },
-      ageRestriction: {
-        type: DataTypes.ENUM("G", "PG", "PG-13", "R"),//age checking only happens when entering cinema room, should not prevent users of any age from booking
+      ageRate: {
+        type: DataTypes.ENUM("G", "PG", "PG-13", "R"),
         defaultValue: "G",
-        field: "age_restriction",
+        field: "age_rate",
       },
       hotStatus: {
         type: DataTypes.BOOLEAN,
