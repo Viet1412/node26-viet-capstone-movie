@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
     "User",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
       },
@@ -58,6 +58,7 @@ module.exports = (sequelize) => {
       },
       avatar: {
         type: DataTypes.STRING,
+        unique: "avatar",
       },
       role: {
         type: DataTypes.ENUM("user", "admin"),

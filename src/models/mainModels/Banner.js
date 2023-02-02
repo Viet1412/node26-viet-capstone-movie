@@ -5,16 +5,12 @@ module.exports = (sequelize) => {
     "Banner",
     {
       id: {
-        type: DataTypes.TINYINT,
+        type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
-        type: DataTypes.STRING(50),
-      },
-      description: {
-        type: DataTypes.STRING,
-      },
+      name: DataTypes.STRING(50),
+      description: DataTypes.STRING,
       url: {
         type: DataTypes.STRING,
         unique: "url",

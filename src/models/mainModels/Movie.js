@@ -5,13 +5,11 @@ module.exports = (sequelize) => {
     "Movie",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
-        type: DataTypes.STRING(200),
-      },
+      name: DataTypes.STRING(200),
       poster: {
         type: DataTypes.STRING,
         unique: "poster",
@@ -20,18 +18,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         unique: "trailer",
       },
-      director: {
-        type: DataTypes.STRING(100),
-      },
-      description: {
-        type: DataTypes.STRING,
-      },
-      duration: {
-        type: DataTypes.SMALLINT(3),//the duration of a movie often shorter than 200 minutes
-      },
-      rating: {
-        type: DataTypes.TINYINT,
-      },
+      director: DataTypes.STRING(100),
+      description: DataTypes.STRING,
+      duration: DataTypes.SMALLINT(3),//the duration of a movie often shorter than 200 minutes
+      rating: DataTypes.TINYINT,
       ageRate: {
         type: DataTypes.ENUM("G", "PG", "PG-13", "R"),
         defaultValue: "G",

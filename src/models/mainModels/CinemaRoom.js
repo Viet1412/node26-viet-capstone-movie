@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     "CinemaRoom",
     {
       id: {
-        type: DataTypes.TINYINT,
+        type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
       },

@@ -1,11 +1,11 @@
-const { DataTypes, Sequelize } = require("sequelize");
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   return sequelize.define(
     "CinemaGroup",
     {
       id: {
-        type: DataTypes.SMALLINT,
+        type: DataTypes.SMALLINT.UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
       },
@@ -26,12 +26,8 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      city: {
-        type: DataTypes.STRING(50),
-      },
-      district: {
-        type: DataTypes.STRING(50),
-      },
+      city: DataTypes.STRING(50),
+      district: DataTypes.STRING(50),
     },
     {
       tableName: "cinema_groups",

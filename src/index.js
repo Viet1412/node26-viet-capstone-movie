@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static("."))
 
-sequelize.sync({alter: true})
+sequelize.sync({alter: true, force: true})
 
 app.use("/api/v1", v1);
 
