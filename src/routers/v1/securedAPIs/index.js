@@ -10,9 +10,9 @@ const {
 const securedRouters = express.Router();
 
 securedRouters.use("/usersManagement", userManagementRouters);
-securedRouters.use("/userAction", userActionRouters);
+// securedRouters.use("/userAction", userActionRouters);
 
-securedRouters.use("/picturesManagement", pictureManagementRouters);
+// securedRouters.use("/picturesManagement", pictureManagementRouters);
 
 // API just for uploading files
 securedRouters.post(

@@ -2,13 +2,26 @@ const respone = require("../helpers/response");
 const userService = require("../services/users.service");
 
 const userController = {
-  //public controller functions
+  // secured controller functions
+  getUserList: () => {
+    return async (req, res, next) => {
+      try {
+        const userList = await userService.getUserList();
+        res.status(200).json(respone(userList));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
   getUserDetail: () => {
     return async (req, res, next) => {
       try {
         const { id } = req.params;
+        const { user: requester } = res.locals;
 
-        const user = await userService.getUserDetail(id);
+        const user = await userService.getUserDetail(id, requester);
         res.status(200).json(respone(user));
       } catch (error) {
         console.error("-------->: ", error);
@@ -17,93 +30,54 @@ const userController = {
     };
   },
 
-  // getUserOwnPictures: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { id } = req.params;
+  create: () => {
+    return async (req, res, next) => {
+      try {
+        const dataNewUser = req.body;
+        const newUser = await userService.create(dataNewUser);
+        res.status(201).json(respone(newUser));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
 
-  //       const userWithOwnPictures = await userService.getUserOwnPictures(id);
-  //       res.status(200).json(respone(userWithOwnPictures));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
+  delete: () => {
+    return async (req, res, next) => {
+      try {
+        const { id } = req.params;
 
-  // getUserSavedPictures: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { id } = req.params;
+        const user = await userService.delete(id);
+        res
+          .status(200)
+          .json(respone(`User <${user.firstName}> with id-${user.id} deleted`));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
 
-  //       const userWithSavedPictures = await userService.getUserSavedPictures(
-  //         id
-  //       );
-  //       res.status(200).json(respone(userWithSavedPictures));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
+  update: () => {
+    return async (req, res, next) => {
+      try {
+        const { id } = req.params;
+        const dataUpdateUser = req.body;
+        const { user: requester } = res.locals;
 
-  // //secured controller functions
-  // getUserList: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const userList = await userService.getUserList();
-  //       res.status(200).json(respone(userList));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
-
-  // create: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const dataNewUser = req.body;
-  //       const newUser = await userService.create(dataNewUser);
-  //       res.status(201).json(respone(newUser));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
-
-  // delete: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { id } = req.params;
-
-  //       const user = await userService.delete(id);
-  //       res
-  //         .status(200)
-  //         .json(respone(`User <${user.firstName}> with id-${user.id} deleted`));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
-
-  // update: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { id } = req.params;
-  //       const dataUpdateUser = req.body;
-  //       const { user } = res.locals;
-
-  //       const updatedUser = await userService.update(id, dataUpdateUser, user);
-  //       res.status(200).json(respone(updatedUser));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
+        const updatedUser = await userService.update(
+          id,
+          dataUpdateUser,
+          requester
+        );
+        res.status(200).json(respone(updatedUser));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
 
   // givesComment: () => {
   //   return async (req, res, next) => {

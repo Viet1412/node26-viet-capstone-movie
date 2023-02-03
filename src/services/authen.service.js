@@ -6,7 +6,7 @@ const { User } = require("../models");
 const authenService = {
   signUp: async (dataSignUp) => {
     try {
-      if (dataSignUp.email.trim() == "" || dataSignUp.password.trim() == "") {
+      if (!dataSignUp.email.trim() || !dataSignUp.password.trim()) {
         throw new AppError(400, "missing required data to sign up");
       }
 

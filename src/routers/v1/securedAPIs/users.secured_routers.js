@@ -3,21 +3,18 @@ const userController = require("../../../controllers/users.controller");
 const requiredRole = require("../../../middlewares/requiredRoles");
 
 const userManagementRouters = express.Router();
-const userActionRouters = express.Router();
 
-userManagementRouters.get(
-  "",
-  requiredRole("admin"),
-  userController.getUserList()
-);
+//only admin access
+userManagementRouters.get("", requiredRole("admin"), userController.getUserList());
 userManagementRouters.post("", requiredRole("admin"), userController.create());
-userManagementRouters.delete(
-  "/:id",
-  requiredRole("admin"),
-  userController.delete()
-);
+userManagementRouters.delete("/:id", requiredRole("admin"), userController.delete());
+
+//admin & account owner access
+userManagementRouters.get("/:id", userController.getUserDetail());
 userManagementRouters.put("/:id", userController.update());
 
+
+// const userActionRouters = express.Router();
 // userActionRouters.post("/comment/:pictureId", userController.givesComment());
 
 module.exports = { userManagementRouters, userActionRouters };
