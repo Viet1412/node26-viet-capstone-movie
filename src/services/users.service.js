@@ -7,7 +7,7 @@ const userService = {
     try {
       const userList = await User.findAll();
       if (!userList.length) {
-        throw new AppError(404, "no user found");
+        throw new AppError(404, "No user found");
       }
 
       return userList;
@@ -16,9 +16,25 @@ const userService = {
     }
   },
 
+  getUserListPagination: async (pagination) => {
+    try {
+      const userListPagination = await User.findAll({
+        offset: (pagination.page*1 - 1) * pagination.quantityPerPage*1,
+        limit: pagination.quantityPerPage*1
+      });
+      if (!userListPagination.length) {
+        throw new AppError(404, "No user found");
+      }
+
+      return userListPagination;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   getUserDetail: async (userId, requester) => {
     try {
-      const user = await User.findByPk(userId);
+      const user = await User.findByPk(userId, /*{include:['bookingHistory']}*/);
 
       if (!user) {
         throw new AppError(404, "User not found");
@@ -40,9 +56,18 @@ const userService = {
         throw new AppError(400, "Data cannot be empty");
       }
 
-      const user = await User.findOne({ where: { email: dataNewUser.email } });
-      if (user) {
+      const isEmailExists = await User.findOne({
+        where: { email: dataSignUp.email },
+      });
+      if (isEmailExists) {
         throw new AppError(400, "Email already exists");
+      }
+
+      const isAccountExists = await User.findOne({
+        where: { account: dataSignUp.account },
+      });
+      if (isAccountExists) {
+        throw new AppError(400, "Account already exists");
       }
 
       //auto generate a random password if admin does not enter any value for password

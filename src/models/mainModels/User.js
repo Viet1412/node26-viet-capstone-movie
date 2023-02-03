@@ -16,11 +16,18 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: "account",
         validate: {
+          notEmpty: {
+            msg: "Account field cannot be empty",
+          },
+          len: {
+            args: [3,24],
+            msg: "Account length must be between 3 and 24 letters",
+          },
           isGoodString: (value) => {
-            if (value.length < 3 || !value.trim() || value.includes(" ")) {
+            if (!/^[a-z]+$/i.test(value[0]) || value.includes(" ")) {
               throw new AppError(
                 400,
-                "Your account must be longer than 2 letters, and has no space between letters"
+                "Account must start with a letter, and contain no space"
               );
             }
           },

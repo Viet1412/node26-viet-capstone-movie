@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static("."))
 
-sequelize.sync({alter: true, force: true})
+sequelize.sync({alter: true})
 
 app.use("/api/v1", v1);
 
@@ -16,7 +16,7 @@ app.use(handleErrors)
 
 app.listen(configs.PORT);
 
-// // Call these functions to generate testing data. Disable relation models and recreate tables before generating data.
+// Call these functions to generate testing data. Disable relation between models and recreate tables before generating data.
 const generateDataToTest = require("./helpers/generateDataToTest");
 // generateDataToTest.users();
 // generateDataToTest.pictures()

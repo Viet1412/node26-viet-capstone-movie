@@ -64,5 +64,5 @@ const CinemaSystem = require("./mainModels/CinemaSystem")(sequelize);
 module.exports = {
   sequelize,
   User,
-  TicketBooking,
+  // TicketBooking,
 };

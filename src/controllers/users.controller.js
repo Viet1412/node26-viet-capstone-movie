@@ -15,6 +15,23 @@ const userController = {
     };
   },
 
+  getUserListPagination: () => {
+    return async (req, res, next) => {
+      try {
+
+      console.log('req.query===========================: ', req.query);
+      const pagination = req.query;
+
+
+        const userListPagination = await userService.getUserListPagination(pagination);
+        res.status(200).json(respone(userListPagination));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
   getUserDetail: () => {
     return async (req, res, next) => {
       try {
