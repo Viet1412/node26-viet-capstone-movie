@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { AppError } = require("../helpers/error");
 const { User } = require("../models");
 
@@ -19,8 +20,8 @@ const userService = {
   getUserListPagination: async (pagination) => {
     try {
       const userListPagination = await User.findAll({
-        offset: (pagination.page*1 - 1) * pagination.quantityPerPage*1,
-        limit: pagination.quantityPerPage*1
+        offset: (pagination.page * 1 - 1) * (pagination.quantityPerPage * 1),
+        limit: pagination.quantityPerPage * 1,
       });
       if (!userListPagination.length) {
         throw new AppError(404, "No user found");
@@ -34,7 +35,7 @@ const userService = {
 
   getUserDetail: async (userId, requester) => {
     try {
-      const user = await User.findByPk(userId, /*{include:['bookingHistory']}*/);
+      const user = await User.findByPk(userId /*{include:['bookingHistory']}*/);
 
       if (!user) {
         throw new AppError(404, "User not found");
@@ -142,52 +143,27 @@ const userService = {
     }
   },
 
-  // givesComment: async (pictureId, commentContent, requester) => {
-  //   try {
-  //     if (!commentContent.trim()) {
-  //       throw new AppError(400, "not enough word to make a comment");
-  //     }
+  search: async (searchQuery, pagination) => {
+    try {
+      const foundUsers = await User.findAll({
+        where: {
+          [Op.or]: [
+            { email: { [Op.like]: `%${searchQuery}%` } },
+            { account: { [Op.like]: `%${searchQuery}%` } },
+            { firstName: { [Op.like]: `%${searchQuery}%` } },
+            { lastName: { [Op.like]: `%${searchQuery}%` } },
+          ],
+        },
+        offset:
+          (pagination.page * 1 - 1) * (pagination.quantityPerPage * 1) || 0,
+        limit: pagination.quantityPerPage * 1 || 9999,
+      });
 
-  //     const picture = await Picture.findByPk(pictureId);
-  //     if (!picture) {
-  //       throw new AppError(404, "Picture not found");
-  //     }
-
-  //     const newComment = await Comment.create({
-  //       userId: requester.id,
-  //       pictureId: picture.id,
-  //       content: commentContent,
-  //     });
-
-  //     return newComment;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // },
-
-  // savesPicture: async (pictureId, requester) => {
-  //   try {
-  //     const picture = await Picture.findByPk(pictureId);
-  //     if (!picture) {
-  //       throw new AppError(404, "Picture not found");
-  //     }
-
-  //     //sequelize may have bug in this case
-  //     // const isSaved = await requester.hasSavesPicture(pictureId);
-
-  //     const isSaved = await picture.hasSavedByUser(requester.id);
-
-  //     if (isSaved) {
-  //       await requester.removeSavesPicture(pictureId);
-  //       return "unsaved";
-  //     } else {
-  //       await requester.addSavesPicture(pictureId);
-  //       return "saved";
-  //     }
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // },
+      return foundUsers;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 module.exports = userService;

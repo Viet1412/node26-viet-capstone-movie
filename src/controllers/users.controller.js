@@ -18,12 +18,11 @@ const userController = {
   getUserListPagination: () => {
     return async (req, res, next) => {
       try {
+        const pagination = req.query;
 
-      console.log('req.query===========================: ', req.query);
-      const pagination = req.query;
-
-
-        const userListPagination = await userService.getUserListPagination(pagination);
+        const userListPagination = await userService.getUserListPagination(
+          pagination
+        );
         res.status(200).json(respone(userListPagination));
       } catch (error) {
         console.error("-------->: ", error);
@@ -96,41 +95,20 @@ const userController = {
     };
   },
 
-  // givesComment: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { pictureId } = req.params;
-  //       const { commentContent } = req.body;
-  //       const { user: requester } = res.locals;
+  search: () => {
+    return async (req, res, next) => {
+      try {
+        const { searchQuery } = req.body;
+        const pagination = req.query;
 
-  //       const newComment = await userService.givesComment(
-  //         pictureId,
-  //         commentContent,
-  //         requester
-  //       );
-  //       res.status(200).json(respone(newComment));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
-
-  // savesPicture: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { pictureId } = req.params;
-  //       const { user: requester } = res.locals;
-
-  //       const isSaved = await userService.savesPicture(pictureId, requester);
-
-  //       res.status(200).json(respone(isSaved));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
+        const foundUsers = await userService.search(searchQuery, pagination);
+        res.status(200).json(respone(foundUsers));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
 };
 
 module.exports = userController;

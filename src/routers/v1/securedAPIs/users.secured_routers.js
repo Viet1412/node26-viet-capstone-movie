@@ -9,6 +9,7 @@ userManagementRouters.get("", requiredRole("admin"), userController.getUserList(
 userManagementRouters.get("/userListPagination", requiredRole("admin"), userController.getUserListPagination());
 userManagementRouters.post("", requiredRole("admin"), userController.create());
 userManagementRouters.delete("/:id", requiredRole("admin"), userController.delete());
+userManagementRouters.post("/search", requiredRole("admin"), userController.search());
 
 //admin & account owner access
 userManagementRouters.get("/:id", userController.getUserDetail());
