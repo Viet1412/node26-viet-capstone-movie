@@ -19,5 +19,5 @@ app.listen(configs.PORT);
 // Call these functions to generate testing data. Disable relation between models and recreate tables before generating data.
 const generateDataToTest = require("./helpers/generateDataToTest");
 // generateDataToTest.users();
-// generateDataToTest.pictures()
+// generateDataToTest.movies()
 // generateDataToTest.comments()

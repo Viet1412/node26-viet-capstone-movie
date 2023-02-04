@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       },
       director: DataTypes.STRING(100),
       description: DataTypes.STRING,
-      duration: DataTypes.SMALLINT(3),//the duration of a movie often shorter than 200 minutes
+      duration: DataTypes.SMALLINT(3), //the duration of a movie often shorter than 200 minutes
       rating: DataTypes.TINYINT,
       ageRate: {
         type: DataTypes.ENUM("G", "PG", "PG-13", "R"),
@@ -31,10 +31,19 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         field: "hot_status",
       },
+      adminId: {
+        type: DataTypes.INTEGER,
+        field: "admin_id",
+      },
     },
     {
       tableName: "movies",
       timestamps: false,
+      defaultScope: {
+        attributes: {
+          exclude: ["adminId"],
+        },
+      },
     }
   );
 };

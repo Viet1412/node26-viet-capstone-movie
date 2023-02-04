@@ -3,17 +3,76 @@ const movieService = require("../services/movies.service");
 
 const movieController = {
   //public controller functions
-  getPictureList: () => {
+  getMovieList: () => {
     return async (req, res, next) => {
       try {
-        const pictureList = await pictureService.getPictureList();
-        res.status(200).json(respone(pictureList));
+        const movieList = await movieService.getMovieList();
+        res.status(200).json(respone(movieList));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);
       }
     };
   },
+
+  getMovieListPagination: () => {
+    return async (req, res, next) => {
+      try {
+        const pagination = req.query;
+
+        const movieListPagination = await movieService.getMovieListPagination(
+          pagination
+        );
+        res.status(200).json(respone(movieListPagination));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
+  getMovieDetails: () => {
+    return async (req, res, next) => {
+      try {
+        const { id } = req.params;
+
+        const movieDetails = await movieService.getMovieDetails(id);
+        res.status(200).json(respone(movieDetails));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
+  search: () => {
+    return async (req, res, next) => {
+      try {
+        const { searchKeyWord } = req.body;
+        const pagination = req.query;
+
+        const foundMovies = await movieService.search(searchKeyWord, pagination);
+        res.status(200).json(respone(foundMovies));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
+  getBannerList: () => {
+    return async (req, res, next) => {
+      try {
+        const bannerList = await movieService.getBannerList();
+        res.status(200).json(respone(bannerList));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
+  //secured controller functions
 
   // searchPicturesByName: () => {
   //   return async (req, res, next) => {
@@ -24,20 +83,6 @@ const movieController = {
   //         pictureName
   //       );
   //       res.status(200).json(respone(pictureList));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
-
-  // getPictureDetails: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { id } = req.params;
-
-  //       const pictureDetails = await pictureService.getPictureDetails(id);
-  //       res.status(200).json(respone(pictureDetails));
   //     } catch (error) {
   //       console.error("-------->: ", error);
   //       next(error);
@@ -61,7 +106,6 @@ const movieController = {
   //   };
   // },
 
-  // //secured controller functions
   // getSaveStatus: () => {
   //   return async (req, res, next) => {
   //     try {

@@ -35,16 +35,13 @@ const userService = {
       if (!count) {
         throw new AppError(404, "No user found");
       }
-      if (!rows.length) {
-        throw new AppError(404, "Found no more users");
-      }
 
       return {
         totalRecords: count,
         totalPages: Math.ceil(count / quantityPerPage),
         currentPage: page,
         quantityPerPage: quantityPerPage,
-        userListPagination: rows,
+        userListPagination: rows.length ? rows : "Found no more users",
       };
     } catch (error) {
       throw error;
@@ -112,6 +109,7 @@ const userService = {
         throw new AppError(404, "User not found");
       }
 
+      //if this user has a ticket_booking available, should not delete or data connected through FK will be lost
       await User.destroy({ where: { id: userId } });
 
       return user;
@@ -185,6 +183,10 @@ const userService = {
 
       const { count, rows } = foundUsers;
 
+      if (!count) {
+        throw new AppError(404, "No user found");
+      }
+
       if (!page || page <= 0 || !quantityPerPage || quantityPerPage <= 0) {
         return rows;
       }
@@ -194,7 +196,7 @@ const userService = {
         totalPages: Math.ceil(count / quantityPerPage),
         currentPage: page,
         quantityPerPage: quantityPerPage,
-        userListPagination: rows,
+        userListPagination: rows.length ? rows : "Found no more users",
       };
     } catch (error) {
       throw error;

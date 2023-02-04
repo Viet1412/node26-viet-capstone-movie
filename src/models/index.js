@@ -25,6 +25,7 @@ const sequelize = new Sequelize(
 //Initiate Models
 const User = require("./mainModels/User")(sequelize);
 const Movie = require("./mainModels/Movie")(sequelize);
+const Banner = require("./mainModels/Banner")(sequelize);
 const TicketBooking = require("./mainModels/TicketBooking")(sequelize);
 const CinemaSystem = require("./mainModels/CinemaSystem")(sequelize);
 
@@ -64,5 +65,7 @@ const CinemaSystem = require("./mainModels/CinemaSystem")(sequelize);
 module.exports = {
   sequelize,
   User,
+  Movie,
+  Banner,
   // TicketBooking,
 };

@@ -16,7 +16,4 @@ userManagementRouters.get("/:id", userController.getUserDetail());
 userManagementRouters.put("/:id", userController.update());
 
 
-// const userActionRouters = express.Router();
-// userActionRouters.post("/comment/:pictureId", userController.givesComment());
-
 module.exports = { userManagementRouters };

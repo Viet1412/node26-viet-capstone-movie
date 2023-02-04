@@ -1,29 +1,121 @@
 const { Op } = require("sequelize");
 const { AppError } = require("../helpers/error");
-const { Picture } = require("../models");
+const { Movie, Banner } = require("../models");
 
 const movieService = {
   //public services
-  getPictureList: async () => {
+  getMovieList: async () => {
     try {
-      const pictureList = await Picture.findAll({
-        include: [
-          {
-            association: "owner",
-            attributes: {
-              exclude: ["password", "role", "age", "email"],
-            },
-          },
-        ],
-        attributes: {
-          exclude: ["ownerId"],
-        },
-      });
-      return pictureList;
+      const movieList = await Movie.findAll();
+      if (!movieList.length) {
+        throw new AppError(404, "No movie found");
+      }
+      return movieList;
     } catch (error) {
       throw error;
     }
   },
+
+  getMovieListPagination: async (pagination) => {
+    try {
+      const page = pagination.page * 1;
+      const quantityPerPage = pagination.quantityPerPage * 1;
+
+      if (!page || page <= 0 || !quantityPerPage || quantityPerPage <= 0) {
+        throw new AppError(404, "Pagination value must be larger than 0");
+      }
+
+      const movieListPagination = await Movie.findAndCountAll({
+        offset: (page - 1) * quantityPerPage,
+        limit: quantityPerPage,
+      });
+      const { count, rows } = movieListPagination;
+
+      if (!count) {
+        throw new AppError(404, "No movie found");
+      }
+
+      return {
+        totalRecords: count,
+        totalPages: Math.ceil(count / quantityPerPage),
+        currentPage: page,
+        quantityPerPage: quantityPerPage,
+        movieListPagination: rows.length ? rows : "Found no more movies",
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getMovieDetails: async (movieId) => {
+    try {
+      const movieDetails = await Movie.findByPk(movieId); //include showing status
+      if (movieDetails) {
+        return movieDetails;
+      }
+      throw new AppError(404, "movie not found");
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  search: async (searchKeyWord, pagination) => {
+    //make search service capable of being used with or without Pagination
+    try {
+      const page = pagination.page * 1;
+      const quantityPerPage = pagination.quantityPerPage * 1;
+
+      //check if user sends an invalid pagination value
+      const offsetValue = page > 0 && (page - 1) * quantityPerPage;
+
+      const foundMovies = await Movie.findAndCountAll({
+        where: {
+          [Op.or]: [
+            { name: { [Op.like]: `%${searchKeyWord}%` } },
+            { director: { [Op.like]: `%${searchKeyWord}%` } },
+            { description: { [Op.like]: `%${searchKeyWord}%` } },
+          ],
+        },
+        offset: offsetValue > 0 ? offsetValue : 0,
+        limit: quantityPerPage > 0 ? quantityPerPage : 9999,
+      });
+
+      const { count, rows } = foundMovies;
+
+      if (!count) {
+        throw new AppError(404, "No movie found");
+      }
+
+      if (!page || page <= 0 || !quantityPerPage || quantityPerPage <= 0) {
+        return rows;
+      }
+
+      return {
+        totalRecordsFound: count,
+        totalPages: Math.ceil(count / quantityPerPage),
+        currentPage: page,
+        quantityPerPage: quantityPerPage,
+        movieListPagination: rows.length ? rows : "Found no more movies",
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getBannerList: async () => {
+    try {
+      const bannerList = await Banner.findAll();
+      if (!bannerList.length) {
+        throw new AppError(404, "No banner found");
+      }
+
+      return bannerList;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  //secured services
 
   // searchPicturesByName: async (pictureName) => {
   //   try {
@@ -42,43 +134,6 @@ const movieService = {
   //       },
   //     });
   //     return pictureListByName;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // },
-
-  // getPictureDetails: async (pictureId) => {
-  //   try {
-  //     const pictureDetails = await Picture.findByPk(pictureId, {
-  //       include: [
-  //         {
-  //           association: "owner",
-  //           attributes: {
-  //             exclude: ["password", "role"],
-  //           },
-  //         },
-  //         {
-  //           association: "hasCommentsFromUsers",
-  //           attributes: {
-  //             exclude: ["password", "role", "age", "email"],
-  //           },
-  //           through: {
-  //             association: 0, //sequelize may bug here
-  //             as: "givesComments",
-  //             attributes: {
-  //               exclude: ["userId", "pictureId"],
-  //             },
-  //           },
-  //         },
-  //       ],
-  //       attributes: {
-  //         exclude: ["ownerId"],
-  //       },
-  //     });
-  //     if (pictureDetails) {
-  //       return pictureDetails;
-  //     }
-  //     throw new AppError(404, "picture not found");
   //   } catch (error) {
   //     throw error;
   //   }
@@ -105,7 +160,6 @@ const movieService = {
   //   }
   // },
 
-  // //secured services
   // getSaveStatus: async (pictureId, requester) => {
   //   try {
   //     const picture = await Picture.findByPk(pictureId);

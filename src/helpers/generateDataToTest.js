@@ -1,12 +1,12 @@
 // should config manually to generate suitable testing data
 
-const { User } = require("../models");
+const { User, Movie } = require("../models");
 
 const generateDataToTest = {
   users: async () => {
     await User.destroy({ truncate: true });
 
-    for (let index = 1; index < 11; index++) {
+    for (let index = 1; index <= 10; index++) {
       await User.create({
         account: `dev${index}`,
         firstName: `dev ${index}`,
@@ -17,21 +17,22 @@ const generateDataToTest = {
         avatar: `https://url-of-avatar-dev${index}`,
       });
     }
-
   },
 
-  // pictures: async () => {
-  //   await Picture.destroy({ truncate: true });
+  movies: async () => {
+    await Movie.destroy({ truncate: true });
 
-  //   for (let index = 0; index < 20; index++) {
-  //     await Picture.create({
-  //       name: `picture ${index + 1}`,
-  //       url: `https://url ${index + 1}`,
-  //       description: `description of picture ${index + 1}`,
-  //       ownerId: `${(index % 10) + 1}`,
-  //     });
-  //   }
-  // },
+    for (let index = 1; index <= 20; index++) {
+      await Movie.create({
+        name: `Movie ${index}`,
+        poster: `https://url-poster-movie-${index}`,
+        trailer: `https://url-trailer-movie-${index}`,
+        description: `description of movie ${index}`,
+        rating: (index % 10) + 1,
+        adminId: index % 2 ? 1 : 4,
+      });
+    }
+  },
 
   // comments: async () => {
   //   // await Comment.destroy({ truncate: true });

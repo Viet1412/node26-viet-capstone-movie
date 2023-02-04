@@ -4,11 +4,10 @@ const movieController = require("../../../controllers/movies.controller");
 const movieRouters = express.Router();
 
 movieRouters.get("", movieController.getMovieList());
-// movieRouters.post("", movieController.searchPicturesByName());
-// movieRouters.get("/details/:id", movieController.getPictureDetails());
-// movieRouters.get(
-//   "/details/:id/comments",
-//   movieController.getCommentsOfPicture()
-// );
+movieRouters.get("/movieListPagination", movieController.getMovieListPagination());
+movieRouters.get("/:id", movieController.getMovieDetails());
+movieRouters.post("/search", movieController.search());
+
+movieRouters.get("/banner", movieController.getBannerList());
 
 module.exports = movieRouters;
