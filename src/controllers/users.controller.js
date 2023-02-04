@@ -98,10 +98,10 @@ const userController = {
   search: () => {
     return async (req, res, next) => {
       try {
-        const { searchQuery } = req.body;
+        const { searchKeyWord } = req.body;
         const pagination = req.query;
 
-        const foundUsers = await userService.search(searchQuery, pagination);
+        const foundUsers = await userService.search(searchKeyWord, pagination);
         res.status(200).json(respone(foundUsers));
       } catch (error) {
         console.error("-------->: ", error);

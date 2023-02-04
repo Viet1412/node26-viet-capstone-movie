@@ -19,15 +19,33 @@ const userService = {
 
   getUserListPagination: async (pagination) => {
     try {
-      const userListPagination = await User.findAll({
-        offset: (pagination.page * 1 - 1) * (pagination.quantityPerPage * 1),
-        limit: pagination.quantityPerPage * 1,
-      });
-      if (!userListPagination.length) {
-        throw new AppError(404, "No user found");
+      const page = pagination.page * 1;
+      const quantityPerPage = pagination.quantityPerPage * 1;
+
+      if (!page || page <= 0 || !quantityPerPage || quantityPerPage <= 0) {
+        throw new AppError(404, "Pagination value must be larger than 0");
       }
 
-      return userListPagination;
+      const userListPagination = await User.findAndCountAll({
+        offset: (page - 1) * quantityPerPage,
+        limit: quantityPerPage,
+      });
+      const { count, rows } = userListPagination;
+
+      if (!count) {
+        throw new AppError(404, "No user found");
+      }
+      if (!rows.length) {
+        throw new AppError(404, "Found no more users");
+      }
+
+      return {
+        totalRecords: count,
+        totalPages: Math.ceil(count / quantityPerPage),
+        currentPage: page,
+        quantityPerPage: quantityPerPage,
+        userListPagination: rows,
+      };
     } catch (error) {
       throw error;
     }
@@ -143,23 +161,41 @@ const userService = {
     }
   },
 
-  search: async (searchQuery, pagination) => {
+  search: async (searchKeyWord, pagination) => {
+    //make search service capable of being used with or without Pagination
     try {
-      const foundUsers = await User.findAll({
+      const page = pagination.page * 1;
+      const quantityPerPage = pagination.quantityPerPage * 1;
+
+      //check if user sends an invalid pagination value
+      const offsetValue = page > 0 && (page - 1) * quantityPerPage;
+
+      const foundUsers = await User.findAndCountAll({
         where: {
           [Op.or]: [
-            { email: { [Op.like]: `%${searchQuery}%` } },
-            { account: { [Op.like]: `%${searchQuery}%` } },
-            { firstName: { [Op.like]: `%${searchQuery}%` } },
-            { lastName: { [Op.like]: `%${searchQuery}%` } },
+            { email: { [Op.like]: `%${searchKeyWord}%` } },
+            { account: { [Op.like]: `%${searchKeyWord}%` } },
+            { firstName: { [Op.like]: `%${searchKeyWord}%` } },
+            { lastName: { [Op.like]: `%${searchKeyWord}%` } },
           ],
         },
-        offset:
-          (pagination.page * 1 - 1) * (pagination.quantityPerPage * 1) || 0,
-        limit: pagination.quantityPerPage * 1 || 9999,
+        offset: offsetValue > 0 ? offsetValue : 0,
+        limit: quantityPerPage > 0 ? quantityPerPage : 9999,
       });
 
-      return foundUsers;
+      const { count, rows } = foundUsers;
+
+      if (!page || page <= 0 || !quantityPerPage || quantityPerPage <= 0) {
+        return rows;
+      }
+
+      return {
+        totalRecordsFound: count,
+        totalPages: Math.ceil(count / quantityPerPage),
+        currentPage: page,
+        quantityPerPage: quantityPerPage,
+        userListPagination: rows,
+      };
     } catch (error) {
       throw error;
     }

@@ -24,6 +24,7 @@ module.exports = (sequelize) => {
         type: DataTypes.JSON,
         defaultValue: "[]",
         field: "seat_booked",
+        set(value) { this.setDataValue('seatBooked', toJSON(value)) } //test if this works
       },
     },
     {
