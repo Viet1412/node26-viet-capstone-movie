@@ -51,7 +51,10 @@ const movieController = {
         const { searchKeyWord } = req.body;
         const pagination = req.query;
 
-        const foundMovies = await movieService.search(searchKeyWord, pagination);
+        const foundMovies = await movieService.search(
+          searchKeyWord,
+          pagination
+        );
         res.status(200).json(respone(foundMovies));
       } catch (error) {
         console.error("-------->: ", error);
@@ -73,119 +76,58 @@ const movieController = {
   },
 
   //secured controller functions
+  create: () => {
+    return async (req, res, next) => {
+      try {
+        const dataNewMovies = req.body;
+        const { user: requester } = res.locals;
 
-  // searchPicturesByName: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { pictureName } = req.body;
+        const newMovies = await movieService.create(dataNewMovies, requester);
+        res.status(201).json(respone(newMovies));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
 
-  //       const pictureList = await pictureService.searchPicturesByName(
-  //         pictureName
-  //       );
-  //       res.status(200).json(respone(pictureList));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
+  delete: () => {
+    return async (req, res, next) => {
+      try {
+        const { movieId } = req.params;
 
-  // getCommentsOfPicture: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { id } = req.params;
+        const deletedMovie = await movieService.delete(movieId);
+        res
+          .status(200)
+          .json(
+            respone(
+              `Movie <${deletedMovie.name}> with id-${deletedMovie.id} deleted`
+            )
+          );
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
 
-  //       const pictureWithComments = await pictureService.getCommentsOfPicture(
-  //         id
-  //       );
-  //       res.status(200).json(respone(pictureWithComments));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
+  update: () => {
+    return async (req, res, next) => {
+      try {
+        const { movieId } = req.params;
+        const dataUpdateMovie = req.body;
 
-  // getSaveStatus: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { pictureId } = req.params;
-  //       const { user: requester } = res.locals;
-
-  //       const isSaved = await pictureService.getSaveStatus(
-  //         pictureId,
-  //         requester
-  //       );
-
-  //       res.status(200).json(respone(isSaved));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
-
-  // create: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const dataNewPictures = req.body;
-  //       const { user: requester } = res.locals;
-
-  //       const newPictures = await pictureService.create(
-  //         dataNewPictures,
-  //         requester
-  //       );
-  //       res.status(201).json(respone(newPictures));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
-
-  // delete: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { pictureId } = req.params;
-  //       const { user: requester } = res.locals;
-
-  //       const deletedPicture = await pictureService.delete(
-  //         pictureId,
-  //         requester
-  //       );
-  //       res
-  //         .status(200)
-  //         .json(
-  //           respone(
-  //             `picture <${deletedPicture.name}> with id-${deletedPicture.id} deleted`
-  //           )
-  //         );
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
-
-  // update: () => {
-  //   return async (req, res, next) => {
-  //     try {
-  //       const { pictureId } = req.params;
-  //       const dataUpdatePicture = req.body;
-  //       const { user: requester } = res.locals;
-
-  //       const updatedPicture = await pictureService.update(
-  //         pictureId,
-  //         dataUpdatePicture,
-  //         requester
-  //       );
-  //       res.status(200).json(respone(updatedPicture));
-  //     } catch (error) {
-  //       console.error("-------->: ", error);
-  //       next(error);
-  //     }
-  //   };
-  // },
+        const updatedMovie = await movieService.update(
+          movieId,
+          dataUpdateMovie
+        );
+        res.status(200).json(respone(updatedMovie));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
 };
 
 module.exports = movieController;

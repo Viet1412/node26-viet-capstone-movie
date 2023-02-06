@@ -116,139 +116,63 @@ const movieService = {
   },
 
   //secured services
+  create: async (dataNewMovies, requester) => {
+    try {
+      if (dataNewMovies.length == 0) {
+        throw new AppError(400, "data cannot be empty");
+      }
 
-  // searchPicturesByName: async (pictureName) => {
-  //   try {
-  //     const pictureListByName = await Picture.findAll({
-  //       where: { name: { [Op.like]: `%${pictureName}%` } },
-  //       include: [
-  //         {
-  //           association: "owner",
-  //           attributes: {
-  //             exclude: ["password", "role", "age", "email"],
-  //           },
-  //         },
-  //       ],
-  //       attributes: {
-  //         exclude: ["ownerId"],
-  //       },
-  //     });
-  //     return pictureListByName;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // },
+      const newMovies = [];
+      for (let index = 0; index < dataNewMovies.length; index++) {
+        const newMovie = await Movie.create({
+          ...dataNewMovies[index],
+          adminId: requester.id,
+        });
+        newMovies.push(newMovie);
+      }
 
-  // getCommentsOfPicture: async (pictureId) => {
-  //   try {
-  //     const pictureWithComments = await Picture.findByPk(pictureId, {
-  //       include: [
-  //         {
-  //           association: "hasComments",
-  //           attributes: {
-  //             exclude: ["pictureId"],
-  //           },
-  //         },
-  //       ],
-  //     });
-  //     if (pictureWithComments) {
-  //       return pictureWithComments;
-  //     }
-  //     throw new AppError(404, "picture not found");
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // },
+      return newMovies;
+    } catch (error) {
+      throw error;
+    }
+  },
 
-  // getSaveStatus: async (pictureId, requester) => {
-  //   try {
-  //     const picture = await Picture.findByPk(pictureId);
-  //     if (!picture) {
-  //       throw new AppError(404, "Picture not found");
-  //     }
+  delete: async (movieId) => {
+    try {
+      const movie = await Movie.findByPk(movieId);
+      if (!movie) {
+        throw new AppError(404, "movie not found");
+      }
 
-  //     const isSaved = await picture.hasSavedByUser(requester.id);
-  //     return isSaved;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // },
+      await Movie.destroy({ where: { id: movieId } });
 
-  // create: async (dataNewPictures, requester) => {
-  //   try {
-  //     if (dataNewPictures.length == 0) {
-  //       throw new AppError(400, "data cannot be empty");
-  //     }
+      return movie;
+    } catch (error) {
+      throw error;
+    }
+  },
 
-  //     const newPictures = [];
-  //     for (let index = 0; index < dataNewPictures.length; index++) {
-  //       const newPicture = await Picture.create({
-  //         name: dataNewPictures[index].name,
-  //         url: dataNewPictures[index].url,
-  //         description: dataNewPictures[index].description,
-  //         ownerId: requester.id,
-  //       });
-  //       newPictures.push(newPicture);
-  //     }
+  update: async (movieId, dataUpdateMovie) => {
+    try {
+      if (Object.keys(dataUpdateMovie).length == 0) {
+        throw new AppError(400, "Nothing to update");
+      }
 
-  //     return newPictures;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // },
+      const movie = await Movie.findByPk(movieId);
+      if (!movie) {
+        throw new AppError(404, "Movie not found");
+      }
 
-  // delete: async (pictureId, requester) => {
-  //   try {
-  //     const picture = await Picture.findByPk(pictureId);
-  //     if (!picture) {
-  //       throw new AppError(404, "picture not found");
-  //     }
+      //keep id unchanged
+      dataUpdateMovie.id = movieId;
 
-  //     if (requester.role !== "admin" && requester.id !== picture.ownerId) {
-  //       throw new AppError(403, "Not permitted");
-  //     }
+      await Movie.update(dataUpdateMovie, { where: { id: movieId } });
 
-  //     await Picture.destroy({ where: { id: pictureId } });
-
-  //     return picture;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // },
-
-  // update: async (pictureId, dataUpdatePicture, requester) => {
-  //   try {
-  //     if (Object.keys(dataUpdatePicture).length == 0) {
-  //       throw new AppError(400, "nothing to update");
-  //     }
-
-  //     const picture = await Picture.findByPk(pictureId);
-  //     if (!picture) {
-  //       throw new AppError(404, "picture not found");
-  //     }
-
-  //     if (requester.role !== "admin" && requester.id !== picture.ownerId) {
-  //       throw new AppError(403, "Not permitted");
-  //     }
-
-  //     if (
-  //       dataUpdatePicture.ownerId !== picture.ownerId &&
-  //       requester.role !== "admin"
-  //     ) {
-  //       throw new AppError(403, "Only admin can change owner_id");
-  //     }
-
-  //     //keep id & url unchanged
-  //     dataUpdatePicture.id = pictureId;
-  //     dataUpdatePicture.url = picture.url;
-
-  //     await Picture.update(dataUpdatePicture, { where: { id: pictureId } });
-
-  //     return await Picture.findByPk(pictureId);
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // },
+      return await Movie.findByPk(movieId);
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 module.exports = movieService;
