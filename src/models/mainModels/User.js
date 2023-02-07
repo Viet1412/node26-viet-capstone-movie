@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
             msg: "Account field cannot be empty",
           },
           len: {
-            args: [3,24],
+            args: [3, 24],
             msg: "Account length must be between 3 and 24 letters",
           },
           isGoodString: (value) => {
@@ -66,6 +66,11 @@ module.exports = (sequelize) => {
       avatar: {
         type: DataTypes.STRING,
         unique: "avatar",
+        validate: {
+          isUrl: {
+            msg: "Invalid Url",
+          },
+        },
       },
       role: {
         type: DataTypes.ENUM("user", "admin"),

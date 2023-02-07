@@ -15,6 +15,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         unique: "url",
         allowNull: false,
+        validate: {
+          isUrl: {
+            msg: "Invalid Url",
+          },
+        },
       },
       movieId: {
         type: DataTypes.INTEGER,

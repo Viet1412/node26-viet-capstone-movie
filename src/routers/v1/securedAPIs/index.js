@@ -10,7 +10,7 @@ const securedRouters = express.Router();
 
 securedRouters.use("/usersManagement", userManagementRouters);
 
-// Things only admin can manage 
+// APIs - only admin can access 
 securedRouters.use("/moviesManagement", requiredRole("admin"), movieManagementRouters);
 securedRouters.use("/seatNamesManagement", requiredRole("admin"), seatNameManagementRouters);
 

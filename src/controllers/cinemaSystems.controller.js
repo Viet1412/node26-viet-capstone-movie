@@ -1,12 +1,13 @@
 const respone = require("../helpers/response");
-const seatNameService = require("../services/seatNames.service");
+const cinemaSystemService = require("../services/cinemaSystems.service");
 
-const seatNameController = {
-  getSeatNameList: () => {
+const entity = "cinemaSystem";
+const cinemaSystemController = {
+  getEntityList: () => {
     return async (req, res, next) => {
       try {
-        const seatNameList = await seatNameService.getSeatNameList();
-        res.status(200).json(respone(seatNameList));
+        const entityList = await cinemaSystemService.getEntityList();
+        res.status(200).json(respone(entityList));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);
@@ -14,14 +15,14 @@ const seatNameController = {
     };
   },
 
-  getSeatNameListPagination: () => {
+  getEntityListPagination: () => {
     return async (req, res, next) => {
       try {
         const pagination = req.query;
 
-        const seatNameListPagination =
-          await seatNameService.getSeatNameListPagination(pagination);
-        res.status(200).json(respone(seatNameListPagination));
+        const entityListPagination =
+          await cinemaSystemService.getEntityListPagination(pagination);
+        res.status(200).json(respone(entityListPagination));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);
@@ -29,13 +30,13 @@ const seatNameController = {
     };
   },
 
-  getSeatNameDetails: () => {
+  getEntityDetails: () => {
     return async (req, res, next) => {
       try {
         const { id } = req.params;
 
-        const seatNameDetails = await seatNameService.getSeatNameDetails(id);
-        res.status(200).json(respone(seatNameDetails));
+        const entityDetails = await cinemaSystemService.getEntityDetails(id);
+        res.status(200).json(respone(entityDetails));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);
@@ -49,11 +50,11 @@ const seatNameController = {
         const { searchKeyWord } = req.body;
         const pagination = req.query;
 
-        const foundSeatNames = await seatNameService.search(
+        const foundEntities = await cinemaSystemService.search(
           searchKeyWord,
           pagination
         );
-        res.status(200).json(respone(foundSeatNames));
+        res.status(200).json(respone(foundEntities));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);
@@ -64,10 +65,10 @@ const seatNameController = {
   create: () => {
     return async (req, res, next) => {
       try {
-        const dataNewSeatNames = req.body;
+        const dataNewEntities = req.body;
 
-        const newSeatNames = await seatNameService.create(dataNewSeatNames);
-        res.status(201).json(respone(newSeatNames));
+        const newEntities = await cinemaSystemService.create(dataNewEntities);
+        res.status(201).json(respone(newEntities));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);
@@ -78,14 +79,14 @@ const seatNameController = {
   delete: () => {
     return async (req, res, next) => {
       try {
-        const { seatNameId } = req.params;
+        const { id } = req.params;
 
-        const deletedseatName = await seatNameService.delete(seatNameId);
+        const deletedEntity = await cinemaSystemService.delete(id);
         res
           .status(200)
           .json(
             respone(
-              `seatName <${deletedseatName.name}> with id-${deletedseatName.id} deleted`
+              `${entity} <${deletedEntity.name}> with id-${deletedEntity.id} deleted`
             )
           );
       } catch (error) {
@@ -98,14 +99,14 @@ const seatNameController = {
   update: () => {
     return async (req, res, next) => {
       try {
-        const { seatNameId } = req.params;
-        const dataUpdateSeatName = req.body;
+        const { id } = req.params;
+        const dataUpdateEntity = req.body;
 
-        const updatedSeatName = await seatNameService.update(
-          seatNameId,
-          dataUpdateSeatName
+        const updatedEntity = await cinemaSystemService.update(
+          id,
+          dataUpdateEntity
         );
-        res.status(200).json(respone(updatedSeatName));
+        res.status(200).json(respone(updatedEntity));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);
@@ -114,4 +115,4 @@ const seatNameController = {
   },
 };
 
-module.exports = seatNameController;
+module.exports = cinemaSystemController;

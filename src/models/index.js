@@ -27,8 +27,8 @@ const User = require("./mainModels/User")(sequelize);
 const Movie = require("./mainModels/Movie")(sequelize);
 const Banner = require("./mainModels/Banner")(sequelize);
 const SeatName = require("./mainModels/SeatName")(sequelize);
-const TicketBooking = require("./mainModels/TicketBooking")(sequelize);
 const CinemaSystem = require("./mainModels/CinemaSystem")(sequelize);
+const TicketBooking = require("./mainModels/TicketBooking")(sequelize);
 
 // //Create Relations
 // //User creates Pictures
@@ -69,5 +69,6 @@ module.exports = {
   Movie,
   Banner,
   SeatName,
-  // TicketBooking,
+  CinemaSystem,
+  TicketBooking,
 };

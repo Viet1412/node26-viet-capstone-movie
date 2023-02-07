@@ -16,10 +16,20 @@ module.exports = (sequelize) => {
       website: {
         type: DataTypes.STRING,
         unique: "website",
+        validate: {
+          isUrl: {
+            msg: "Invalid Url",
+          },
+        },
       },
       logo: {
         type: DataTypes.STRING,
         unique: "logo",
+        validate: {
+          isUrl: {
+            msg: "Invalid Url",
+          },
+        },
       },
     },
     {

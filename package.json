@@ -1,7 +1,7 @@
 {
-  "name": "node26-tran_quoc_viet-capstone_pinterest",
+  "name": "node26-tran_quoc_viet-final_project_movie",
   "version": "1.0.0",
-  "description": "capstone project pinterest node26",
+  "description": "node26 final project movie",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

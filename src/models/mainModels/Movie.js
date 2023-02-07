@@ -13,10 +13,20 @@ module.exports = (sequelize) => {
       poster: {
         type: DataTypes.STRING,
         unique: "poster",
+        validate: {
+          isUrl: {
+            msg: "Invalid Url",
+          },
+        },
       },
       trailer: {
         type: DataTypes.STRING,
         unique: "trailer",
+        validate: {
+          isUrl: {
+            msg: "Invalid Url",
+          },
+        },
       },
       director: DataTypes.STRING(100),
       description: DataTypes.STRING,

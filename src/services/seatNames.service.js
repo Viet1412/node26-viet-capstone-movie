@@ -3,7 +3,6 @@ const { AppError } = require("../helpers/error");
 const { SeatName } = require("../models");
 
 const seatNameService = {
-  //public services
   getSeatNameList: async () => {
     try {
       const seatNameList = await SeatName.findAll();
@@ -40,7 +39,7 @@ const seatNameService = {
         totalPages: Math.ceil(count / quantityPerPage),
         currentPage: page,
         quantityPerPage: quantityPerPage,
-        seatNameListPagination: rows.length ? rows : "Found no more SeatNames",
+        seatNameListPagination: rows.length ? rows : "Found no other SeatNames",
       };
     } catch (error) {
       throw error;
@@ -49,7 +48,7 @@ const seatNameService = {
 
   getSeatNameDetails: async (seatNameId) => {
     try {
-      const seatNameDetails = await SeatName.findByPk(seatNameId); //include showing status
+      const seatNameDetails = await SeatName.findByPk(seatNameId);
       if (seatNameDetails) {
         return seatNameDetails;
       }
@@ -91,18 +90,17 @@ const seatNameService = {
         totalPages: Math.ceil(count / quantityPerPage),
         currentPage: page,
         quantityPerPage: quantityPerPage,
-        SeatNameListPagination: rows.length ? rows : "Found no more SeatNames",
+        SeatNameListPagination: rows.length ? rows : "Found no other SeatNames",
       };
     } catch (error) {
       throw error;
     }
   },
 
-  //secured services
   create: async (dataNewSeatNames, requester) => {
     try {
       if (dataNewSeatNames.length == 0) {
-        throw new AppError(400, "data cannot be empty");
+        throw new AppError(400, "Data cannot be empty");
       }
 
       const newSeatNames = [];
