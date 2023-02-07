@@ -1,6 +1,6 @@
 // should config manually to generate suitable testing data
 
-const { User, Movie } = require("../models");
+const { User, Movie, SeatName } = require("../models");
 
 const generateDataToTest = {
   users: async () => {
@@ -34,17 +34,19 @@ const generateDataToTest = {
     }
   },
 
-  // comments: async () => {
-  //   // await Comment.destroy({ truncate: true });
+  seatNames: async () => {
+    await SeatName.destroy({ truncate: true });
 
-  //   for (let index = 0; index < 20; index++) {
-  //     await Comment.create({
-  //       userId: `${(index % 10) + 1}`,
-  //       pictureId: `${20-index}`,
-  //       content: `comment to picture ${20-index}`,
-  //     });
-  //   }
-  // },
+    let num = 65;
+    for (let i = 0; i < 5; i++) {
+      for (let index = 1; index <= 10; index++) {
+        await SeatName.create({
+          name: String.fromCharCode(num) + index,
+        });
+      }
+      num++;
+    }
+  },
 };
 
 module.exports = generateDataToTest;
