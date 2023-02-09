@@ -1,6 +1,15 @@
 // should config manually to generate suitable testing data
 
-const { User, Movie, SeatName, CinemaSystem, CinemaGroup } = require("../models");
+const {
+  User,
+  Movie,
+  SeatName,
+  CinemaSystem,
+  CinemaGroup,
+  CinemaRoom,
+  Showtime,
+  CinemaRoomHasSeat,
+} = require("../models");
 
 const generateDataToTest = {
   users: async () => {
@@ -65,15 +74,59 @@ const generateDataToTest = {
 
     for (let index = 1; index <= 20; index++) {
       await CinemaGroup.create({
-        cinemaSystemId: (index-1) % 5 +1,
+        cinemaSystemId: ((index - 1) % 5) + 1,
         name: `Cinema Group ${index}`,
         image: `https://url.com/image-cinemaGroup-${index}`,
         address: `address-cinemaGroup-${index}`,
-        city: `city-${index%4 + 1}`,
+        city: `city-${(index % 4) + 1}`,
         district: `district ${index}`,
       });
     }
   },
+
+  cinemaRooms: async () => {
+    await CinemaRoom.destroy({ truncate: true });
+
+    for (let i = 1; i <= 10; i++) {
+      for (let index = 1; index <= 5; index++) {
+        await CinemaRoom.create({
+          cinemaGroupId: i,
+          name: `Cinema Room ${index}`,
+          type: index == 1 ? "3D" : index == 5 ? "I-Max" : "2D",
+        });
+      }
+    }
+  },
+
+  showtimes: async () => {
+    await Showtime.destroy({ truncate: true });
+
+    for (let index = 1; index <= 20; index++) {
+      await Showtime.create({
+        year: 2023,
+        month: (index % 3) + 2,
+        day: index,
+        hour: index,
+        minute: index,
+      });
+    }
+  },
+
+  cinemaRoomHasSeats: async () => {
+    await CinemaRoomHasSeat.destroy({ truncate: true });
+
+    for (let i = 1; i <= 5; i++) {
+      for (let index = 1; index <= 50; index++) {
+        await CinemaRoomHasSeat.create({
+          cinemaRoomId: i,
+          seatNameId: index,
+          seatType: (index>20 && index<30) ? "vip" : index >45 ? "sweet-box" : "normal",
+          price: (index>20 && index<30) ? 88000 : index >45 ? 99000 : 70000,
+        });
+      }
+    }
+  },
+
 };
 
 module.exports = generateDataToTest;

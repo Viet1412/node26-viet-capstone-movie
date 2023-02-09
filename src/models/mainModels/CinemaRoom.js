@@ -15,7 +15,6 @@ module.exports = (sequelize) => {
       },
       name: {
         type: DataTypes.STRING(50),
-        unique: "name",
       },
       type: {
         type: DataTypes.ENUM("2D", "3D", "4D", "I-Max"),

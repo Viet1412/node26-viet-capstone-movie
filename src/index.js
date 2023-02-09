@@ -20,6 +20,9 @@ app.listen(configs.PORT);
 const generateDataToTest = require("./helpers/generateDataToTest");
 // generateDataToTest.users();
 // generateDataToTest.movies()
-// generateDataToTest.seatNames()
 // generateDataToTest.cinemaSystems()
 // generateDataToTest.cinemaGroups()
+// generateDataToTest.cinemaRooms()
+// generateDataToTest.seatNames()
+// generateDataToTest.showtimes()
+// generateDataToTest.cinemaRoomHasSeats()

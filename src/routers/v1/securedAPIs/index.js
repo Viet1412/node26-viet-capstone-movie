@@ -3,6 +3,7 @@ const uploadController = require("../../../controllers/upload.controller");
 const requiredRole = require("../../../middlewares/requiredRoles");
 const uploadMiddleware = require("../../../middlewares/upload.middleware");
 const cinemaGroupManagementRouters = require("./cinemaGroups.secured_routers");
+const cinemaRoomManagementRouters = require("./cinemaRooms.secured_routers");
 const cinemaSystemManagementRouters = require("./cinemaSystems.secured_routers");
 const movieManagementRouters = require("./movies.secured_routers");
 const seatNameManagementRouters = require("./seatNames.secured_routers");
@@ -17,6 +18,7 @@ securedRouters.use("/moviesManagement", requiredRole("admin"), movieManagementRo
 securedRouters.use("/seatNamesManagement", requiredRole("admin"), seatNameManagementRouters);
 securedRouters.use("/cinemaSystemsManagement", requiredRole("admin"), cinemaSystemManagementRouters);
 securedRouters.use("/cinemaGroupsManagement", requiredRole("admin"), cinemaGroupManagementRouters);
+securedRouters.use("/cinemaRoomsManagement", requiredRole("admin"), cinemaRoomManagementRouters);
 
 // API just for uploading files
 securedRouters.post(

@@ -26,9 +26,12 @@ const sequelize = new Sequelize(
 const User = require("./mainModels/User")(sequelize);
 const Movie = require("./mainModels/Movie")(sequelize);
 const Banner = require("./mainModels/Banner")(sequelize);
-const SeatName = require("./mainModels/SeatName")(sequelize);
 const CinemaSystem = require("./mainModels/CinemaSystem")(sequelize);
 const CinemaGroup = require("./mainModels/CinemaGroup")(sequelize);
+const CinemaRoom = require("./mainModels/CinemaRoom")(sequelize);
+const SeatName = require("./mainModels/SeatName")(sequelize);
+const Showtime = require("./mainModels/Showtime")(sequelize);
+const CinemaRoomHasSeat = require("./relationModels/CinemaRoomHasSeat")(sequelize);
 const TicketBooking = require("./mainModels/TicketBooking")(sequelize);
 
 // //Create Relations
@@ -36,9 +39,6 @@ const TicketBooking = require("./mainModels/TicketBooking")(sequelize);
 // User.hasMany(Picture, { as: "ownPictures", foreignKey: "ownerId" });
 // Picture.belongsTo(User, { as: "owner", foreignKey: "ownerId" });
 
-// //Picture has comments
-// Picture.hasMany(Comment, { as: "hasComments", foreignKey: "pictureId" });
-// Comment.belongsTo(Picture, { as: "onPicture", foreignKey: "pictureId" });
 
 // //User gives comments to Picture
 // User.belongsToMany(Picture, {
@@ -52,25 +52,17 @@ const TicketBooking = require("./mainModels/TicketBooking")(sequelize);
 //   foreignKey: "pictureId",
 // });
 
-// //User saves Picture
-// User.belongsToMany(Picture, {
-//   as: "savesPictures",
-//   through: SavePicture,
-//   foreignKey: "userId",
-// });
-// Picture.belongsToMany(User, {
-//   as: "savedByUsers",
-//   through: SavePicture,
-//   foreignKey: "pictureId",
-// });
 
 module.exports = {
   sequelize,
   User,
   Movie,
   Banner,
-  SeatName,
   CinemaSystem,
   CinemaGroup,
+  CinemaRoom,
+  SeatName,
+  Showtime,
+  CinemaRoomHasSeat,
   TicketBooking,
 };
