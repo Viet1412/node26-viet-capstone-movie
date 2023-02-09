@@ -5,6 +5,10 @@ const { User } = require("../models");
 
 const extractTokenFromHeader = (headers) => {
   const bearerToken = headers.authorization;
+  if (!bearerToken) {
+    throw new AppError(401, "Invalid token");
+  }
+
   const partsOfBearerToken = bearerToken.split(" ");
   if (
     partsOfBearerToken.length !== 2 ||

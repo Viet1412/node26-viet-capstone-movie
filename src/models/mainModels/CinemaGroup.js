@@ -21,6 +21,11 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
         unique: "image",
+        validate: {
+          isUrl: {
+            msg: "Invalid Url",
+          },
+        },
       },
       address: {
         type: DataTypes.STRING,

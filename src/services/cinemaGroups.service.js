@@ -1,9 +1,9 @@
 const { Op } = require("sequelize");
 const { AppError } = require("../helpers/error");
-const { CinemaSystem: Entity } = require("../models");
+const { CinemaGroup: Entity } = require("../models");
 
-const entityName = "cinemaSystem";
-const cinemaSystemService = {
+const entityName = "cinemaGroup";
+const cinemaGroupService = {
   getEntityList: async () => {
     try {
       const entityList = await Entity.findAll();
@@ -160,4 +160,4 @@ const cinemaSystemService = {
   },
 };
 
-module.exports = cinemaSystemService;
+module.exports = cinemaGroupService;

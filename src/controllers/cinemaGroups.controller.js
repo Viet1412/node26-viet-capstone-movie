@@ -1,12 +1,12 @@
 const respone = require("../helpers/response");
-const cinemaSystemService = require("../services/cinemaSystems.service");
+const cinemaGroupService = require("../services/cinemaGroups.service");
 
-const entityName = "cinemaSystem";
-const cinemaSystemController = {
+const entityName = "cinemaGroup";
+const cinemaGroupController = {
   getEntityList: () => {
     return async (req, res, next) => {
       try {
-        const entityList = await cinemaSystemService.getEntityList();
+        const entityList = await cinemaGroupService.getEntityList();
         res.status(200).json(respone(entityList));
       } catch (error) {
         console.error("-------->: ", error);
@@ -21,7 +21,7 @@ const cinemaSystemController = {
         const pagination = req.query;
 
         const entityListPagination =
-          await cinemaSystemService.getEntityListPagination(pagination);
+          await cinemaGroupService.getEntityListPagination(pagination);
         res.status(200).json(respone(entityListPagination));
       } catch (error) {
         console.error("-------->: ", error);
@@ -35,7 +35,7 @@ const cinemaSystemController = {
       try {
         const { id } = req.params;
 
-        const entityDetails = await cinemaSystemService.getEntityDetails(id);
+        const entityDetails = await cinemaGroupService.getEntityDetails(id);
         res.status(200).json(respone(entityDetails));
       } catch (error) {
         console.error("-------->: ", error);
@@ -50,7 +50,7 @@ const cinemaSystemController = {
         const { searchKeyWord } = req.body;
         const pagination = req.query;
 
-        const foundEntities = await cinemaSystemService.search(
+        const foundEntities = await cinemaGroupService.search(
           searchKeyWord,
           pagination
         );
@@ -67,7 +67,7 @@ const cinemaSystemController = {
       try {
         const dataNewEntities = req.body;
 
-        const newEntities = await cinemaSystemService.create(dataNewEntities);
+        const newEntities = await cinemaGroupService.create(dataNewEntities);
         res.status(201).json(respone(newEntities));
       } catch (error) {
         console.error("-------->: ", error);
@@ -81,7 +81,7 @@ const cinemaSystemController = {
       try {
         const { id } = req.params;
 
-        const deletedEntity = await cinemaSystemService.delete(id);
+        const deletedEntity = await cinemaGroupService.delete(id);
         res
           .status(200)
           .json(
@@ -102,7 +102,7 @@ const cinemaSystemController = {
         const { id } = req.params;
         const dataUpdateEntity = req.body;
 
-        const updatedEntity = await cinemaSystemService.update(
+        const updatedEntity = await cinemaGroupService.update(
           id,
           dataUpdateEntity
         );
@@ -115,4 +115,4 @@ const cinemaSystemController = {
   },
 };
 
-module.exports = cinemaSystemController;
+module.exports = cinemaGroupController;
