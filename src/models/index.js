@@ -66,56 +66,29 @@ CinemaRoom.belongsToMany(Movie, {
   as: "hasMovies",
   through: CinemaRoomHasMovie,
   foreignKey: "cinemaRoomId",
+  uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
 });
 Movie.belongsToMany(CinemaRoom, {
   as: "inCinemaRooms",
   through: CinemaRoomHasMovie,
   foreignKey: "movieId",
+  uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
 });
 Showtime.belongsToMany(CinemaRoom, {
   as: "inCinemaRooms",
   through: CinemaRoomHasMovie,
   foreignKey: "showtimeId",
-});
-CinemaRoom.belongsToMany(Showtime, {
-  as: "hasShowtimes",
-  through: CinemaRoomHasMovie,
-  foreignKey: "cinemaRoomId",
-});
-Movie.belongsToMany(Showtime, {
-  as: "withShowtimes",
-  through: CinemaRoomHasMovie,
-  foreignKey: "movieId",
-});
-Showtime.belongsToMany(Movie, {
-  as: "withMovies",
-  through: CinemaRoomHasMovie,
-  foreignKey: "showtimeId",
+  otherKey: "cinemaRoomId",
+  uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
 });
 
 //Ticket Booking Details
 TicketBooking.hasMany(BookingDetail, { as: "bookingDetails", foreignKey: "ticketBookingId" });
 BookingDetail.belongsTo(TicketBooking, { as: "inTicketBooking", foreignKey: "ticketBookingId" });
-CinemaRoom.belongsToMany(TicketBooking, {
-  as: "inBookingDetails",
-  through: BookingDetail,
-  foreignKey: "cinemaRoomId",
-});
-Movie.belongsToMany(TicketBooking, {
-  as: "inBookingDetails",
-  through: BookingDetail,
-  foreignKey: "movieId",
-});
-Showtime.belongsToMany(TicketBooking, {
-  as: "inBookingDetails",
-  through: BookingDetail,
-  foreignKey: "showtimeId",
-});
-SeatName.belongsToMany(TicketBooking, {
-  as: "inBookingDetails",
-  through: BookingDetail,
-  foreignKey: "seatNameId",
-});
+CinemaRoom.hasMany(BookingDetail, { foreignKey: "cinemaRoomId" });
+Movie.hasMany(BookingDetail, { foreignKey: "movieId" });
+Showtime.hasMany(BookingDetail, { foreignKey: "showtimeId" });
+SeatName.hasMany(BookingDetail, { foreignKey: "seatNameId" });
 
 
 module.exports = {

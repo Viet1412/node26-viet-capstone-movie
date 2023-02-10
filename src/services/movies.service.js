@@ -102,19 +102,6 @@ const movieService = {
     }
   },
 
-  getBannerList: async () => {
-    try {
-      const bannerList = await Banner.findAll();
-      if (!bannerList.length) {
-        throw new AppError(404, "No banner found");
-      }
-
-      return bannerList;
-    } catch (error) {
-      throw error;
-    }
-  },
-
   //secured services
   create: async (dataNewMovies, requester) => {
     try {

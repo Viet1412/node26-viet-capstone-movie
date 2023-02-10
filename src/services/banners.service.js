@@ -1,9 +1,10 @@
 const { Op } = require("sequelize");
 const { AppError } = require("../helpers/error");
-const { CinemaSystem: Entity } = require("../models");
+const { Banner: Entity } = require("../models");
 
-const entityName = "cinemaSystem";
-const cinemaSystemService = {
+const entityName = "banner";
+const bannerService = {
+  //public services
   getEntityList: async () => {
     try {
       const entityList = await Entity.findAll();
@@ -102,6 +103,7 @@ const cinemaSystemService = {
     }
   },
 
+  //secured services
   create: async (dataNewEntities) => {
     try {
       if (dataNewEntities.length == 0) {
@@ -110,12 +112,12 @@ const cinemaSystemService = {
 
       for (let index = 0; index < dataNewEntities.length; index++) {
         let isExist = await Entity.findOne({
-          where: { name: dataNewEntities[index].name },
+          where: { url: dataNewEntities[index].url },
         });
         if (isExist) {
           throw new AppError(
             400,
-            `${dataNewEntities[index].name} already exists`
+            `${entityName} with url-${dataNewEntities[index].url} already exists`
           );
         }
       }
@@ -166,4 +168,4 @@ const cinemaSystemService = {
   },
 };
 
-module.exports = cinemaSystemService;
+module.exports = bannerService;

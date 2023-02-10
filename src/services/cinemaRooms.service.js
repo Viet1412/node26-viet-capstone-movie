@@ -108,13 +108,22 @@ const cinemaRoomService = {
         throw new AppError(400, `Data cannot be empty`);
       }
 
-      const newEntities = [];
       for (let index = 0; index < dataNewEntities.length; index++) {
-        const newEntity = await Entity.create({
-          ...dataNewEntities[index],
+        let isExist = await Entity.findOne({
+          where: {
+            cinemaGroupId: dataNewEntities[index].cinemaGroupId,
+            name: dataNewEntities[index].name,
+          },
         });
-        newEntities.push(newEntity);
+        if (isExist) {
+          throw new AppError(
+            400,
+            `${dataNewEntities[index].name} already exists in CinemaGroup with Id-${dataNewEntities[index].cinemaGroupId}`
+          );
+        }
       }
+
+      const newEntities = await Entity.bulkCreate(dataNewEntities);
 
       return newEntities;
     } catch (error) {

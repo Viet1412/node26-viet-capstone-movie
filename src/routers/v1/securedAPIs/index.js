@@ -6,7 +6,7 @@ const cinemaGroupManagementRouters = require("./cinemaGroups.secured_routers");
 const cinemaRoomManagementRouters = require("./cinemaRooms.secured_routers");
 const cinemaSystemManagementRouters = require("./cinemaSystems.secured_routers");
 const movieManagementRouters = require("./movies.secured_routers");
-const seatNameManagementRouters = require("./seatNames.secured_routers");
+const bannerManagementRouters = require("./banners.secured_routers");
 const {userManagementRouters} = require("./users.secured_routers");
 
 const securedRouters = express.Router();
@@ -15,7 +15,7 @@ securedRouters.use("/usersManagement", userManagementRouters);
 
 // APIs - only admin can access 
 securedRouters.use("/moviesManagement", requiredRole("admin"), movieManagementRouters);
-securedRouters.use("/seatNamesManagement", requiredRole("admin"), seatNameManagementRouters);
+securedRouters.use("/bannersManagement", requiredRole("admin"), bannerManagementRouters);
 securedRouters.use("/cinemaSystemsManagement", requiredRole("admin"), cinemaSystemManagementRouters);
 securedRouters.use("/cinemaGroupsManagement", requiredRole("admin"), cinemaGroupManagementRouters);
 securedRouters.use("/cinemaRoomsManagement", requiredRole("admin"), cinemaRoomManagementRouters);

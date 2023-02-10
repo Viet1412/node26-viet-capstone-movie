@@ -63,18 +63,6 @@ const movieController = {
     };
   },
 
-  getBannerList: () => {
-    return async (req, res, next) => {
-      try {
-        const bannerList = await movieService.getBannerList();
-        res.status(200).json(respone(bannerList));
-      } catch (error) {
-        console.error("-------->: ", error);
-        next(error);
-      }
-    };
-  },
-
   //secured controller functions
   create: () => {
     return async (req, res, next) => {

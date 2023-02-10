@@ -7,14 +7,17 @@ module.exports = (sequelize) => {
       cinemaRoomId: {
         type: DataTypes.INTEGER.UNSIGNED,
         field: "cinema_room_id",
+        primaryKey: true,
       },
       movieId: {
         type: DataTypes.INTEGER.UNSIGNED,
         field: "movie_id",
+        primaryKey: true,
       },
       showtimeId: {
         type: DataTypes.INTEGER.UNSIGNED,
         field: "showtime_id",
+        primaryKey: true,
       },
       showStatus: {
         type: DataTypes.ENUM("showing", "coming-soon"),
@@ -25,8 +28,8 @@ module.exports = (sequelize) => {
         type: DataTypes.JSON,
         defaultValue: "[]",
         field: "seat_booked",
-        set(value) { this.setDataValue('seatBooked', JSON.stringify(value)) }, //test if this works
-        get(value) { this.getDataValue('seatBooked', JSON.parse(value)) }, //test if this works
+        set(value) { this.setDataValue('seatBooked', JSON.stringify(value)) },
+        get(value) { this.getDataValue('seatBooked', JSON.parse(value)) },
       },
     },
     {
