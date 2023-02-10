@@ -9,6 +9,8 @@ const {
   CinemaRoom,
   Showtime,
   CinemaRoomHasSeat,
+  CinemaRoomHasMovie,
+  Banner,
 } = require("../models");
 
 const generateDataToTest = {
@@ -127,6 +129,35 @@ const generateDataToTest = {
     }
   },
 
+  cinemaRoomHasMovies: async () => {
+    await CinemaRoomHasMovie.destroy({ truncate: true });
+
+    for (let i = 1; i <= 5; i++) {
+      for (let index = 1; index <= 20; index++) {
+        if((i+index)%2!==0){continue}
+        await CinemaRoomHasMovie.create({
+          cinemaRoomId: i,
+          movieId: index,
+          showtimeId: index,
+          showStatus: (index>5 && index<9) ? "coming-soon" : "showing",
+          seatBooked: ["1", "2", "5" ],
+        });
+      }
+    }
+  },
+
+  banners: async () => {
+    await Banner.destroy({ truncate: true });
+
+    for (let index = 1; index <= 5; index++) {
+      await Banner.create({
+        name: `Banner ${index}`,
+        description: `description-Banner-${index}`,
+        url: `https://url.com/url-Banner-${index}`,
+        movieId: index,
+      });
+    }
+  },
 };
 
 module.exports = generateDataToTest;

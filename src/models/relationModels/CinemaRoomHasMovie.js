@@ -19,12 +19,14 @@ module.exports = (sequelize) => {
       showStatus: {
         type: DataTypes.ENUM("showing", "coming-soon"),
         defaultValue: "showing",
+        field: "show_status",
       },
       seatBooked: {
         type: DataTypes.JSON,
         defaultValue: "[]",
         field: "seat_booked",
-        set(value) { this.setDataValue('seatBooked', toJSON(value)) } //test if this works
+        set(value) { this.setDataValue('seatBooked', JSON.stringify(value)) }, //test if this works
+        get(value) { this.getDataValue('seatBooked', JSON.parse(value)) }, //test if this works
       },
     },
     {

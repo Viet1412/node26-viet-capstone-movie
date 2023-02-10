@@ -26,3 +26,5 @@ const generateDataToTest = require("./helpers/generateDataToTest");
 // generateDataToTest.seatNames()
 // generateDataToTest.showtimes()
 // generateDataToTest.cinemaRoomHasSeats()
+// generateDataToTest.cinemaRoomHasMovies()
+// generateDataToTest.banners()

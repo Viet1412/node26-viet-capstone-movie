@@ -22,7 +22,7 @@ const sequelize = new Sequelize(
   }
 })();
 
-//Initiate Models
+// *Initiate Models* //
 const User = require("./mainModels/User")(sequelize);
 const Movie = require("./mainModels/Movie")(sequelize);
 const Banner = require("./mainModels/Banner")(sequelize);
@@ -32,25 +32,90 @@ const CinemaRoom = require("./mainModels/CinemaRoom")(sequelize);
 const SeatName = require("./mainModels/SeatName")(sequelize);
 const Showtime = require("./mainModels/Showtime")(sequelize);
 const CinemaRoomHasSeat = require("./relationModels/CinemaRoomHasSeat")(sequelize);
+const CinemaRoomHasMovie = require("./relationModels/CinemaRoomHasMovie")(sequelize);
 const TicketBooking = require("./mainModels/TicketBooking")(sequelize);
+const BookingDetail = require("./relationModels/BookingDetail")(sequelize);
 
-// //Create Relations
-// //User creates Pictures
-// User.hasMany(Picture, { as: "ownPictures", foreignKey: "ownerId" });
-// Picture.belongsTo(User, { as: "owner", foreignKey: "ownerId" });
+// *Create Models Relations* //
+//User creates TicketBooking
+User.hasMany(TicketBooking, { as: "hasTicketBookings", foreignKey: "userId" });
+TicketBooking.belongsTo(User, { as: "owner", foreignKey: "userId" });
 
+//CinemaSystem has CinemaGroup
+CinemaSystem.hasMany(CinemaGroup, { as: "hasCinemaGroups", foreignKey: "cinemaSystemId" });
+CinemaGroup.belongsTo(CinemaSystem, { as: "owner", foreignKey: "cinemaSystemId" });
 
-// //User gives comments to Picture
-// User.belongsToMany(Picture, {
-//   as: "givesComments",
-//   through: Comment,
-//   foreignKey: "userId",
-// });
-// Picture.belongsToMany(User, {
-//   as: "hasCommentsFromUsers",
-//   through: Comment,
-//   foreignKey: "pictureId",
-// });
+//CinemaGroup has CinemaRoom
+CinemaGroup.hasMany(CinemaRoom, { as: "hasCinemaRooms", foreignKey: "cinemaGroupId" });
+CinemaRoom.belongsTo(CinemaGroup, { as: "inCinemaGroup", foreignKey: "cinemaGroupId" });
+
+//CinemaRoom has Seat
+CinemaRoom.belongsToMany(SeatName, {
+  as: "hasSeats",
+  through: CinemaRoomHasSeat,
+  foreignKey: "cinemaRoomId",
+});
+SeatName.belongsToMany(CinemaRoom, {
+  as: "inCinemaRooms",
+  through: CinemaRoomHasSeat,
+  foreignKey: "seatNameId",
+});
+
+//CinemaRoom has Movie
+CinemaRoom.belongsToMany(Movie, {
+  as: "hasMovies",
+  through: CinemaRoomHasMovie,
+  foreignKey: "cinemaRoomId",
+});
+Movie.belongsToMany(CinemaRoom, {
+  as: "inCinemaRooms",
+  through: CinemaRoomHasMovie,
+  foreignKey: "movieId",
+});
+Showtime.belongsToMany(CinemaRoom, {
+  as: "inCinemaRooms",
+  through: CinemaRoomHasMovie,
+  foreignKey: "showtimeId",
+});
+CinemaRoom.belongsToMany(Showtime, {
+  as: "hasShowtimes",
+  through: CinemaRoomHasMovie,
+  foreignKey: "cinemaRoomId",
+});
+Movie.belongsToMany(Showtime, {
+  as: "withShowtimes",
+  through: CinemaRoomHasMovie,
+  foreignKey: "movieId",
+});
+Showtime.belongsToMany(Movie, {
+  as: "withMovies",
+  through: CinemaRoomHasMovie,
+  foreignKey: "showtimeId",
+});
+
+//Ticket Booking Details
+TicketBooking.hasMany(BookingDetail, { as: "bookingDetails", foreignKey: "ticketBookingId" });
+BookingDetail.belongsTo(TicketBooking, { as: "inTicketBooking", foreignKey: "ticketBookingId" });
+CinemaRoom.belongsToMany(TicketBooking, {
+  as: "inBookingDetails",
+  through: BookingDetail,
+  foreignKey: "cinemaRoomId",
+});
+Movie.belongsToMany(TicketBooking, {
+  as: "inBookingDetails",
+  through: BookingDetail,
+  foreignKey: "movieId",
+});
+Showtime.belongsToMany(TicketBooking, {
+  as: "inBookingDetails",
+  through: BookingDetail,
+  foreignKey: "showtimeId",
+});
+SeatName.belongsToMany(TicketBooking, {
+  as: "inBookingDetails",
+  through: BookingDetail,
+  foreignKey: "seatNameId",
+});
 
 
 module.exports = {
@@ -64,5 +129,7 @@ module.exports = {
   SeatName,
   Showtime,
   CinemaRoomHasSeat,
+  CinemaRoomHasMovie,
   TicketBooking,
+  BookingDetail,
 };
