@@ -26,10 +26,10 @@ module.exports = (sequelize) => {
       },
       seatBooked: {
         type: DataTypes.JSON,
-        defaultValue: "[]",
+        // defaultValue: "[]",
         field: "seat_booked",
-        set(value) { this.setDataValue('seatBooked', JSON.stringify(value)) },
-        get(value) { this.getDataValue('seatBooked', JSON.parse(value)) },
+        // set(value) { this.setDataValue('seatBooked', JSON.stringify(value)) },
+        // get(value) { this.getDataValue('seatBooked', JSON.parse(value)) },
       },
     },
     {

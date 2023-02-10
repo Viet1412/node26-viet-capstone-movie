@@ -4,6 +4,7 @@ const { CinemaSystem: Entity } = require("../models");
 
 const entityName = "cinemaSystem";
 const cinemaSystemService = {
+  //public services
   getEntityList: async () => {
     try {
       const entityList = await Entity.findAll();
@@ -102,6 +103,97 @@ const cinemaSystemService = {
     }
   },
 
+  getCinemaGroupsOfCinemaSystems: async () => {
+    try {
+      const entityList = await Entity.findAll({
+        include: [
+          {
+            association: "hasCinemaGroups",
+            attributes: {
+              exclude: ["cinemaSystemId"],
+            },
+          },
+        ],
+      });
+      if (!entityList.length) {
+        throw new AppError(404, `No ${entityName} found`);
+      }
+      return entityList;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getCinemaGroupsOfCinemaSystem: async (entityId) => {
+    try {
+      const cinemaGroupsOfCinemaSystem = await Entity.findByPk(entityId, {
+        include: [
+          {
+            association: "hasCinemaGroups",
+            attributes: {
+              exclude: ["cinemaSystemId"],
+            },
+          },
+        ],
+      });
+      if (cinemaGroupsOfCinemaSystem) {
+        return cinemaGroupsOfCinemaSystem;
+      }
+      throw new AppError(404, `${entityName} not found`);
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getShowtimesOfCinemaSystems: async () => {
+    try {
+      const entityList = await Entity.findAll({
+        include: [
+          {
+            association: "hasCinemaGroups",
+            attributes: {
+              exclude: ["cinemaSystemId"],
+            },
+            include: [
+              {
+                association: "hasCinemaRooms",
+                required: true,
+                attributes: {
+                  exclude: ["cinemaGroupId"],
+                },
+                include: [
+                  {
+                    association: "hasMovies",
+                    required: true,
+                    through: {
+                      as: "inCinema",
+                      attributes: ["showStatus"],
+                    },
+                    include: [
+                      {
+                        association: "hasShowtimes",
+                        through: {
+                          attributes: [],
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      if (!entityList.length) {
+        throw new AppError(404, `No ${entityName} found`);
+      }
+      return entityList;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  //secured services
   create: async (dataNewEntities) => {
     try {
       if (dataNewEntities.length == 0) {

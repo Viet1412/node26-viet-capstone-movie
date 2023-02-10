@@ -132,7 +132,8 @@ const generateDataToTest = {
   cinemaRoomHasMovies: async () => {
     await CinemaRoomHasMovie.destroy({ truncate: true });
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 21; i++) {
+      if(i==1 || i==7 || i==13 || i==19 || i==25){
       for (let index = 1; index <= 20; index++) {
         if((i+index)%2!==0){continue}
         await CinemaRoomHasMovie.create({
@@ -140,9 +141,10 @@ const generateDataToTest = {
           movieId: index,
           showtimeId: index,
           showStatus: (index>5 && index<9) ? "coming-soon" : "showing",
-          seatBooked: ["1", "2", "5" ],
+          seatBooked: [1, 3, 6],
         });
       }
+    }
     }
   },
 

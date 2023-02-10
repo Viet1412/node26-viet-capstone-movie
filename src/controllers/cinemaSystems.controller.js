@@ -3,6 +3,7 @@ const cinemaSystemService = require("../services/cinemaSystems.service");
 
 const entityName = "cinemaSystem";
 const cinemaSystemController = {
+  //public controller functions
   getEntityList: () => {
     return async (req, res, next) => {
       try {
@@ -62,6 +63,47 @@ const cinemaSystemController = {
     };
   },
 
+  getCinemaGroupsOfCinemaSystems: () => {
+    return async (req, res, next) => {
+      try {
+        const entityList = await cinemaSystemService.getCinemaGroupsOfCinemaSystems();
+        res.status(200).json(respone(entityList));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
+
+  getCinemaGroupsOfCinemaSystem: () => {
+    return async (req, res, next) => {
+      try {
+        const { id } = req.params;
+
+        const cinemaGroupsOfCinemaSystem = await cinemaSystemService.getCinemaGroupsOfCinemaSystem(id);
+        res.status(200).json(respone(cinemaGroupsOfCinemaSystem));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
+
+  getShowtimesOfCinemaSystems: () => {
+    return async (req, res, next) => {
+      try {
+        const entityList = await cinemaSystemService.getShowtimesOfCinemaSystems();
+        res.status(200).json(respone(entityList));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
+  //secured controller functions
   create: () => {
     return async (req, res, next) => {
       try {

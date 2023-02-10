@@ -3,13 +3,8 @@ const cinemaSystemController = require("../../../controllers/cinemaSystems.contr
 
 const cinemaSystemManagementRouters = express.Router();
 
-cinemaSystemManagementRouters.get("", cinemaSystemController.getEntityList());
-cinemaSystemManagementRouters.get("/cinemaSystemListPagination", cinemaSystemController.getEntityListPagination());
-cinemaSystemManagementRouters.get("/:id", cinemaSystemController.getEntityDetails());
 cinemaSystemManagementRouters.post("", cinemaSystemController.create());
 cinemaSystemManagementRouters.delete("/:id", cinemaSystemController.delete());
 cinemaSystemManagementRouters.put("/:id", cinemaSystemController.update());
-cinemaSystemManagementRouters.post("/search", cinemaSystemController.search());
-
 
 module.exports = cinemaSystemManagementRouters;

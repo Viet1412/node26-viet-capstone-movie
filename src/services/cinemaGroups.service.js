@@ -4,6 +4,7 @@ const { CinemaGroup: Entity } = require("../models");
 
 const entityName = "cinemaGroup";
 const cinemaGroupService = {
+  //public services
   getEntityList: async () => {
     try {
       const entityList = await Entity.findAll();
@@ -102,6 +103,7 @@ const cinemaGroupService = {
     }
   },
 
+  //secured services
   create: async (dataNewEntities) => {
     try {
       if (dataNewEntities.length == 0) {

@@ -3,9 +3,9 @@ const bannerController = require("../../../controllers/banners.controller");
 
 const bannerRouters = express.Router();
 
-bannerRouters.get("", bannerController.getbannerList());
-bannerRouters.get("/bannerListPagination", bannerController.getbannerListPagination());
-bannerRouters.get("/:id", bannerController.getbannerDetails());
+bannerRouters.get("", bannerController.getEntityList());
+bannerRouters.get("/bannerListPagination", bannerController.getEntityListPagination());
+bannerRouters.get("/:id", bannerController.getEntityDetails());
 bannerRouters.post("/search", bannerController.search());
 
 
