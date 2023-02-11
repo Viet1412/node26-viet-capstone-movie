@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       },
       name: DataTypes.STRING(200),
       poster: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(500),
         unique: "poster",
         validate: {
           isUrl: {
@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
         },
       },
       trailer: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(500),
         unique: "trailer",
         validate: {
           isUrl: {
@@ -29,13 +29,18 @@ module.exports = (sequelize) => {
         },
       },
       director: DataTypes.STRING(100),
-      description: DataTypes.STRING,
+      desc: DataTypes.STRING,
+      description: DataTypes.TEXT('medium'),
       duration: DataTypes.SMALLINT(3), //the duration of a movie often shorter than 200 minutes
       rating: DataTypes.TINYINT,
       ageRate: {
         type: DataTypes.ENUM("G", "PG", "PG-13", "R"),
         defaultValue: "G",
         field: "age_rate",
+      },
+      inCinemaStatus: {
+        type: DataTypes.BOOLEAN,
+        field: "in_cinema_status",
       },
       hotStatus: {
         type: DataTypes.BOOLEAN,

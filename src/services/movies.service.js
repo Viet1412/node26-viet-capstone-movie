@@ -1,6 +1,6 @@
 const { Op } = require("sequelize");
 const { AppError } = require("../helpers/error");
-const { Movie, Banner } = require("../models");
+const { Movie, CinemaRoomHasMovie, CinemaSystem } = require("../models");
 
 const movieService = {
   //public services
@@ -40,7 +40,7 @@ const movieService = {
         totalPages: Math.ceil(count / quantityPerPage),
         currentPage: page,
         quantityPerPage: quantityPerPage,
-        movieListPagination: rows.length ? rows : "Found no more movies",
+        movieListPagination: rows.length ? rows : "Found no other movies",
       };
     } catch (error) {
       throw error;
@@ -53,7 +53,69 @@ const movieService = {
       if (movieDetails) {
         return movieDetails;
       }
-      throw new AppError(404, "movie not found");
+      throw new AppError(404, "Movie not found");
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getShowtimesByMovieId: async (movieId) => {
+    try {
+      //include showing status
+      const movie = await Movie.findByPk(movieId);
+      if (!movie) {
+        throw new AppError(404, "Movie not found");
+      }
+
+      const isInCinema = await CinemaRoomHasMovie.findAll({
+        where: { movieId },
+        attributes: ["cinemaRoomId"],
+      });
+      if (!isInCinema.length) {
+        throw new AppError(404, "This movie is not in cinema yet");
+      }
+
+      const movieShowtimes = await CinemaSystem.findAll({
+        include: [
+          {
+            association: "hasCinemaGroups",
+            required: true,
+            attributes: {
+              exclude: ["cinemaSystemId"],
+            },
+            include: [
+              {
+                association: "hasCinemaRooms",
+                required: true,
+                attributes: {
+                  exclude: ["cinemaGroupId"],
+                },
+                include: [
+                  {
+                    association: "hasMovies",
+                    where: { id: movieId },
+                    required: true,
+                    through: {
+                      attributes: [],
+                    },
+                  },
+                  {
+                    association: "hasShowtimes",
+                    through: {
+                      as: "seatStatus",
+                      where: { movieId },
+                      attributes: [],
+                      // attributes: ["seatBooked"],
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+
+      return movieShowtimes;
     } catch (error) {
       throw error;
     }

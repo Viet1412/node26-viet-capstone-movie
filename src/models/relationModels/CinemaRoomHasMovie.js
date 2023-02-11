@@ -26,10 +26,8 @@ module.exports = (sequelize) => {
       },
       seatBooked: {
         type: DataTypes.JSON,
-        // defaultValue: "[]",
         field: "seat_booked",
-        // set(value) { this.setDataValue('seatBooked', JSON.stringify(value)) },
-        // get(value) { this.getDataValue('seatBooked', JSON.parse(value)) },
+        defaultValue: [],
       },
     },
     {
@@ -38,6 +36,3 @@ module.exports = (sequelize) => {
     }
   );
 };
-/** when booking, update 3 tables, column seat_booked of this table may be updated by creating a blank [] to push data query from table booking_details, and then convert JSON to update in this table
- * when querying the booked_seat_list, convert JSON data from column seat_booked and check with data from seat_list
- */

@@ -124,9 +124,9 @@ const cinemaSystemService = {
     }
   },
 
-  getCinemaGroupsOfCinemaSystem: async (entityId) => {
+  getCinemaGroupsOf1CinemaSystem: async (entityId) => {
     try {
-      const cinemaGroupsOfCinemaSystem = await Entity.findByPk(entityId, {
+      const cinemaGroupsOf1CinemaSystem = await Entity.findByPk(entityId, {
         include: [
           {
             association: "hasCinemaGroups",
@@ -136,8 +136,8 @@ const cinemaSystemService = {
           },
         ],
       });
-      if (cinemaGroupsOfCinemaSystem) {
-        return cinemaGroupsOfCinemaSystem;
+      if (cinemaGroupsOf1CinemaSystem) {
+        return cinemaGroupsOf1CinemaSystem;
       }
       throw new AppError(404, `${entityName} not found`);
     } catch (error) {
@@ -188,6 +188,54 @@ const cinemaSystemService = {
         throw new AppError(404, `No ${entityName} found`);
       }
       return entityList;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getShowtimesOf1CinemaSystem: async (entityId) => {
+    try {
+      const showtimesOf1CinemaSystem = await Entity.findByPk(entityId, {
+        include: [
+          {
+            association: "hasCinemaGroups",
+            attributes: {
+              exclude: ["cinemaSystemId"],
+            },
+            include: [
+              {
+                association: "hasCinemaRooms",
+                required: true,
+                attributes: {
+                  exclude: ["cinemaGroupId"],
+                },
+                include: [
+                  {
+                    association: "hasMovies",
+                    required: true,
+                    through: {
+                      as: "inCinema",
+                      attributes: ["showStatus"],
+                    },
+                    include: [
+                      {
+                        association: "hasShowtimes",
+                        through: {
+                          attributes: [],
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      if (showtimesOf1CinemaSystem) {
+        return showtimesOf1CinemaSystem;
+      }
+      throw new AppError(404, `${entityName} not found`);
     } catch (error) {
       throw error;
     }

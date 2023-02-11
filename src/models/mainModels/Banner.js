@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       name: DataTypes.STRING(50),
       description: DataTypes.STRING,
       url: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(500),
         unique: "url",
         allowNull: false,
         validate: {
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
         },
       },
       movieId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         field: "movie_id",
       },
     },

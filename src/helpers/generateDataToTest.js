@@ -38,7 +38,8 @@ const generateDataToTest = {
         name: `Movie ${index}`,
         poster: `https://url.com/poster-movie-${index}`,
         trailer: `https://url.com/trailer-movie-${index}`,
-        description: `description of movie ${index}`,
+        desc: `short description of movie ${index}`,
+        description: `full description of movie ${index}`,
         rating: (index % 10) + 1,
         adminId: index % 2 ? 1 : 4,
       });

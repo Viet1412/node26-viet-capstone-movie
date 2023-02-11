@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         },
       },
       logo: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(500),
         unique: "logo",
         validate: {
           isUrl: {

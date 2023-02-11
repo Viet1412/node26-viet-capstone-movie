@@ -66,8 +66,9 @@ const cinemaSystemController = {
   getCinemaGroupsOfCinemaSystems: () => {
     return async (req, res, next) => {
       try {
-        const entityList = await cinemaSystemService.getCinemaGroupsOfCinemaSystems();
-        res.status(200).json(respone(entityList));
+        const cinemaGroupsOfCinemaSystems =
+          await cinemaSystemService.getCinemaGroupsOfCinemaSystems();
+        res.status(200).json(respone(cinemaGroupsOfCinemaSystems));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);
@@ -75,14 +76,14 @@ const cinemaSystemController = {
     };
   },
 
-
-  getCinemaGroupsOfCinemaSystem: () => {
+  getCinemaGroupsOf1CinemaSystem: () => {
     return async (req, res, next) => {
       try {
         const { id } = req.params;
 
-        const cinemaGroupsOfCinemaSystem = await cinemaSystemService.getCinemaGroupsOfCinemaSystem(id);
-        res.status(200).json(respone(cinemaGroupsOfCinemaSystem));
+        const cinemaGroupsOf1CinemaSystem =
+          await cinemaSystemService.getCinemaGroupsOf1CinemaSystem(id);
+        res.status(200).json(respone(cinemaGroupsOf1CinemaSystem));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);
@@ -90,12 +91,27 @@ const cinemaSystemController = {
     };
   },
 
-
   getShowtimesOfCinemaSystems: () => {
     return async (req, res, next) => {
       try {
-        const entityList = await cinemaSystemService.getShowtimesOfCinemaSystems();
-        res.status(200).json(respone(entityList));
+        const showtimesOfCinemaSystems =
+          await cinemaSystemService.getShowtimesOfCinemaSystems();
+        res.status(200).json(respone(showtimesOfCinemaSystems));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
+  getShowtimesOf1CinemaSystem: () => {
+    return async (req, res, next) => {
+      try {
+        const { id } = req.params;
+
+        const showtimesOf1CinemaSystem =
+          await cinemaSystemService.getShowtimesOf1CinemaSystem(id);
+        res.status(200).json(respone(showtimesOf1CinemaSystem));
       } catch (error) {
         console.error("-------->: ", error);
         next(error);

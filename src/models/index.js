@@ -41,6 +41,10 @@ const BookingDetail = require("./relationModels/BookingDetail")(sequelize);
 User.hasMany(TicketBooking, { as: "hasTicketBookings", foreignKey: "userId" });
 TicketBooking.belongsTo(User, { as: "owner", foreignKey: "userId" });
 
+//Movie has Banner
+Movie.hasMany(Banner, { as: "hasBanners", foreignKey: "movieId" });
+Banner.belongsTo(Movie, { as: "fromMovie", foreignKey: "movieId" });
+
 //CinemaSystem has CinemaGroup
 CinemaSystem.hasMany(CinemaGroup, { as: "hasCinemaGroups", foreignKey: "cinemaSystemId" });
 CinemaGroup.belongsTo(CinemaSystem, { as: "owner", foreignKey: "cinemaSystemId" });
@@ -70,15 +74,17 @@ CinemaRoom.belongsToMany(Movie, {
   uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
 });
 Movie.belongsToMany(Showtime, {
-  as: "hasShowtimes",
+  as: "movieShowtimes",
   through: CinemaRoomHasMovie,
   foreignKey: "movieId",
+  otherKey: "cinemaRoomId",
   uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
 });
-Showtime.belongsToMany(Movie, {
-  as: "inMovies",
+CinemaRoom.belongsToMany(Showtime, {
+  as: "hasShowtimes",
   through: CinemaRoomHasMovie,
-  foreignKey: "showtimeId",
+  foreignKey: "cinemaRoomId",
+  otherKey: "showtimeId",
   uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
 });
 

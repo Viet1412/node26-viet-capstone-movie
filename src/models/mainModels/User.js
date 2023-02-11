@@ -64,7 +64,7 @@ module.exports = (sequelize) => {
         },
       },
       avatar: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(500),
         unique: "avatar",
         validate: {
           isUrl: {

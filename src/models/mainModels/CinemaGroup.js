@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       image: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(500),
         unique: "image",
         validate: {
           isUrl: {

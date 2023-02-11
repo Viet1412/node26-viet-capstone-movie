@@ -45,6 +45,20 @@ const movieController = {
     };
   },
 
+  getShowtimesByMovieId: () => {
+    return async (req, res, next) => {
+      try {
+        const { id } = req.params;
+
+        const movieShowtimes = await movieService.getShowtimesByMovieId(id);
+        res.status(200).json(respone(movieShowtimes));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
   search: () => {
     return async (req, res, next) => {
       try {
