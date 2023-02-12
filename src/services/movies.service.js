@@ -69,11 +69,11 @@ const movieService = {
 
       const isInCinema = await CinemaRoomHasMovie.findAll({
         where: { movieId },
-        attributes: ["cinemaRoomId"],
       });
       if (!isInCinema.length) {
         throw new AppError(404, "This movie is not in cinema yet");
       }
+      movie.inCinemaStatus = true;
 
       const movieShowtimes = await CinemaSystem.findAll({
         include: [
@@ -92,20 +92,12 @@ const movieService = {
                 },
                 include: [
                   {
-                    association: "hasMovies",
-                    where: { id: movieId },
+                    association: "hasShowtimes",
                     required: true,
                     through: {
-                      attributes: [],
-                    },
-                  },
-                  {
-                    association: "hasShowtimes",
-                    through: {
-                      as: "seatStatus",
+                      as: "inThisCinema",
                       where: { movieId },
-                      attributes: [],
-                      // attributes: ["seatBooked"],
+                      attributes: ["showStatus"],
                     },
                   },
                 ],
@@ -115,7 +107,7 @@ const movieService = {
         ],
       });
 
-      return movieShowtimes;
+      return { movie, movieShowtimes };
     } catch (error) {
       throw error;
     }

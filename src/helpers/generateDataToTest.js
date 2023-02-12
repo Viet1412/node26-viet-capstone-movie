@@ -26,6 +26,7 @@ const generateDataToTest = {
         email: `dev${index}@g.co`,
         password: `${index}`,
         avatar: `https://url.com/avatar-dev${index}`,
+        role: index==1 ? 'admin' : 'user',
       });
     }
   },
@@ -133,8 +134,8 @@ const generateDataToTest = {
   cinemaRoomHasMovies: async () => {
     await CinemaRoomHasMovie.destroy({ truncate: true });
 
-    for (let i = 1; i <= 21; i++) {
-      if(i==1 || i==7 || i==13 || i==19 || i==25){
+    for (let i = 1; i <= 25; i++) {
+      if(i==1 || i==8 || i==13 || i==20 || i==25){
       for (let index = 1; index <= 20; index++) {
         if((i+index)%2!==0){continue}
         await CinemaRoomHasMovie.create({

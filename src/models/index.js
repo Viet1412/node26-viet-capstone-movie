@@ -77,7 +77,7 @@ Movie.belongsToMany(Showtime, {
   as: "movieShowtimes",
   through: CinemaRoomHasMovie,
   foreignKey: "movieId",
-  otherKey: "cinemaRoomId",
+  otherKey: "showtimeId",
   uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
 });
 CinemaRoom.belongsToMany(Showtime, {
@@ -85,6 +85,13 @@ CinemaRoom.belongsToMany(Showtime, {
   through: CinemaRoomHasMovie,
   foreignKey: "cinemaRoomId",
   otherKey: "showtimeId",
+  uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
+});
+Showtime.belongsToMany(CinemaRoom, {
+  as: "showtimeInCinemaRooms",
+  through: CinemaRoomHasMovie,
+  foreignKey: "showtimeId",
+  otherKey: "cinemaRoomId",
   uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
 });
 

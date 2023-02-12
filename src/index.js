@@ -16,7 +16,7 @@ app.use(handleErrors)
 
 app.listen(configs.PORT);
 
-// Call these functions to generate testing data. Disable relation between models and recreate tables before generating data.
+// Call these functions to generate testing data. If errors happen, should disable relations between models and recreate tables before generating data.
 const generateDataToTest = require("./helpers/generateDataToTest");
 // generateDataToTest.users();
 // generateDataToTest.movies()
