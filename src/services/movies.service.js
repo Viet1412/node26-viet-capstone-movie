@@ -113,6 +113,57 @@ const movieService = {
     }
   },
 
+  getMovieListByShowtime: async (queryForMovies) => {
+    //make service capable of being used with or without Pagination
+    try {
+      const page = queryForMovies.page * 1;
+      const quantityPerPage = queryForMovies.quantityPerPage * 1;
+      const { dateStart, dateEnd } = queryForMovies;
+      if (!dateStart || !dateEnd) {
+        throw new AppError(400, "Cannot find date query");
+      }
+
+      //check if user sends an invalid pagination value
+      const offsetValue = page > 0 && (page - 1) * quantityPerPage;
+
+      const movieListByShowtime = await Movie.findAll({
+        include: [
+          {
+            association: "movieShowtimes",
+            required: true,
+            through: {
+              as: "inCinema",
+              attributes: ["showStatus"],
+            },
+            where: {
+              date: { [Op.between]: [dateStart, dateEnd] },
+            },
+          },
+        ],
+        offset: offsetValue > 0 ? offsetValue : 0,
+        limit: quantityPerPage > 0 ? quantityPerPage : 9999,
+      });
+
+      if (!movieListByShowtime.length) {
+        throw new AppError(404, "No movie found");
+      }
+
+      if (!page || page <= 0 || !quantityPerPage || quantityPerPage <= 0) {
+        return movieListByShowtime;
+      }
+
+      return {
+        totalRecordsFound: movieListByShowtime.length,
+        totalPages: Math.ceil(movieListByShowtime.length / quantityPerPage),
+        currentPage: page,
+        quantityPerPage,
+        movieListByShowtime,
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
+
   search: async (searchKeyWord, pagination) => {
     //make search service capable of being used with or without Pagination
     try {
@@ -149,7 +200,7 @@ const movieService = {
         totalPages: Math.ceil(count / quantityPerPage),
         currentPage: page,
         quantityPerPage: quantityPerPage,
-        movieListPagination: rows.length ? rows : "Found no more movies",
+        movieListPagination: rows.length ? rows : "Found no other movies",
       };
     } catch (error) {
       throw error;

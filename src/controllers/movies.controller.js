@@ -59,6 +59,22 @@ const movieController = {
     };
   },
 
+  getMovieListByShowtime: () => {
+    return async (req, res, next) => {
+      try {
+        const queryForMovies = req.query;
+
+        const movieListByShowtime = await movieService.getMovieListByShowtime(
+          queryForMovies
+        );
+        res.status(200).json(respone(movieListByShowtime));
+      } catch (error) {
+        console.error("-------->: ", error);
+        next(error);
+      }
+    };
+  },
+
   search: () => {
     return async (req, res, next) => {
       try {

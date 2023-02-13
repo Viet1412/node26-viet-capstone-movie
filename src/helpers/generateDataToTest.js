@@ -26,7 +26,7 @@ const generateDataToTest = {
         email: `dev${index}@g.co`,
         password: `${index}`,
         avatar: `https://url.com/avatar-dev${index}`,
-        role: index==1 ? 'admin' : 'user',
+        role: index == 1 ? "admin" : "user",
       });
     }
   },
@@ -103,15 +103,12 @@ const generateDataToTest = {
   },
 
   showtimes: async () => {
-    await Showtime.destroy({ truncate: true });
+    // await Showtime.destroy({ truncate: true });
 
     for (let index = 1; index <= 20; index++) {
       await Showtime.create({
-        year: 2023,
-        month: (index % 3) + 2,
-        day: index,
-        hour: index,
-        minute: index,
+        date: `2023-${(index % 3) + 2}-${index}`,
+        dateTime: `2023-${(index % 3) + 2}-${index} , ${index}:${index}:${index}`,
       });
     }
   },
@@ -124,29 +121,36 @@ const generateDataToTest = {
         await CinemaRoomHasSeat.create({
           cinemaRoomId: i,
           seatNameId: index,
-          seatType: (index>20 && index<30) ? "vip" : index >45 ? "sweet-box" : "normal",
-          price: (index>20 && index<30) ? 88000 : index >45 ? 99000 : 70000,
+          seatType:
+            index > 20 && index < 30
+              ? "vip"
+              : index > 45
+              ? "sweet-box"
+              : "normal",
+          price: index > 20 && index < 30 ? 88000 : index > 45 ? 99000 : 70000,
         });
       }
     }
   },
 
   cinemaRoomHasMovies: async () => {
-    await CinemaRoomHasMovie.destroy({ truncate: true });
+    // await CinemaRoomHasMovie.destroy({ truncate: true });
 
     for (let i = 1; i <= 25; i++) {
-      if(i==1 || i==8 || i==13 || i==20 || i==25){
-      for (let index = 1; index <= 20; index++) {
-        if((i+index)%2!==0){continue}
-        await CinemaRoomHasMovie.create({
-          cinemaRoomId: i,
-          movieId: index,
-          showtimeId: index,
-          showStatus: (index>5 && index<9) ? "coming-soon" : "showing",
-          seatBooked: [1, 3, 6],
-        });
+      if (i == 1 || i == 8 || i == 13 || i == 20 || i == 25) {
+        for (let index = 1; index <= 20; index++) {
+          if ((i + index) % 2 !== 0) {
+            continue;
+          }
+          await CinemaRoomHasMovie.create({
+            cinemaRoomId: i,
+            movieId: index,
+            showtimeId: index,
+            showStatus: index > 5 && index < 9 ? "coming-soon" : "showing",
+            seatBooked: [1, 3, 6],
+          });
+        }
       }
-    }
     }
   },
 
