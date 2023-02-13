@@ -1,6 +1,6 @@
 const { Op, Sequelize } = require("sequelize");
 const { AppError } = require("../helpers/error");
-const { CinemaSystem: Entity } = require("../models");
+const { CinemaSystem: Entity, CinemaRoomHasMovie } = require("../models");
 
 const entityName = "cinemaSystem";
 const cinemaSystemService = {
@@ -187,24 +187,6 @@ const cinemaSystemService = {
                       as: "inThisCinema",
                       attributes: ["showStatus"],
                     },
-                    include: [
-                      {
-                        association: "movieShowtimes",
-                        required: true,
-                        through: {
-                          attributes: [],
-                        },
-                        include: [
-                          {
-                            association: "showtimeInCinemaRooms",
-                            required: true,
-                            through: {
-                              attributes: [],
-                            },
-                          },
-                        ],
-                      },
-                    ],
                   },
                 ],
               },
@@ -216,56 +198,39 @@ const cinemaSystemService = {
         throw new AppError(404, `No ${entityName} found`);
       }
 
-      //the index in ".map()" function is hard to config
-      let showtimesOfCinemaSystems = entityList;
+      let showtimesOfCinemaSystems = JSON.parse(JSON.stringify(entityList));
 
-      for (let index1 = 0; index1 < showtimesOfCinemaSystems.length; index1++) {
-        let cinemaSystem = showtimesOfCinemaSystems[index1];
-        for (
-          let index2 = 0;
-          index2 < cinemaSystem.hasCinemaGroups.length;
-          index2++
-        ) {
-          let cinemaGroup = cinemaSystem.hasCinemaGroups[index2];
-          for (
-            let index3 = 0;
-            index3 < cinemaGroup.hasCinemaRooms.length;
-            index3++
-          ) {
-            let cinemaRoom = cinemaGroup.hasCinemaRooms[index3];
-            for (
-              let index4 = 0;
-              index4 < cinemaRoom.hasMovies.length;
-              index4++
-            ) {
-              let movie = cinemaRoom.hasMovies[index4];
-              for (
-                let index5 = 0;
-                index5 < movie.movieShowtimes.length;
-                index5++
-              ) {
-                let showtime = movie.movieShowtimes[index5];
-                for (
-                  let index6 = 0;
-                  index6 < showtime.showtimeInCinemaRooms.length;
-                  index6++
-                ) {
-                  if (
-                    cinemaRoom.id !== showtime.showtimeInCinemaRooms[index6].id
-                  ) {
-                    showtime.showtimeInCinemaRooms.splice(index6, 1);
-                    index6--;
-                  }
-                  if (showtime.showtimeInCinemaRooms.length == 0) {
-                    movie.movieShowtimes.splice(index5, 1);
-                    index5--;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      await Promise.all(
+        showtimesOfCinemaSystems.map(async (cinemaSystem) => {
+          await Promise.all(
+            cinemaSystem.hasCinemaGroups.map(async (cinemaGroup) => {
+              await Promise.all(
+                cinemaGroup.hasCinemaRooms.map(async (cinemaRoom) => {
+                  await Promise.all(
+                    cinemaRoom.hasMovies.map(async (movie) => {
+                      movie.showtimes = await CinemaRoomHasMovie.findAll({
+                        where: {
+                          movieId: movie.id,
+                          cinemaRoomId: cinemaRoom.id,
+                        },
+                        attributes: ["showtimeId"],
+                        include: [
+                          {
+                            association: "showtimeDetails",
+                            attributes: {
+                              exclude: ["id"],
+                            },
+                          },
+                        ],
+                      });
+                    })
+                  );
+                })
+              );
+            })
+          );
+        })
+      );
 
       return showtimesOfCinemaSystems;
     } catch (error) {
@@ -275,7 +240,7 @@ const cinemaSystemService = {
 
   getShowtimesOf1CinemaSystem: async (entityId) => {
     try {
-      const showtimesOf1CinemaSystem = await Entity.findByPk(entityId, {
+      const cinemaSystemDetails = await Entity.findByPk(entityId, {
         include: [
           {
             association: "hasCinemaGroups",
@@ -298,24 +263,6 @@ const cinemaSystemService = {
                       as: "inThisCinema",
                       attributes: ["showStatus"],
                     },
-                    include: [
-                      {
-                        association: "movieShowtimes",
-                        required: true,
-                        through: {
-                          attributes: [],
-                        },
-                        include: [
-                          {
-                            association: "showtimeInCinemaRooms",
-                            required: true,
-                            through: {
-                              attributes: [],
-                            },
-                          },
-                        ],
-                      },
-                    ],
                   },
                 ],
               },
@@ -323,50 +270,41 @@ const cinemaSystemService = {
           },
         ],
       });
-      if (!showtimesOf1CinemaSystem) {
+      if (!cinemaSystemDetails) {
         throw new AppError(404, `${entityName} not found`);
       }
 
-      for (
-        let index2 = 0;
-        index2 < showtimesOf1CinemaSystem.hasCinemaGroups.length;
-        index2++
-      ) {
-        let cinemaGroup = showtimesOf1CinemaSystem.hasCinemaGroups[index2];
-        for (
-          let index3 = 0;
-          index3 < cinemaGroup.hasCinemaRooms.length;
-          index3++
-        ) {
-          let cinemaRoom = cinemaGroup.hasCinemaRooms[index3];
-          for (let index4 = 0; index4 < cinemaRoom.hasMovies.length; index4++) {
-            let movie = cinemaRoom.hasMovies[index4];
-            for (
-              let index5 = 0;
-              index5 < movie.movieShowtimes.length;
-              index5++
-            ) {
-              let showtime = movie.movieShowtimes[index5];
-              for (
-                let index6 = 0;
-                index6 < showtime.showtimeInCinemaRooms.length;
-                index6++
-              ) {
-                if (
-                  cinemaRoom.id !== showtime.showtimeInCinemaRooms[index6].id
-                ) {
-                  showtime.showtimeInCinemaRooms.splice(index6, 1);
-                  index6--;
-                }
-                if (showtime.showtimeInCinemaRooms.length == 0) {
-                  movie.movieShowtimes.splice(index5, 1);
-                  index5--;
-                }
-              }
-            }
-          }
-        }
-      }
+      let showtimesOf1CinemaSystem = JSON.parse(
+        JSON.stringify(cinemaSystemDetails)
+      );
+
+      await Promise.all(
+        showtimesOf1CinemaSystem.hasCinemaGroups.map(async (cinemaGroup) => {
+          await Promise.all(
+            cinemaGroup.hasCinemaRooms.map(async (cinemaRoom) => {
+              await Promise.all(
+                cinemaRoom.hasMovies.map(async (movie) => {
+                  movie.showtimes = await CinemaRoomHasMovie.findAll({
+                    where: {
+                      movieId: movie.id,
+                      cinemaRoomId: cinemaRoom.id,
+                    },
+                    attributes: ["showtimeId"],
+                    include: [
+                      {
+                        association: "showtimeDetails",
+                        attributes: {
+                          exclude: ["id"],
+                        },
+                      },
+                    ],
+                  });
+                })
+              );
+            })
+          );
+        })
+      );
 
       return showtimesOf1CinemaSystem;
     } catch (error) {

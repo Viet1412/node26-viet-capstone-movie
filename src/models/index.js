@@ -87,13 +87,7 @@ CinemaRoom.belongsToMany(Showtime, {
   otherKey: "showtimeId",
   uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
 });
-Showtime.belongsToMany(CinemaRoom, {
-  as: "showtimeInCinemaRooms",
-  through: CinemaRoomHasMovie,
-  foreignKey: "showtimeId",
-  otherKey: "cinemaRoomId",
-  uniqueKey: 'CinemaRoomHasMovie_uniqueKey'
-});
+CinemaRoomHasMovie.belongsTo(Showtime, { as: "showtimeDetails", foreignKey: "showtimeId" });
 
 //Ticket Booking Details
 TicketBooking.hasMany(BookingDetail, { as: "bookingDetails", foreignKey: "ticketBookingId" });
