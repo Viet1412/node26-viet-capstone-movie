@@ -16,4 +16,4 @@ userManagementRouters.get("/:id", userController.getUserDetail());
 userManagementRouters.put("/:id", userController.update());
 
 
-module.exports = { userManagementRouters };
+module.exports = userManagementRouters;
