@@ -11,6 +11,7 @@ const {
   CinemaRoomHasSeat,
   CinemaRoomHasMovie,
   Banner,
+  TicketBooking,
 } = require("../models");
 
 const generateDataToTest = {
@@ -108,7 +109,9 @@ const generateDataToTest = {
     for (let index = 1; index <= 20; index++) {
       await Showtime.create({
         date: `2023-${(index % 3) + 2}-${index}`,
-        dateTime: `2023-${(index % 3) + 2}-${index} , ${index}:${index}:${index}`,
+        dateTime: `2023-${
+          (index % 3) + 2
+        }-${index} , ${index}:${index}:${index}`,
       });
     }
   },
@@ -163,6 +166,16 @@ const generateDataToTest = {
         description: `description-Banner-${index}`,
         url: `https://url.com/url-Banner-${index}`,
         movieId: index,
+      });
+    }
+  },
+
+  ticketBookings: async () => {
+    // await TicketBooking.destroy({ truncate: true });
+
+    for (let index = 1; index <= 3; index++) {
+      await TicketBooking.create({
+        userId: index,
       });
     }
   },

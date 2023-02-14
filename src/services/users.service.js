@@ -41,7 +41,7 @@ const userService = {
         totalPages: Math.ceil(count / quantityPerPage),
         currentPage: page,
         quantityPerPage: quantityPerPage,
-        userListPagination: rows.length ? rows : "Found no more users",
+        userListPagination: rows.length ? rows : "Found no other users",
       };
     } catch (error) {
       throw error;
@@ -50,7 +50,16 @@ const userService = {
 
   getUserDetail: async (userId, requester) => {
     try {
-      const user = await User.findByPk(userId /*{include:['bookingHistory']}*/);
+      const user = await User.findByPk(userId, {
+        include: [
+          {
+            association: "hasTicketBookings",
+            attributes: {
+              exclude: ["userId"],
+            },
+          },
+        ],
+      });
 
       if (!user) {
         throw new AppError(404, "User not found");
@@ -61,99 +70,6 @@ const userService = {
       }
 
       return user;
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  create: async (dataNewUser) => {
-    try {
-      if (Object.keys(dataNewUser).length == 0) {
-        throw new AppError(400, "Data cannot be empty");
-      }
-
-      const isEmailExists = await User.findOne({
-        where: { email: dataSignUp.email },
-      });
-      if (isEmailExists) {
-        throw new AppError(400, "Email already exists");
-      }
-
-      const isAccountExists = await User.findOne({
-        where: { account: dataSignUp.account },
-      });
-      if (isAccountExists) {
-        throw new AppError(400, "Account already exists");
-      }
-
-      //auto generate a random password if admin does not enter any value for password
-      if (!dataNewUser.password) {
-        dataNewUser.password = Math.random().toString(36).substring(5);
-      }
-
-      const newUser = await User.create(dataNewUser);
-
-      //return this password to admin or email it to user and ask user to change password
-      newUser.dataValues.passwordOfNewUserCreatedByAdmin = dataNewUser.password;
-
-      return newUser;
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  delete: async (userId) => {
-    try {
-      const user = await User.findByPk(userId);
-      if (!user) {
-        throw new AppError(404, "User not found");
-      }
-
-      //if this user has a ticket_booking available, should not delete or data connected through FK will be lost
-      await User.destroy({ where: { id: userId } });
-
-      return user;
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  update: async (userId, dataUpdateUser, requester) => {
-    try {
-      if (Object.keys(dataUpdateUser).length == 0) {
-        throw new AppError(400, "Nothing to update");
-      }
-
-      const user = await User.findByPk(userId);
-      if (!user) {
-        throw new AppError(404, "User not found");
-      }
-
-      if (requester.role !== "admin" && requester.id !== user.id) {
-        throw new AppError(403, "Not permitted");
-      }
-
-      if (dataUpdateUser.role !== user.role && requester.role !== "admin") {
-        throw new AppError(403, "Only admin can change role");
-      }
-
-      if (dataUpdateUser.email !== user.email) {
-        const isEmailExists = await User.findOne({
-          where: { email: dataUpdateUser.email },
-        });
-        if (isEmailExists) {
-          throw new AppError(400, "Email already exists");
-        }
-      }
-
-      //keep id unchanged
-      dataUpdateUser.id = userId;
-
-      await User.update(dataUpdateUser, {
-        where: { id: userId },
-      });
-
-      return await User.findByPk(userId);
     } catch (error) {
       throw error;
     }
@@ -198,6 +114,114 @@ const userService = {
         quantityPerPage: quantityPerPage,
         userListPagination: rows.length ? rows : "Found no more users",
       };
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  create: async (dataNewUser) => {
+    try {
+      if (Object.keys(dataNewUser).length == 0) {
+        throw new AppError(400, "Data cannot be empty");
+      }
+
+      const isEmailExists = await User.findOne({
+        where: { email: dataSignUp.email },
+      });
+      if (isEmailExists) {
+        throw new AppError(400, "Email already exists");
+      }
+
+      const isAccountExists = await User.findOne({
+        where: { account: dataSignUp.account },
+      });
+      if (isAccountExists) {
+        throw new AppError(400, "Account already exists");
+      }
+
+      //auto generate a random password if admin does not enter any value for password
+      if (!dataNewUser.password) {
+        dataNewUser.password = Math.random().toString(36).substring(5);
+      }
+
+      const newUser = await User.create(dataNewUser);
+
+      //return this password to admin or email it to user and ask user to change password
+      newUser.dataValues.passwordOfNewUserCreatedByAdmin = dataNewUser.password;
+
+      return newUser;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  delete: async (userId) => {
+    try {
+      const user = await User.findByPk(userId, {
+        include: [
+          {
+            association: "hasTicketBookings",
+            attributes: {
+              exclude: ["userId"],
+            },
+          },
+        ],
+      });
+      if (!user) {
+        throw new AppError(404, "User not found");
+      }
+
+      if (!user.hasTicketBookings.length) {
+        throw new AppError(
+          400,
+          "This user has ticket_bookings available, should not delete or connected data will be lost"
+        );
+      }
+
+      await User.destroy({ where: { id: userId } });
+
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  update: async (userId, dataUpdateUser, requester) => {
+    try {
+      if (Object.keys(dataUpdateUser).length == 0) {
+        throw new AppError(400, "Nothing to update");
+      }
+
+      const user = await User.findByPk(userId);
+      if (!user) {
+        throw new AppError(404, "User not found");
+      }
+
+      if (requester.role !== "admin" && requester.id !== user.id) {
+        throw new AppError(403, "Not permitted");
+      }
+
+      if (dataUpdateUser.role !== user.role && requester.role !== "admin") {
+        throw new AppError(403, "Only admin can change role");
+      }
+
+      if (dataUpdateUser.email !== user.email) {
+        const isEmailExists = await User.findOne({
+          where: { email: dataUpdateUser.email },
+        });
+        if (isEmailExists) {
+          throw new AppError(400, "Email already exists");
+        }
+      }
+
+      //keep id unchanged
+      dataUpdateUser.id = userId;
+
+      await User.update(dataUpdateUser, {
+        where: { id: userId },
+      });
+
+      return await User.findByPk(userId);
     } catch (error) {
       throw error;
     }

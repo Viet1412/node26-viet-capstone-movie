@@ -9,10 +9,12 @@ const cinemaRoomManagementRouters = require("./cinemaRooms.secured_routers");
 const movieManagementRouters = require("./movies.secured_routers");
 const bannerManagementRouters = require("./banners.secured_routers");
 const showtimeManagementRouters = require("./showtimes.secured_routers");
+const ticketBookingManagementRouters = require("./ticketBookings.secured_routers");
 
 const securedRouters = express.Router();
 
 securedRouters.use("/usersManagement", userManagementRouters);
+securedRouters.use("/ticketBookingsManagement", ticketBookingManagementRouters);
 
 // APIs - only admin can access 
 securedRouters.use("/moviesManagement", requiredRole("admin"), movieManagementRouters);

@@ -49,7 +49,7 @@ const movieService = {
 
   getMovieDetails: async (movieId) => {
     try {
-      const movieDetails = await Movie.findByPk(movieId); //include showing status
+      const movieDetails = await Movie.findByPk(movieId);
       if (movieDetails) {
         return movieDetails;
       }
@@ -61,7 +61,6 @@ const movieService = {
 
   getShowtimesByMovieId: async (movieId) => {
     try {
-      //include showing status
       const movie = await Movie.findByPk(movieId);
       if (!movie) {
         throw new AppError(404, "Movie not found");

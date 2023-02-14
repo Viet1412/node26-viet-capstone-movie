@@ -29,6 +29,11 @@ module.exports = (sequelize) => {
         field: "seat_name_id",
         primaryKey: true,
       },
+      seatType: {
+        type: DataTypes.ENUM("normal", "vip", "sweet-box"),
+        defaultValue: "normal",
+        field: "seat_type",
+      },
       price: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
