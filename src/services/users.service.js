@@ -112,7 +112,7 @@ const userService = {
         totalPages: Math.ceil(count / quantityPerPage),
         currentPage: page,
         quantityPerPage: quantityPerPage,
-        userListPagination: rows.length ? rows : "Found no more users",
+        userListPagination: rows.length ? rows : "Found no other users",
       };
     } catch (error) {
       throw error;

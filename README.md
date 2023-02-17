@@ -1,7 +1,7 @@
 1. Introduction:
 -This is an app to make buying movie tickets easier for users.
 
-2. Function:
--Users can find information about movies they like, and look for showtime in any Cinema System.
--Users can buy tickets from many Cinema Group easily.
--Only admin can manage movies.
+2. Functions:
+-Users can find information about movies they like, and search for showtime in any Cinema System.
+-Users can buy tickets from many Cinema Groups easily.
+-Users can manage user's profile. Other managements need admin role.

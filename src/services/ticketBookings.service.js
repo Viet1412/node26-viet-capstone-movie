@@ -100,6 +100,7 @@ const ticketBookingService = {
         throw new AppError(404, "ticketBooking not found");
       }
 
+      // role user can see only the details of tickets they booked
       if (requester.role !== "admin" && requester.id !== ticketBooking.userId) {
         throw new AppError(403, "Not permitted");
       }
@@ -161,6 +162,80 @@ const ticketBookingService = {
     }
   },
 
+  getInfoToBookTicket: async (dataQueryInfoToBookTicket) => {
+    try {
+      if (Object.keys(dataQueryInfoToBookTicket).length == 0) {
+        throw new AppError(400, "Data cannot be empty");
+      }
+      const { cinemaRoomId, movieId, showtimeId } = dataQueryInfoToBookTicket;
+      if (cinemaRoomId <= 0 || movieId <= 0 || showtimeId <= 0) {
+        throw new AppError(400, `Data cannot be a negative number`);
+      }
+
+      const cinemaRoomHasMovie = await CinemaRoomHasMovie.findOne({
+        where: {
+          cinemaRoomId,
+          movieId,
+          showtimeId,
+        },
+        attributes: ["showStatus", "seatBooked"],
+        include: [
+          {
+            association: "movieDetails",
+            attributes: ["name", "poster", "director", "duration", "ageRate"],
+          },
+          {
+            association: "cinemaRoomInfo",
+            attributes: ["name", "type"],
+            include: [
+              {
+                association: "inCinemaGroup",
+                attributes: ["name", "address"],
+              },
+            ],
+          },
+          {
+            association: "showtimeDetails",
+            attributes: ["dateTime"],
+          },
+        ],
+      });
+      if (!cinemaRoomHasMovie) {
+        throw new AppError(
+          404,
+          `Cannot find showtime of movie with id-${movieId} in this cinema`
+        );
+      }
+
+      const cinemaRoomHasSeats = await CinemaRoomHasSeat.findAll({
+        where: { cinemaRoomId },
+        attributes: {
+          exclude: ["cinemaRoomId"],
+        },
+        include: [
+          {
+            association: "nameOfSeat",
+            attributes: ["name"],
+          },
+        ],
+      });
+
+      const seatBookingStatus = `${cinemaRoomHasMovie.seatBooked.length}/${cinemaRoomHasSeats.length}`;
+
+      cinemaRoomHasSeats.map((seat) => {
+        if (cinemaRoomHasMovie.seatBooked.includes(seat.seatNameId)) {
+          seat.dataValues.bookedStatus = true;
+        } else {
+          seat.dataValues.bookedStatus = false;
+        }
+      });
+
+      return { seatBookingStatus, cinemaRoomHasMovie, cinemaRoomHasSeats };
+    } catch (error) {
+      throw error;
+    }
+  },
+
   create: async (dataNewTicketBooking, requester) => {
     try {
       if (Object.keys(dataNewTicketBooking).length == 0) {
@@ -193,23 +268,24 @@ const ticketBookingService = {
               `seat with seatNameId-${seatNameId} is already booked`
             );
           }
-          let cinemaRoomHasSeat = await CinemaRoomHasSeat.findOne({
+          let seatOfCinemaRoom = await CinemaRoomHasSeat.findOne({
             where: {
               cinemaRoomId: dataNewTicketBooking.cinemaRoomId,
               seatNameId,
             },
           });
-          if (!cinemaRoomHasSeat) {
+          if (!seatOfCinemaRoom) {
             throw new AppError(
               404,
               `Cannot find seat with id-${seatNameId} in this cinema_room`
             );
           }
           cinemaRoomHasMovie.seatBooked.push(seatNameId);
-          seatBookingList.push(cinemaRoomHasSeat);
+          seatBookingList.push(seatOfCinemaRoom);
         })
       );
 
+      // update seats booked by user
       await CinemaRoomHasMovie.update(
         JSON.parse(JSON.stringify(cinemaRoomHasMovie)),
         {
@@ -235,7 +311,7 @@ const ticketBookingService = {
             showtimeId: dataNewTicketBooking.showtimeId,
             seatNameId,
             seatType: seatBookingList[index].seatType,
-            price: seatBookingList[index].price * 1,
+            price: seatBookingList[index].price,
           });
           totalPrice += seatBookingList[index].price * 1;
         })
@@ -316,79 +392,6 @@ const ticketBookingService = {
     }
   },
 
-  getInfoToBookTicket: async (dataQueryInfoToBookTicket) => {
-    try {
-      if (Object.keys(dataQueryInfoToBookTicket).length == 0) {
-        throw new AppError(400, "Data cannot be empty");
-      }
-      const { cinemaRoomId, movieId, showtimeId } = dataQueryInfoToBookTicket;
-      if (cinemaRoomId <= 0 || movieId <= 0 || showtimeId <= 0) {
-        throw new AppError(400, `Data cannot be a negative number`);
-      }
-
-      const cinemaRoomHasMovie = await CinemaRoomHasMovie.findOne({
-        where: {
-          cinemaRoomId,
-          movieId,
-          showtimeId,
-        },
-        attributes: ["showStatus", "seatBooked"],
-        include: [
-          {
-            association: "movieDetails",
-            attributes: ["name", "poster", "director", "duration", "ageRate"],
-          },
-          {
-            association: "cinemaRoomInfo",
-            attributes: ["name", "type"],
-            include: [
-              {
-                association: "inCinemaGroup",
-                attributes: ["name", "address"],
-              },
-            ],
-          },
-          {
-            association: "showtimeDetails",
-            attributes: ["dateTime"],
-          },
-        ],
-      });
-      if (!cinemaRoomHasMovie) {
-        throw new AppError(
-          404,
-          `Cannot find showtime of movie with id-${movieId} in this cinema`
-        );
-      }
-
-      const cinemaRoomHasSeats = await CinemaRoomHasSeat.findAll({
-        where: { cinemaRoomId },
-        attributes: {
-          exclude: ["cinemaRoomId"],
-        },
-        include: [
-          {
-            association: "nameOfSeat",
-            attributes: ["name"],
-          },
-        ],
-      });
-
-      const seatBookingStatus = `${cinemaRoomHasMovie.seatBooked.length}/${cinemaRoomHasSeats.length}`;
-
-      cinemaRoomHasSeats.map((seat) => {
-        if (cinemaRoomHasMovie.seatBooked.includes(seat.seatNameId)) {
-          seat.dataValues.bookedStatus = true;
-        } else {
-          seat.dataValues.bookedStatus = false;
-        }
-      });
-
-      return { seatBookingStatus, cinemaRoomHasMovie, cinemaRoomHasSeats };
-    } catch (error) {
-      throw error;
-    }
-  },
 };
 
 module.exports = ticketBookingService;
