@@ -1,0 +1,1228 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "node26-Movie",
+    "dateExported": "2023-02-17T16:52:31.487Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "436bd23f-bae3-4373-bd87-5d47f927228a",
+            "name": "Users",
+            "containerId": "",
+            "created": "2023-02-03T08:15:40.825Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "d9d7504e-0bee-4260-812f-9cb021a58a03",
+            "name": "Cinema Groups",
+            "containerId": "",
+            "created": "2023-02-09T12:39:53.750Z",
+            "sortNum": 12500
+        },
+        {
+            "_id": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Cinema Systems",
+            "containerId": "",
+            "created": "2023-02-09T11:49:59.138Z",
+            "sortNum": 15000
+        },
+        {
+            "_id": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Movies",
+            "containerId": "",
+            "created": "2023-02-03T08:15:40.826Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "910bf726-30c0-47c4-a104-7baf43e386a8",
+            "name": "Banners",
+            "containerId": "",
+            "created": "2023-02-14T06:39:48.330Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
+            "name": "Showtimes",
+            "containerId": "",
+            "created": "2023-02-14T06:55:11.734Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "cd92293f-f479-405d-8cf9-9bf6aa8099b1",
+            "name": "Ticket Booking",
+            "containerId": "",
+            "created": "2023-02-14T08:34:22.590Z",
+            "sortNum": 50000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "17ad3bdf-7055-42f1-aef1-b6248d737d4d",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "cd92293f-f479-405d-8cf9-9bf6aa8099b1",
+            "name": "Get Info To Book Ticket",
+            "url": "/api/v1/secured/ticketBookingsManagement/getInfoToBookTicket",
+            "method": "POST",
+            "sortNum": 2500,
+            "created": "2023-02-14T15:42:20.877Z",
+            "modified": "2023-02-14T16:41:16.001Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"cinemaRoomId\": 1,\n  \"movieId\": 5,\n  \"showtimeId\": 5\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTc5OTksImV4cCI6MTY3Njk2Mjc5OX0.fkNuWCXpRTHTjxsh1pNI_K3N01ke3eq_Dm8dakOcHVQ"
+            },
+            "tests": []
+        },
+        {
+            "_id": "857b52e0-18fa-4da4-a041-ea9790dc3102",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Create Movie",
+            "url": "/api/v1/secured/moviesManagement",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2023-02-03T08:15:40.826Z",
+            "modified": "2023-02-09T11:56:35.968Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "[\n  {\n  \"name\": \"movie 21\",\n  \"poster\": \"https://url.com/poster 21\",\n  \"trailer\": \"https://url.com/trailer 21\",\n  \"description\": \"desc 21\"\n},\n  {\n  \"name\": \"movie 22\",\n  \"poster\": \"https://url.com/poster 22\",\n  \"trailer\": \"https://url.com/trailer 22\",\n  \"description\": \"desc 22\"\n}\n]",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9ec852ed-8f33-49c6-9cfe-330e87fe7c7b",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Create CinemaSystem",
+            "url": "/api/v1/secured/cinemaSystemsManagement",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2023-02-09T11:49:59.139Z",
+            "modified": "2023-02-10T14:14:00.602Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "[\n  {\n  \"name\": \"CinemaSystem-6\",\n  \"website\": \"https://url.com/website-cinemaSystem-6\",\n  \"logo\": \"https://url.com/logo-cinemaSystem-6\"\n},\n  {\n  \"name\": \"CinemaSystem-7\",\n  \"website\": \"https://url.com/website-cinemaSystem-7\",\n  \"logo\": \"https://url.com/logo-cinemaSystem-7\"\n}\n]",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYwMzgyNTksImV4cCI6MTY3NjY0MzA1OX0.hYhPo2dRPZ3M4mb7Zwbfz0JNqLQgBmp1OdIaKWu57kY"
+            },
+            "tests": []
+        },
+        {
+            "_id": "106c48f9-07e5-4396-afe4-bb5bd37d3e44",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "d9d7504e-0bee-4260-812f-9cb021a58a03",
+            "name": "Create CinemaGroup",
+            "url": "/api/v1/secured/cinemaGroupsManagement",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2023-02-09T12:39:53.750Z",
+            "modified": "2023-02-09T13:22:41.926Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "[\n  {\n  \"cinemaSystemId\": 1,\n  \"name\": \"CinemaGroup-21\",\n  \"image\": \"https://url.com/image-cinemaGroup-21\",\n  \"address\": \"address-cinemaGroup-21\"\n},\n  {\n  \"cinemaSystemId\": 2,\n  \"name\": \"CinemaGroup-22\",\n  \"image\": \"https://url.com/image-cinemaGroup-22\",\n  \"address\": \"address-cinemaGroup-22\"\n}\n]",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "29cf6018-e6e1-4dd1-be17-1a1f093ea6f1",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
+            "name": "Create Showtimes",
+            "url": "/api/v1/secured/showtimesManagement",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2023-02-14T06:55:11.734Z",
+            "modified": "2023-02-14T07:34:22.975Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "[\n  {\n  \"dateTime\": \"2023-06-08 10:10:10\"\n},\n  {\n  \"dateTime\": \"2023-06-09 11:11:11\"\n}\n]",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTc5OTksImV4cCI6MTY3Njk2Mjc5OX0.fkNuWCXpRTHTjxsh1pNI_K3N01ke3eq_Dm8dakOcHVQ"
+            },
+            "tests": []
+        },
+        {
+            "_id": "7b822129-ffa8-467f-83a7-cfb6f643faaf",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "cd92293f-f479-405d-8cf9-9bf6aa8099b1",
+            "name": "Create TicketBooking",
+            "url": "/api/v1/secured/ticketBookingsManagement",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2023-02-14T08:34:22.590Z",
+            "modified": "2023-02-14T15:26:47.418Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"cinemaRoomId\": 1,\n  \"movieId\": 1,\n  \"showtimeId\": 1,\n  \"seatNameIdList\": [33,34]\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTc5OTksImV4cCI6MTY3Njk2Mjc5OX0.fkNuWCXpRTHTjxsh1pNI_K3N01ke3eq_Dm8dakOcHVQ"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2938710a-efb0-4346-aaa4-511ebcf4e82a",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Delete Movie",
+            "url": "/api/v1/secured/moviesManagement/22",
+            "method": "DELETE",
+            "sortNum": 5625,
+            "created": "2023-02-03T08:15:40.828Z",
+            "modified": "2023-02-06T14:12:45.977Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "1d053c8f-cc53-4d02-a822-48f683c092a7",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Delete CinemaSystem",
+            "url": "/api/v1/secured/cinemaSystemsManagement/6",
+            "method": "DELETE",
+            "sortNum": 5625,
+            "created": "2023-02-09T11:49:59.140Z",
+            "modified": "2023-02-09T11:59:42.287Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "1831e687-6ca5-4118-b1af-d16a2fb70d9a",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "d9d7504e-0bee-4260-812f-9cb021a58a03",
+            "name": "Delete CinemaGroup",
+            "url": "/api/v1/secured/cinemaGroupsManagement/21",
+            "method": "DELETE",
+            "sortNum": 5625,
+            "created": "2023-02-09T12:39:53.751Z",
+            "modified": "2023-02-09T13:24:05.406Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "a502597f-9d31-4f44-aafa-48f440391d10",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
+            "name": "Delete Showtime",
+            "url": "/api/v1/secured/showtimesManagement/25",
+            "method": "DELETE",
+            "sortNum": 5625,
+            "created": "2023-02-14T06:55:11.735Z",
+            "modified": "2023-02-14T07:28:11.627Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "640664da-5b0a-4abb-9671-886d7beba584",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "cd92293f-f479-405d-8cf9-9bf6aa8099b1",
+            "name": "Delete TicketBooking",
+            "url": "/api/v1/secured/ticketBookingsManagement/6",
+            "method": "DELETE",
+            "sortNum": 5625,
+            "created": "2023-02-14T08:34:22.591Z",
+            "modified": "2023-02-14T09:50:18.875Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "05b408b0-665e-4baf-9057-d2ac2c28366b",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Update Movie",
+            "url": "/api/v1/secured/moviesManagement/21",
+            "method": "PUT",
+            "sortNum": 6250,
+            "created": "2023-02-03T08:15:40.827Z",
+            "modified": "2023-02-06T14:22:30.193Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"movie 21++\",\n  \"poster\": \"poster 21++\",\n  \"trailer\": \"trailer 21\",\n  \"description\": \"desc 21\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "78e90c2a-d05b-47db-b19d-a648be3b1921",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Update CinemaSystem",
+            "url": "/api/v1/secured/cinemaSystemsManagement/7",
+            "method": "PUT",
+            "sortNum": 6250,
+            "created": "2023-02-09T11:49:59.141Z",
+            "modified": "2023-02-09T12:07:28.768Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"CinemaSystem-8\",\n  \"website\": \"https://url.com/website-cinemaSystem-8\",\n  \"logo\": \"https://url.com/logo-cinemaSystem-8\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "bfe0bf60-ae2e-411e-af5f-651585436541",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "d9d7504e-0bee-4260-812f-9cb021a58a03",
+            "name": "Update CinemaGroup",
+            "url": "/api/v1/secured/cinemaGroupsManagement/22",
+            "method": "PUT",
+            "sortNum": 6250,
+            "created": "2023-02-09T12:39:53.752Z",
+            "modified": "2023-02-09T13:26:37.224Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"cinemaSystemId\": 3,\n  \"name\": \"CinemaGroup-23\",\n  \"image\": \"https://url.com/image-cinemaGroup-23\",\n  \"address\": \"address-cinemaGroup-23\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "d500915b-8740-4c10-aa86-6d4153f4232c",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
+            "name": "Update Showtime",
+            "url": "/api/v1/secured/showtimesManagement/28",
+            "method": "PUT",
+            "sortNum": 6250,
+            "created": "2023-02-14T06:55:11.736Z",
+            "modified": "2023-02-14T07:39:49.418Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"dateTime\": \"2023-06-09 12:12:12\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e8f26d06-0ed6-48c6-a9ad-02441414a3ff",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "",
+            "name": "Sign Up",
+            "url": "/api/v1/authen/signUp",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-02-03T08:15:40.830Z",
+            "modified": "2023-02-03T09:52:53.922Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"account\": \"a44\",\n  \"firstName\": \"dev 15\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev15@g.co\",\n  \"password\": \"15\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8e4b7b83-7231-4edd-8e60-275283edf750",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Get Movie List",
+            "url": "/api/v1/movies/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-02-03T08:15:40.832Z",
+            "modified": "2023-02-04T09:17:19.693Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "373bec3a-41e5-4a56-b229-126ed5fb95a4",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Get CinemaSystem List",
+            "url": "/api/v1/cinemaSystems",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-02-09T11:49:59.143Z",
+            "modified": "2023-02-10T17:39:25.498Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8540f0c5-f2b0-445c-8362-1356d5c6b799",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "d9d7504e-0bee-4260-812f-9cb021a58a03",
+            "name": "Get CinemaGroup List",
+            "url": "/api/v1/cinemaGroups",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-02-09T12:39:53.753Z",
+            "modified": "2023-02-10T17:41:20.661Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9e6f54aa-0cbf-4b72-a153-1c267d9507f6",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "910bf726-30c0-47c4-a104-7baf43e386a8",
+            "name": "Get Banner List",
+            "url": "/api/v1/banners/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-02-14T06:38:50.908Z",
+            "modified": "2023-02-14T06:41:28.253Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "751acac0-abfd-4ac4-b913-64df28f673a8",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
+            "name": "Get Showitme List",
+            "url": "/api/v1/secured/showtimesManagement",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-02-14T06:55:11.737Z",
+            "modified": "2023-02-14T07:41:21.740Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "5a5f2459-4be7-4515-9a18-af80584a0e03",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "cd92293f-f479-405d-8cf9-9bf6aa8099b1",
+            "name": "Get ticketBooking List",
+            "url": "/api/v1/secured/ticketBookingsManagement",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-02-14T08:34:22.593Z",
+            "modified": "2023-02-14T08:38:06.566Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c178153a-47d9-4e72-844e-5c1510df72fc",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Get Showtimes of CinemaSystem",
+            "url": "/api/v1/cinemaSystems/hasShowtimes",
+            "method": "GET",
+            "sortNum": 10156.3,
+            "created": "2023-02-10T17:53:15.112Z",
+            "modified": "2023-02-10T17:59:56.354Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2718d2d6-118d-437f-a326-57f4b4effbfb",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Get Showtimes of 1 CinemaSystem",
+            "url": "/api/v1/cinemaSystems/2/hasShowtimes",
+            "method": "GET",
+            "sortNum": 10234.4,
+            "created": "2023-02-11T06:38:35.009Z",
+            "modified": "2023-02-13T12:48:24.723Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "3dc80796-a707-4dcc-a581-d695888fd00b",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Get CinemaGroups Of CinemaSystems",
+            "url": "/api/v1/cinemaSystems/hasCinemaGroups",
+            "method": "GET",
+            "sortNum": 10312.5,
+            "created": "2023-02-10T17:30:43.899Z",
+            "modified": "2023-02-13T03:47:50.208Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "44a4b776-8c98-48fa-8bd7-5cf6045119db",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Get CinemaGroups Of 1 CinemaSystem",
+            "url": "/api/v1/cinemaSystems/3/hasCinemaGroups",
+            "method": "GET",
+            "sortNum": 10468.8,
+            "created": "2023-02-13T03:47:21.265Z",
+            "modified": "2023-02-13T03:47:21.265Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ec08ae72-69a4-4787-b50e-bf3e90bfa030",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Get Movie List Pagination",
+            "url": "/api/v1/movies/movieListPagination?page=2&quantityPerPage=3",
+            "method": "GET",
+            "sortNum": 10625,
+            "created": "2023-02-04T09:25:02.680Z",
+            "modified": "2023-02-09T13:41:56.959Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "896a6021-d9f1-4ee4-a4ff-fa826e510e45",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Get CinemaSystem List Pagination",
+            "url": "/api/v1/cinemaSystems/cinemaSystemListPagination?page=1&quantityPerPage=3",
+            "method": "GET",
+            "sortNum": 10625,
+            "created": "2023-02-09T11:49:59.146Z",
+            "modified": "2023-02-10T17:39:58.638Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "7f674a8a-59a1-4d9d-ab4a-ea0473529164",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "d9d7504e-0bee-4260-812f-9cb021a58a03",
+            "name": "Get CinemaGroup List Pagination",
+            "url": "/api/v1/cinemaGroups/cinemaGroupListPagination?page=2&quantityPerPage=3",
+            "method": "GET",
+            "sortNum": 10625,
+            "created": "2023-02-09T12:39:53.756Z",
+            "modified": "2023-02-10T17:41:41.835Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "88135337-b77f-443d-b5a7-d2e23427990d",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
+            "name": "Get Showtime List Pagination",
+            "url": "/api/v1/secured/showtimesManagement/showtimeListPagination?page=2&quantityPerPage=3",
+            "method": "GET",
+            "sortNum": 10625,
+            "created": "2023-02-14T06:55:11.738Z",
+            "modified": "2023-02-14T07:49:36.359Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "ef3ba96b-174f-4fcc-ab61-aeb20ae721cb",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "cd92293f-f479-405d-8cf9-9bf6aa8099b1",
+            "name": "Get TicketBooking List Pagination",
+            "url": "/api/v1/secured/ticketBookingsManagement/ticketBookingListPagination?page=1&quantityPerPage=3",
+            "method": "GET",
+            "sortNum": 10625,
+            "created": "2023-02-14T08:34:22.594Z",
+            "modified": "2023-02-14T09:06:03.183Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "1e5435d8-317c-4875-aa5d-2f72719518c4",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Get Movie List By Showtime",
+            "url": "/api/v1/movies/movieListByShowtime?page=1&quantityPerPage=20&dateStart=2023-03-01&dateEnd=2023-03-22",
+            "method": "GET",
+            "sortNum": 10937.5,
+            "created": "2023-02-13T13:14:05.486Z",
+            "modified": "2023-02-13T15:23:55.078Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "20",
+                    "isPath": false
+                },
+                {
+                    "name": "dateStart",
+                    "value": "2023-03-01",
+                    "isPath": false
+                },
+                {
+                    "name": "dateEnd",
+                    "value": "2023-03-22",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "78ab3492-b21f-4696-b13d-73881417e10b",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Get Movie Details",
+            "url": "/api/v1/movies/1",
+            "method": "GET",
+            "sortNum": 11250,
+            "created": "2023-02-04T09:39:12.354Z",
+            "modified": "2023-02-14T15:31:30.777Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b0528032-6cb9-421f-a6f3-097c706238d7",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Get CinemaSystem Details",
+            "url": "/api/v1/cinemaSystems/3",
+            "method": "GET",
+            "sortNum": 11250,
+            "created": "2023-02-09T11:49:59.144Z",
+            "modified": "2023-02-10T17:40:13.169Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "45e2d927-8e66-47ae-8baa-b5b3389fe78f",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "d9d7504e-0bee-4260-812f-9cb021a58a03",
+            "name": "Get CinemaGroup Details",
+            "url": "/api/v1/cinemaGroups/3",
+            "method": "GET",
+            "sortNum": 11250,
+            "created": "2023-02-09T12:39:53.754Z",
+            "modified": "2023-02-10T17:41:57.175Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9abcc80c-d7d9-4345-a65e-0ce5509f9b0e",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
+            "name": "Get Showtime Details",
+            "url": "/api/v1/secured/showtimesManagement/2",
+            "method": "GET",
+            "sortNum": 11250,
+            "created": "2023-02-14T06:55:11.739Z",
+            "modified": "2023-02-14T07:51:25.614Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f708d6da-ce20-492c-9381-c8c6c654b5f9",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "cd92293f-f479-405d-8cf9-9bf6aa8099b1",
+            "name": "Get TicketBooking Details",
+            "url": "/api/v1/secured/ticketBookingsManagement/13",
+            "method": "GET",
+            "sortNum": 11250,
+            "created": "2023-02-14T08:34:22.595Z",
+            "modified": "2023-02-14T15:08:41.312Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg"
+            },
+            "tests": []
+        },
+        {
+            "_id": "08095b21-d9c2-4c01-bddc-2a8c5f89a600",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Get Movie Showtimes",
+            "url": "/api/v1/movies/3/showtimes",
+            "method": "GET",
+            "sortNum": 11562.5,
+            "created": "2023-02-11T07:08:14.365Z",
+            "modified": "2023-02-11T10:13:15.597Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "3ed8722e-e47e-4b37-bbee-bc357ffc228c",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
+            "name": "Search Movies",
+            "url": "/api/v1/movies/search?page=2&quantityPerPage=3",
+            "method": "POST",
+            "sortNum": 11875,
+            "created": "2023-02-04T09:44:36.625Z",
+            "modified": "2023-02-04T09:50:54.713Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"searchKeyWord\": \"1\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cea4555d-44c1-4b74-9382-240d8640c110",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Search CinemaSystems",
+            "url": "/api/v1/cinemaSystems/search",
+            "method": "POST",
+            "sortNum": 11875,
+            "created": "2023-02-09T11:49:59.145Z",
+            "modified": "2023-02-10T17:38:54.984Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"searchKeyWord\": \"1\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "4ba87f22-06ab-413b-8c30-a5377db5bbc8",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "d9d7504e-0bee-4260-812f-9cb021a58a03",
+            "name": "Search CinemaGroup",
+            "url": "/api/v1/cinemaGroups/search",
+            "method": "POST",
+            "sortNum": 11875,
+            "created": "2023-02-09T12:39:53.755Z",
+            "modified": "2023-02-10T17:42:10.995Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"searchKeyWord\": \"3\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+            },
+            "tests": []
+        },
+        {
+            "_id": "36158a3c-0ec4-4b9d-a0e4-6ac7e55e8bd2",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
+            "name": "Search Showtime",
+            "url": "/api/v1/secured/showtimesManagement/search",
+            "method": "POST",
+            "sortNum": 11875,
+            "created": "2023-02-14T06:55:11.740Z",
+            "modified": "2023-02-14T07:53:20.021Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"searchKeyWord\": \"12\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "1634ac9b-e998-4290-b629-37096ef56adb",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "cd92293f-f479-405d-8cf9-9bf6aa8099b1",
+            "name": "Search TicketBooking",
+            "url": "/api/v1/secured/ticketBookingsManagement/search?page=1&quantityPerPage=5",
+            "method": "POST",
+            "sortNum": 11875,
+            "created": "2023-02-14T08:34:22.596Z",
+            "modified": "2023-02-14T15:22:57.675Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "5",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"searchKeyWord\": \"1\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "a2cfa7af-a1dc-4047-92a7-106eda754cba",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "",
+            "name": "Log In",
+            "url": "/api/v1/authen/logIn",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-02-03T08:15:40.836Z",
+            "modified": "2023-02-14T09:16:56.425Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"emailOrAccount\": \"dev1\",\n  \"password\": \"1\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4f151d69-bff7-40a0-8599-a50f3fab0c81",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
+            "name": "Get User List",
+            "url": "/api/v1/secured/usersManagement/",
+            "method": "GET",
+            "sortNum": 22500,
+            "created": "2023-02-03T08:15:40.839Z",
+            "modified": "2023-02-14T09:23:36.497Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg"
+            },
+            "tests": []
+        },
+        {
+            "_id": "90259231-709b-42f5-ad00-75e11682422a",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
+            "name": "Get User List Pagination",
+            "url": "/api/v1/secured/usersManagement/userListPagination?page=2&quantityPerPage=3",
+            "method": "GET",
+            "sortNum": 23750,
+            "created": "2023-02-03T10:26:33.559Z",
+            "modified": "2023-02-14T09:23:50.967Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg"
+            },
+            "tests": []
+        },
+        {
+            "_id": "60560dc1-9502-418a-90eb-25ab80500c30",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
+            "name": "Get User Detail",
+            "url": "/api/v1/secured/usersManagement/2",
+            "method": "GET",
+            "sortNum": 24062.5,
+            "created": "2023-02-03T08:15:40.831Z",
+            "modified": "2023-02-14T09:23:24.627Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg"
+            },
+            "tests": []
+        },
+        {
+            "_id": "ebdde313-9352-45af-b17f-d98cbcabde69",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
+            "name": "Search User",
+            "url": "/api/v1/secured/usersManagement/search?page=2&quantityPerPage=3",
+            "method": "POST",
+            "sortNum": 24375,
+            "created": "2023-02-03T12:57:20.090Z",
+            "modified": "2023-02-04T09:44:42.780Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "quantityPerPage",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"searchKeyWord\": \"1\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU0MzAzNzAsImV4cCI6MTY3NTY4OTU3MH0.rfwCoS8f4MiUajga09AHRX5nEs-nlWGcgGaFquBeiUQ"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8fca053b-1a56-4f72-aa58-594985cc17bc",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
+            "name": "Create User",
+            "url": "/api/v1/secured/usersManagement/",
+            "method": "POST",
+            "sortNum": 27187.5,
+            "created": "2023-02-03T08:15:40.837Z",
+            "modified": "2023-02-14T09:23:14.165Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"dev 12\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev12@g.co\",\n  \"password\": \"12\",\n  \"role\": \"admin\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzQwMzk2NzAsImV4cCI6MTY3NDI5ODg3MH0.oJvEdehyckqIzHcFBqu10pH5JcVsIDHkfXvTJ06On0k"
+            },
+            "tests": []
+        },
+        {
+            "_id": "03232b80-5fb7-41dd-94ba-f2559e9d81bf",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
+            "name": "Delete User",
+            "url": "/api/v1/secured/usersManagement/12",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2023-02-03T08:15:40.842Z",
+            "modified": "2023-02-03T08:15:40.842Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzQwMjI4MDIsImV4cCI6MTY3NDI4MjAwMn0.a8y7-jFsfoON0bSl6BCfA3k-Wv_Guq9r2SRZATCeSss"
+            },
+            "tests": []
+        },
+        {
+            "_id": "6bd04c0c-c65c-42a6-9879-298a0af62855",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "",
+            "name": "Upload",
+            "url": "/api/v1/secured/upload",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-02-03T08:15:40.843Z",
+            "modified": "2023-02-07T01:50:35.514Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "file",
+                        "value": "c:\\Users\\Kid 1412\\Desktop\\vid1.mp4"
+                    }
+                ]
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkZXYyQGcuY28iLCJpYXQiOjE2NzU2OTI3MzUsImV4cCI6MTY3NTk1MTkzNX0.9NgafnqhobauXp2ER6fmn_nctCegC74mqcWDMmPoH6o"
+            },
+            "tests": []
+        },
+        {
+            "_id": "74cbe400-ae68-4d22-8f51-a5fc0741782b",
+            "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
+            "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
+            "name": "Update User",
+            "url": "/api/v1/secured/usersManagement/5",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2023-02-03T08:15:40.845Z",
+            "modified": "2023-02-03T08:15:40.845Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 12,\n  \"firstName\": \"dev 12\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev12@g.co\",\n  \"password\": \"12\",\n  \"role\": \"user\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJkZXY1QGcuY28iLCJpYXQiOjE2NzQwOTYzNjksImV4cCI6MTY3NDM1NTU2OX0.NJnRBoFoknOq2z6qOuCKda7iV8mkYOsaYfuyHjHnpGI"
+            },
+            "tests": []
+        }
+    ],
+    "settings": {
+        "headers": [],
+        "tests": [],
+        "options": {
+            "baseUrl": "http://localhost:4000"
+        }
+    }
+}

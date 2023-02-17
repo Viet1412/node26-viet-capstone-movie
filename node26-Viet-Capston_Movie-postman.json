@@ -1,0 +1,1705 @@
+{
+    "info": {
+        "name": "node26-Movie",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Users",
+            "item": [
+                {
+                    "name": "Get User List",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/secured/usersManagement/",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "usersManagement"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get User List Pagination",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/secured/usersManagement/userListPagination?page=2&quantityPerPage=3",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "secured",
+                                "usersManagement",
+                                "userListPagination"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get User Detail",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/secured/usersManagement/2",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "usersManagement",
+                                "2"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Search User",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/usersManagement/search?page=2&quantityPerPage=3",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "secured",
+                                "usersManagement",
+                                "search"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"searchKeyWord\": \"1\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU0MzAzNzAsImV4cCI6MTY3NTY4OTU3MH0.rfwCoS8f4MiUajga09AHRX5nEs-nlWGcgGaFquBeiUQ",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create User",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/usersManagement/",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "usersManagement"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"firstName\": \"dev 12\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev12@g.co\",\n  \"password\": \"12\",\n  \"role\": \"admin\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzQwMzk2NzAsImV4cCI6MTY3NDI5ODg3MH0.oJvEdehyckqIzHcFBqu10pH5JcVsIDHkfXvTJ06On0k",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete User",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "/api/v1/secured/usersManagement/12",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "usersManagement",
+                                "12"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzQwMjI4MDIsImV4cCI6MTY3NDI4MjAwMn0.a8y7-jFsfoON0bSl6BCfA3k-Wv_Guq9r2SRZATCeSss",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update User",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "/api/v1/secured/usersManagement/5",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "usersManagement",
+                                "5"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"id\": 12,\n  \"firstName\": \"dev 12\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev12@g.co\",\n  \"password\": \"12\",\n  \"role\": \"user\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJkZXY1QGcuY28iLCJpYXQiOjE2NzQwOTYzNjksImV4cCI6MTY3NDM1NTU2OX0.NJnRBoFoknOq2z6qOuCKda7iV8mkYOsaYfuyHjHnpGI",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Movies",
+            "item": [
+                {
+                    "name": "Create Movie",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/moviesManagement",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "moviesManagement"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "[\n  {\n  \"name\": \"movie 21\",\n  \"poster\": \"https://url.com/poster 21\",\n  \"trailer\": \"https://url.com/trailer 21\",\n  \"description\": \"desc 21\"\n},\n  {\n  \"name\": \"movie 22\",\n  \"poster\": \"https://url.com/poster 22\",\n  \"trailer\": \"https://url.com/trailer 22\",\n  \"description\": \"desc 22\"\n}\n]"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Movie",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "/api/v1/secured/moviesManagement/22",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "moviesManagement",
+                                "22"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Movie",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "/api/v1/secured/moviesManagement/21",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "moviesManagement",
+                                "21"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"movie 21++\",\n  \"poster\": \"poster 21++\",\n  \"trailer\": \"trailer 21\",\n  \"description\": \"desc 21\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Movie List",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/movies/",
+                            "path": [
+                                "v1",
+                                "movies"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Movie List Pagination",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/movies/movieListPagination?page=2&quantityPerPage=3",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "movies",
+                                "movieListPagination"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Movie List By Showtime",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/movies/movieListByShowtime?page=1&quantityPerPage=20&dateStart=2023-03-01&dateEnd=2023-03-22",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "20"
+                                },
+                                {
+                                    "key": "dateStart",
+                                    "value": "2023-03-01"
+                                },
+                                {
+                                    "key": "dateEnd",
+                                    "value": "2023-03-22"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "movies",
+                                "movieListByShowtime"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Movie Details",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/movies/1",
+                            "path": [
+                                "v1",
+                                "movies",
+                                "1"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Movie Showtimes",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/movies/3/showtimes",
+                            "path": [
+                                "v1",
+                                "movies",
+                                "3",
+                                "showtimes"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Search Movies",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/movies/search?page=2&quantityPerPage=3",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "movies",
+                                "search"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"searchKeyWord\": \"1\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Cinema Systems",
+            "item": [
+                {
+                    "name": "Create CinemaSystem",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/cinemaSystemsManagement",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "cinemaSystemsManagement"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "[\n  {\n  \"name\": \"CinemaSystem-6\",\n  \"website\": \"https://url.com/website-cinemaSystem-6\",\n  \"logo\": \"https://url.com/logo-cinemaSystem-6\"\n},\n  {\n  \"name\": \"CinemaSystem-7\",\n  \"website\": \"https://url.com/website-cinemaSystem-7\",\n  \"logo\": \"https://url.com/logo-cinemaSystem-7\"\n}\n]"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYwMzgyNTksImV4cCI6MTY3NjY0MzA1OX0.hYhPo2dRPZ3M4mb7Zwbfz0JNqLQgBmp1OdIaKWu57kY",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete CinemaSystem",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "/api/v1/secured/cinemaSystemsManagement/6",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "cinemaSystemsManagement",
+                                "6"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update CinemaSystem",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "/api/v1/secured/cinemaSystemsManagement/7",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "cinemaSystemsManagement",
+                                "7"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"CinemaSystem-8\",\n  \"website\": \"https://url.com/website-cinemaSystem-8\",\n  \"logo\": \"https://url.com/logo-cinemaSystem-8\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get CinemaSystem List",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaSystems",
+                            "path": [
+                                "v1",
+                                "cinemaSystems"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Showtimes of CinemaSystem",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaSystems/hasShowtimes",
+                            "path": [
+                                "v1",
+                                "cinemaSystems",
+                                "hasShowtimes"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Showtimes of 1 CinemaSystem",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaSystems/2/hasShowtimes",
+                            "path": [
+                                "v1",
+                                "cinemaSystems",
+                                "2",
+                                "hasShowtimes"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get CinemaGroups Of CinemaSystems",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaSystems/hasCinemaGroups",
+                            "path": [
+                                "v1",
+                                "cinemaSystems",
+                                "hasCinemaGroups"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get CinemaGroups Of 1 CinemaSystem",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaSystems/3/hasCinemaGroups",
+                            "path": [
+                                "v1",
+                                "cinemaSystems",
+                                "3",
+                                "hasCinemaGroups"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get CinemaSystem List Pagination",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaSystems/cinemaSystemListPagination?page=1&quantityPerPage=3",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "cinemaSystems",
+                                "cinemaSystemListPagination"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get CinemaSystem Details",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaSystems/3",
+                            "path": [
+                                "v1",
+                                "cinemaSystems",
+                                "3"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Search CinemaSystems",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/cinemaSystems/search",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "cinemaSystems",
+                                "search"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"searchKeyWord\": \"1\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Cinema Groups",
+            "item": [
+                {
+                    "name": "Create CinemaGroup",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/cinemaGroupsManagement",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "cinemaGroupsManagement"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "[\n  {\n  \"cinemaSystemId\": 1,\n  \"name\": \"CinemaGroup-21\",\n  \"image\": \"https://url.com/image-cinemaGroup-21\",\n  \"address\": \"address-cinemaGroup-21\"\n},\n  {\n  \"cinemaSystemId\": 2,\n  \"name\": \"CinemaGroup-22\",\n  \"image\": \"https://url.com/image-cinemaGroup-22\",\n  \"address\": \"address-cinemaGroup-22\"\n}\n]"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete CinemaGroup",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "/api/v1/secured/cinemaGroupsManagement/21",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "cinemaGroupsManagement",
+                                "21"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update CinemaGroup",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "/api/v1/secured/cinemaGroupsManagement/22",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "cinemaGroupsManagement",
+                                "22"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"cinemaSystemId\": 3,\n  \"name\": \"CinemaGroup-23\",\n  \"image\": \"https://url.com/image-cinemaGroup-23\",\n  \"address\": \"address-cinemaGroup-23\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get CinemaGroup List",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaGroups",
+                            "path": [
+                                "v1",
+                                "cinemaGroups"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get CinemaGroup List Pagination",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaGroups/cinemaGroupListPagination?page=2&quantityPerPage=3",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "cinemaGroups",
+                                "cinemaGroupListPagination"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get CinemaGroup Details",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/cinemaGroups/3",
+                            "path": [
+                                "v1",
+                                "cinemaGroups",
+                                "3"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Search CinemaGroup",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/cinemaGroups/search",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "cinemaGroups",
+                                "search"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"searchKeyWord\": \"3\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Banners",
+            "item": [
+                {
+                    "name": "Get Banner List",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/banners/",
+                            "path": [
+                                "v1",
+                                "banners"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Showtimes",
+            "item": [
+                {
+                    "name": "Create Showtimes",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/showtimesManagement",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "showtimesManagement"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "[\n  {\n  \"dateTime\": \"2023-06-08 10:10:10\"\n},\n  {\n  \"dateTime\": \"2023-06-09 11:11:11\"\n}\n]"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTc5OTksImV4cCI6MTY3Njk2Mjc5OX0.fkNuWCXpRTHTjxsh1pNI_K3N01ke3eq_Dm8dakOcHVQ",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Showtime",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "/api/v1/secured/showtimesManagement/25",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "showtimesManagement",
+                                "25"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Showtime",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "/api/v1/secured/showtimesManagement/28",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "showtimesManagement",
+                                "28"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"dateTime\": \"2023-06-09 12:12:12\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Showitme List",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/secured/showtimesManagement",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "showtimesManagement"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Showtime List Pagination",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/secured/showtimesManagement/showtimeListPagination?page=2&quantityPerPage=3",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "secured",
+                                "showtimesManagement",
+                                "showtimeListPagination"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Showtime Details",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/secured/showtimesManagement/2",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "showtimesManagement",
+                                "2"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Search Showtime",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/showtimesManagement/search",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "secured",
+                                "showtimesManagement",
+                                "search"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"searchKeyWord\": \"12\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Ticket Booking",
+            "item": [
+                {
+                    "name": "Get Info To Book Ticket",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/ticketBookingsManagement/getInfoToBookTicket",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "ticketBookingsManagement",
+                                "getInfoToBookTicket"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"cinemaRoomId\": 1,\n  \"movieId\": 5,\n  \"showtimeId\": 5\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTc5OTksImV4cCI6MTY3Njk2Mjc5OX0.fkNuWCXpRTHTjxsh1pNI_K3N01ke3eq_Dm8dakOcHVQ",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create TicketBooking",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/ticketBookingsManagement",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "ticketBookingsManagement"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"cinemaRoomId\": 1,\n  \"movieId\": 1,\n  \"showtimeId\": 1,\n  \"seatNameIdList\": [33,34]\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTc5OTksImV4cCI6MTY3Njk2Mjc5OX0.fkNuWCXpRTHTjxsh1pNI_K3N01ke3eq_Dm8dakOcHVQ",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete TicketBooking",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "/api/v1/secured/ticketBookingsManagement/6",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "ticketBookingsManagement",
+                                "6"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get ticketBooking List",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/secured/ticketBookingsManagement",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "ticketBookingsManagement"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get TicketBooking List Pagination",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/secured/ticketBookingsManagement/ticketBookingListPagination?page=1&quantityPerPage=3",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "3"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "secured",
+                                "ticketBookingsManagement",
+                                "ticketBookingListPagination"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get TicketBooking Details",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "/api/v1/secured/ticketBookingsManagement/13",
+                            "path": [
+                                "v1",
+                                "secured",
+                                "ticketBookingsManagement",
+                                "13"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Search TicketBooking",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "/api/v1/secured/ticketBookingsManagement/search?page=1&quantityPerPage=5",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "quantityPerPage",
+                                    "value": "5"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "v1",
+                                "secured",
+                                "ticketBookingsManagement",
+                                "search"
+                            ],
+                            "host": [
+                                "api"
+                            ]
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"searchKeyWord\": \"1\"\n}"
+                        },
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Sign Up",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "/api/v1/authen/signUp",
+                    "path": [
+                        "v1",
+                        "authen",
+                        "signUp"
+                    ],
+                    "host": [
+                        "api"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"account\": \"a44\",\n  \"firstName\": \"dev 15\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev15@g.co\",\n  \"password\": \"15\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Log In",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "/api/v1/authen/logIn",
+                    "path": [
+                        "v1",
+                        "authen",
+                        "logIn"
+                    ],
+                    "host": [
+                        "api"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"emailOrAccount\": \"dev1\",\n  \"password\": \"1\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Upload",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "/api/v1/secured/upload",
+                    "path": [
+                        "v1",
+                        "secured",
+                        "upload"
+                    ],
+                    "host": [
+                        "api"
+                    ]
+                },
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "file",
+                            "src": "c:\\Users\\Kid 1412\\Desktop\\vid1.mp4",
+                            "type": "file"
+                        }
+                    ]
+                },
+                "auth": {
+                    "type": "bearer",
+                    "bearer": [
+                        {
+                            "key": "token",
+                            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkZXYyQGcuY28iLCJpYXQiOjE2NzU2OTI3MzUsImV4cCI6MTY3NTk1MTkzNX0.9NgafnqhobauXp2ER6fmn_nctCegC74mqcWDMmPoH6o",
+                            "type": "string"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
