@@ -171,7 +171,7 @@ const userService = {
         throw new AppError(404, "User not found");
       }
 
-      if (!user.hasTicketBookings.length) {
+      if (user.hasTicketBookings.length) {
         throw new AppError(
           400,
           "This user has ticket_bookings available, should not delete or connected data will be lost"
