@@ -126,14 +126,14 @@ const userService = {
       }
 
       const isEmailExists = await User.findOne({
-        where: { email: dataSignUp.email },
+        where: { email: dataNewUser.email },
       });
       if (isEmailExists) {
         throw new AppError(400, "Email already exists");
       }
 
       const isAccountExists = await User.findOne({
-        where: { account: dataSignUp.account },
+        where: { account: dataNewUser.account },
       });
       if (isAccountExists) {
         throw new AppError(400, "Account already exists");

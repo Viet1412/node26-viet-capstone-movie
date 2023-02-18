@@ -16,7 +16,7 @@ const {
 
 const generateDataToTest = {
   users: async () => {
-    await User.destroy({ truncate: true });
+    // await User.destroy({ truncate: true });
 
     for (let index = 1; index <= 10; index++) {
       await User.create({
@@ -33,7 +33,7 @@ const generateDataToTest = {
   },
 
   movies: async () => {
-    await Movie.destroy({ truncate: true });
+    // await Movie.destroy({ truncate: true });
 
     for (let index = 1; index <= 20; index++) {
       await Movie.create({
@@ -49,7 +49,7 @@ const generateDataToTest = {
   },
 
   seatNames: async () => {
-    await SeatName.destroy({ truncate: true });
+    // await SeatName.destroy({ truncate: true });
 
     let num = 65;
     for (let i = 0; i < 5; i++) {
@@ -63,7 +63,7 @@ const generateDataToTest = {
   },
 
   cinemaSystems: async () => {
-    await CinemaSystem.destroy({ truncate: true });
+    // await CinemaSystem.destroy({ truncate: true });
 
     for (let index = 1; index <= 5; index++) {
       await CinemaSystem.create({
@@ -75,7 +75,7 @@ const generateDataToTest = {
   },
 
   cinemaGroups: async () => {
-    await CinemaGroup.destroy({ truncate: true });
+    // await CinemaGroup.destroy({ truncate: true });
 
     for (let index = 1; index <= 20; index++) {
       await CinemaGroup.create({
@@ -90,7 +90,7 @@ const generateDataToTest = {
   },
 
   cinemaRooms: async () => {
-    await CinemaRoom.destroy({ truncate: true });
+    // await CinemaRoom.destroy({ truncate: true });
 
     for (let i = 1; i <= 10; i++) {
       for (let index = 1; index <= 5; index++) {
@@ -117,7 +117,7 @@ const generateDataToTest = {
   },
 
   cinemaRoomHasSeats: async () => {
-    await CinemaRoomHasSeat.destroy({ truncate: true });
+    // await CinemaRoomHasSeat.destroy({ truncate: true });
 
     for (let i = 1; i <= 5; i++) {
       for (let index = 1; index <= 50; index++) {
@@ -158,7 +158,7 @@ const generateDataToTest = {
   },
 
   banners: async () => {
-    await Banner.destroy({ truncate: true });
+    // await Banner.destroy({ truncate: true });
 
     for (let index = 1; index <= 5; index++) {
       await Banner.create({
