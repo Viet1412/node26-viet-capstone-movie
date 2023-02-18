@@ -14,6 +14,7 @@ const {
   TicketBooking,
 } = require("../models");
 
+
 const generateDataToTest = {
   users: async () => {
     // await User.destroy({ truncate: true });

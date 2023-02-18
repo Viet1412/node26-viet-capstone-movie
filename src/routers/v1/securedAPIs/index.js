@@ -10,6 +10,7 @@ const movieManagementRouters = require("./movies.secured_routers");
 const bannerManagementRouters = require("./banners.secured_routers");
 const showtimeManagementRouters = require("./showtimes.secured_routers");
 const ticketBookingManagementRouters = require("./ticketBookings.secured_routers");
+const cinemaRoomHasShowtimeManagementRouters = require("./cinemaRoomHasShowtimes.secured_routers");
 
 const securedRouters = express.Router();
 
@@ -23,6 +24,7 @@ securedRouters.use("/cinemaSystemsManagement", requiredRole("admin"), cinemaSyst
 securedRouters.use("/cinemaGroupsManagement", requiredRole("admin"), cinemaGroupManagementRouters);
 securedRouters.use("/cinemaRoomsManagement", requiredRole("admin"), cinemaRoomManagementRouters);
 securedRouters.use("/showtimesManagement", requiredRole("admin"), showtimeManagementRouters);
+securedRouters.use("/cinemaRoomHasShowtimesManagement", requiredRole("admin"), cinemaRoomHasShowtimeManagementRouters);
 
 // API just for uploading files
 securedRouters.post(
