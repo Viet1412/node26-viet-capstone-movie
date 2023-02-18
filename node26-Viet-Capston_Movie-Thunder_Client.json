@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "node26-Movie",
-    "dateExported": "2023-02-17T16:52:31.487Z",
+    "dateExported": "2023-02-18T12:59:35.892Z",
     "version": "1.1",
     "folders": [
         {
@@ -12,18 +12,18 @@
             "sortNum": 10000
         },
         {
+            "_id": "b453e7af-a471-407a-ad43-7b80e8859f41",
+            "name": "Cinema Systems",
+            "containerId": "",
+            "created": "2023-02-09T11:49:59.138Z",
+            "sortNum": 11250
+        },
+        {
             "_id": "d9d7504e-0bee-4260-812f-9cb021a58a03",
             "name": "Cinema Groups",
             "containerId": "",
             "created": "2023-02-09T12:39:53.750Z",
             "sortNum": 12500
-        },
-        {
-            "_id": "b453e7af-a471-407a-ad43-7b80e8859f41",
-            "name": "Cinema Systems",
-            "containerId": "",
-            "created": "2023-02-09T11:49:59.138Z",
-            "sortNum": 15000
         },
         {
             "_id": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
@@ -41,7 +41,7 @@
         },
         {
             "_id": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
-            "name": "Showtimes",
+            "name": "CinemaRoom Has Showtimes",
             "containerId": "",
             "created": "2023-02-14T06:55:11.734Z",
             "sortNum": 40000
@@ -64,12 +64,12 @@
             "method": "POST",
             "sortNum": 2500,
             "created": "2023-02-14T15:42:20.877Z",
-            "modified": "2023-02-14T16:41:16.001Z",
+            "modified": "2023-02-18T12:48:49.927Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"cinemaRoomId\": 1,\n  \"movieId\": 5,\n  \"showtimeId\": 5\n}",
+                "raw": "{\n  \"cinemaRoomId\": 1,\n  \"movieId\": 1,\n  \"showtimeId\": 1\n}",
                 "form": []
             },
             "auth": {
@@ -87,17 +87,17 @@
             "method": "POST",
             "sortNum": 5000,
             "created": "2023-02-03T08:15:40.826Z",
-            "modified": "2023-02-09T11:56:35.968Z",
+            "modified": "2023-02-18T10:43:44.971Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "[\n  {\n  \"name\": \"movie 21\",\n  \"poster\": \"https://url.com/poster 21\",\n  \"trailer\": \"https://url.com/trailer 21\",\n  \"description\": \"desc 21\"\n},\n  {\n  \"name\": \"movie 22\",\n  \"poster\": \"https://url.com/poster 22\",\n  \"trailer\": \"https://url.com/trailer 22\",\n  \"description\": \"desc 22\"\n}\n]",
+                "raw": "[\n  {\n  \"name\": \"movie 21\",\n  \"poster\": \"https://url.com/poster-21\",\n  \"trailer\": \"https://url.com/trailer-21\",\n  \"description\": \"desc 21\"\n},\n  {\n  \"name\": \"movie 22\",\n  \"poster\": \"https://url.com/poster-22\",\n  \"trailer\": \"https://url.com/trailer-22\",\n  \"description\": \"desc 22\"\n}\n]",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE4MzMsImV4cCI6MTY3NzMxNjYzM30.TB8WBuACL375RcN0OCFmBXoLirD-Mnjm3ZB29v5n0Rk"
             },
             "tests": []
         },
@@ -151,17 +151,17 @@
             "_id": "29cf6018-e6e1-4dd1-be17-1a1f093ea6f1",
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
-            "name": "Create Showtimes",
-            "url": "/api/v1/secured/showtimesManagement",
+            "name": "Create CinemaRoomHasShowtime",
+            "url": "/api/v1/secured/cinemaRoomHasShowtimesManagement",
             "method": "POST",
             "sortNum": 5000,
             "created": "2023-02-14T06:55:11.734Z",
-            "modified": "2023-02-14T07:34:22.975Z",
+            "modified": "2023-02-18T12:57:50.364Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "[\n  {\n  \"dateTime\": \"2023-06-08 10:10:10\"\n},\n  {\n  \"dateTime\": \"2023-06-09 11:11:11\"\n}\n]",
+                "raw": "[\n    {\n      \"cinemaRoomId\": 25,\n      \"movieId\": 18,\n      \"showtimeId\": 18,\n      \"showStatus\": \"showing\",\n      \"seatBooked\": []\n    },\n    {\n      \"cinemaRoomId\": 25,\n      \"movieId\": 20,\n      \"showtimeId\": 20,\n      \"showStatus\": \"showing\",\n      \"seatBooked\": []\n    }\n]\n",
                 "form": []
             },
             "auth": {
@@ -179,12 +179,12 @@
             "method": "POST",
             "sortNum": 5000,
             "created": "2023-02-14T08:34:22.590Z",
-            "modified": "2023-02-14T15:26:47.418Z",
+            "modified": "2023-02-18T12:49:37.578Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"cinemaRoomId\": 1,\n  \"movieId\": 1,\n  \"showtimeId\": 1,\n  \"seatNameIdList\": [33,34]\n}",
+                "raw": "{\n  \"cinemaRoomId\": 1,\n  \"movieId\": 1,\n  \"showtimeId\": 1,\n  \"seatNameIdList\": [7,8]\n}",
                 "form": []
             },
             "auth": {
@@ -202,12 +202,12 @@
             "method": "DELETE",
             "sortNum": 5625,
             "created": "2023-02-03T08:15:40.828Z",
-            "modified": "2023-02-06T14:12:45.977Z",
+            "modified": "2023-02-18T10:47:33.009Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE4MzMsImV4cCI6MTY3NzMxNjYzM30.TB8WBuACL375RcN0OCFmBXoLirD-Mnjm3ZB29v5n0Rk"
             },
             "tests": []
         },
@@ -251,14 +251,30 @@
             "_id": "a502597f-9d31-4f44-aafa-48f440391d10",
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
-            "name": "Delete Showtime",
-            "url": "/api/v1/secured/showtimesManagement/25",
+            "name": "Delete CinemaRoomHasShowtime",
+            "url": "/api/v1/secured/cinemaRoomHasShowtimesManagement/cinemaRoomHasShowtimeDelete?cinemaRoomId=25&movieId=19&showtimeId=19",
             "method": "DELETE",
             "sortNum": 5625,
             "created": "2023-02-14T06:55:11.735Z",
-            "modified": "2023-02-14T07:28:11.627Z",
+            "modified": "2023-02-18T12:05:19.981Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "cinemaRoomId",
+                    "value": "25",
+                    "isPath": false
+                },
+                {
+                    "name": "movieId",
+                    "value": "19",
+                    "isPath": false
+                },
+                {
+                    "name": "showtimeId",
+                    "value": "19",
+                    "isPath": false
+                }
+            ],
             "auth": {
                 "type": "bearer",
                 "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
@@ -292,17 +308,17 @@
             "method": "PUT",
             "sortNum": 6250,
             "created": "2023-02-03T08:15:40.827Z",
-            "modified": "2023-02-06T14:22:30.193Z",
+            "modified": "2023-02-18T10:46:48.240Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"movie 21++\",\n  \"poster\": \"poster 21++\",\n  \"trailer\": \"trailer 21\",\n  \"description\": \"desc 21\"\n}",
+                "raw": "{\n  \"name\": \"movie 23\",\n  \"poster\": \"https://url.com/poster-23\",\n  \"trailer\": \"https://url.com/trailer-23\",\n  \"description\": \"desc 23\"\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU2OTIxNDIsImV4cCI6MTY3NTk1MTM0Mn0.YaKk181cX_Tkx2XDPN_X76sXAbQ3825R-MFr2zdoMLM"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE4MzMsImV4cCI6MTY3NzMxNjYzM30.TB8WBuACL375RcN0OCFmBXoLirD-Mnjm3ZB29v5n0Rk"
             },
             "tests": []
         },
@@ -356,17 +372,33 @@
             "_id": "d500915b-8740-4c10-aa86-6d4153f4232c",
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
-            "name": "Update Showtime",
-            "url": "/api/v1/secured/showtimesManagement/28",
+            "name": "Update CinemaRoomHasShowtime",
+            "url": "/api/v1/secured/cinemaRoomHasShowtimesManagement/cinemaRoomHasShowtimeUpdate?cinemaRoomId=25&movieId=17&showtimeId=17",
             "method": "PUT",
             "sortNum": 6250,
             "created": "2023-02-14T06:55:11.736Z",
-            "modified": "2023-02-14T07:39:49.418Z",
+            "modified": "2023-02-18T12:08:16.875Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "cinemaRoomId",
+                    "value": "25",
+                    "isPath": false
+                },
+                {
+                    "name": "movieId",
+                    "value": "17",
+                    "isPath": false
+                },
+                {
+                    "name": "showtimeId",
+                    "value": "17",
+                    "isPath": false
+                }
+            ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"dateTime\": \"2023-06-09 12:12:12\"\n}",
+                "raw": "{\n      \"cinemaRoomId\": 25,\n      \"movieId\": 17,\n      \"showtimeId\": 17,\n      \"showStatus\": \"showing\",\n      \"seatBooked\": []\n    }",
                 "form": []
             },
             "auth": {
@@ -384,12 +416,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-02-03T08:15:40.830Z",
-            "modified": "2023-02-03T09:52:53.922Z",
+            "modified": "2023-02-18T09:12:20.248Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"account\": \"a44\",\n  \"firstName\": \"dev 15\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev15@g.co\",\n  \"password\": \"15\"\n}",
+                "raw": "{\n  \"account\": \"dev11\",\n  \"firstName\": \"dev 11\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev11@g.co\",\n  \"password\": \"11\"\n}",
                 "form": []
             },
             "tests": []
@@ -462,12 +494,12 @@
             "_id": "751acac0-abfd-4ac4-b913-64df28f673a8",
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
-            "name": "Get Showitme List",
-            "url": "/api/v1/secured/showtimesManagement",
+            "name": "Get CinemaRoomHasShowtime List",
+            "url": "/api/v1/secured/cinemaRoomHasShowtimesManagement",
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-02-14T06:55:11.737Z",
-            "modified": "2023-02-14T07:41:21.740Z",
+            "modified": "2023-02-18T11:23:22.390Z",
             "headers": [],
             "params": [],
             "auth": {
@@ -517,11 +549,11 @@
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "b453e7af-a471-407a-ad43-7b80e8859f41",
             "name": "Get Showtimes of 1 CinemaSystem",
-            "url": "/api/v1/cinemaSystems/2/hasShowtimes",
+            "url": "/api/v1/cinemaSystems/3/hasShowtimes",
             "method": "GET",
             "sortNum": 10234.4,
             "created": "2023-02-11T06:38:35.009Z",
-            "modified": "2023-02-13T12:48:24.723Z",
+            "modified": "2023-02-18T10:55:47.320Z",
             "headers": [],
             "params": [],
             "auth": {
@@ -563,16 +595,16 @@
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
             "name": "Get Movie List Pagination",
-            "url": "/api/v1/movies/movieListPagination?page=2&quantityPerPage=3",
+            "url": "/api/v1/movies/movieListPagination?page=1&quantityPerPage=3",
             "method": "GET",
             "sortNum": 10625,
             "created": "2023-02-04T09:25:02.680Z",
-            "modified": "2023-02-09T13:41:56.959Z",
+            "modified": "2023-02-18T10:38:21.205Z",
             "headers": [],
             "params": [
                 {
                     "name": "page",
-                    "value": "2",
+                    "value": "1",
                     "isPath": false
                 },
                 {
@@ -645,12 +677,12 @@
             "_id": "88135337-b77f-443d-b5a7-d2e23427990d",
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
-            "name": "Get Showtime List Pagination",
-            "url": "/api/v1/secured/showtimesManagement/showtimeListPagination?page=2&quantityPerPage=3",
+            "name": "Get CinemaRoomHasShowtime List Pagination",
+            "url": "/api/v1/secured/cinemaRoomHasShowtimesManagement/cinemaRoomHasShowtimeListPagination?page=2&quantityPerPage=3",
             "method": "GET",
             "sortNum": 10625,
             "created": "2023-02-14T06:55:11.738Z",
-            "modified": "2023-02-14T07:49:36.359Z",
+            "modified": "2023-02-18T11:25:03.442Z",
             "headers": [],
             "params": [
                 {
@@ -743,7 +775,7 @@
             "method": "GET",
             "sortNum": 11250,
             "created": "2023-02-04T09:39:12.354Z",
-            "modified": "2023-02-14T15:31:30.777Z",
+            "modified": "2023-02-18T10:39:50.942Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -788,14 +820,30 @@
             "_id": "9abcc80c-d7d9-4345-a65e-0ce5509f9b0e",
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
-            "name": "Get Showtime Details",
-            "url": "/api/v1/secured/showtimesManagement/2",
+            "name": "Get CinemaRoomHasShowtime Details",
+            "url": "/api/v1/secured/cinemaRoomHasShowtimesManagement/cinemaRoomHasShowtimeDetail?cinemaRoomId=1&movieId=1&showtimeId=1",
             "method": "GET",
             "sortNum": 11250,
             "created": "2023-02-14T06:55:11.739Z",
-            "modified": "2023-02-14T07:51:25.614Z",
+            "modified": "2023-02-18T11:45:48.468Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "cinemaRoomId",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "movieId",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "showtimeId",
+                    "value": "1",
+                    "isPath": false
+                }
+            ],
             "auth": {
                 "type": "bearer",
                 "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNTk1OTksImV4cCI6MTY3Njk2NDM5OX0.pHdQTC-bD6Zzl_gAxvtcZSAJEOwAgD6oVWrWE-nU8UA"
@@ -825,11 +873,11 @@
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
             "name": "Get Movie Showtimes",
-            "url": "/api/v1/movies/3/showtimes",
+            "url": "/api/v1/movies/2/showtimes",
             "method": "GET",
             "sortNum": 11562.5,
             "created": "2023-02-11T07:08:14.365Z",
-            "modified": "2023-02-11T10:13:15.597Z",
+            "modified": "2023-02-18T10:57:17.609Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -839,16 +887,16 @@
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "dca6f7c3-4dfb-455c-a818-feb3504d353b",
             "name": "Search Movies",
-            "url": "/api/v1/movies/search?page=2&quantityPerPage=3",
+            "url": "/api/v1/movies/search?page=1&quantityPerPage=3",
             "method": "POST",
             "sortNum": 11875,
             "created": "2023-02-04T09:44:36.625Z",
-            "modified": "2023-02-04T09:50:54.713Z",
+            "modified": "2023-02-18T10:41:19.946Z",
             "headers": [],
             "params": [
                 {
                     "name": "page",
-                    "value": "2",
+                    "value": "1",
                     "isPath": false
                 },
                 {
@@ -859,7 +907,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"searchKeyWord\": \"1\"\n}",
+                "raw": "{\n  \"searchKeyWord\": \"2\"\n}",
                 "form": []
             },
             "tests": []
@@ -940,12 +988,12 @@
             "_id": "36158a3c-0ec4-4b9d-a0e4-6ac7e55e8bd2",
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "4c9e5b33-831b-4a5d-bb18-716df3fab47c",
-            "name": "Search Showtime",
-            "url": "/api/v1/secured/showtimesManagement/search",
+            "name": "Search CinemaRoomHasShowtime",
+            "url": "/api/v1/secured/cinemaRoomHasShowtimesManagement/search",
             "method": "POST",
             "sortNum": 11875,
             "created": "2023-02-14T06:55:11.740Z",
-            "modified": "2023-02-14T07:53:20.021Z",
+            "modified": "2023-02-18T11:48:56.454Z",
             "headers": [],
             "params": [
                 {
@@ -1015,7 +1063,7 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-02-03T08:15:40.836Z",
-            "modified": "2023-02-14T09:16:56.425Z",
+            "modified": "2023-02-18T09:17:13.074Z",
             "headers": [],
             "params": [],
             "body": {
@@ -1034,12 +1082,12 @@
             "method": "GET",
             "sortNum": 22500,
             "created": "2023-02-03T08:15:40.839Z",
-            "modified": "2023-02-14T09:23:36.497Z",
+            "modified": "2023-02-18T09:14:32.564Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE2NjEsImV4cCI6MTY3NzMxNjQ2MX0.ulRe5WqlZyL1c8tPmvPuzXB3-xCcrbKNMnbCUFqBAnE"
             },
             "tests": []
         },
@@ -1048,16 +1096,16 @@
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
             "name": "Get User List Pagination",
-            "url": "/api/v1/secured/usersManagement/userListPagination?page=2&quantityPerPage=3",
+            "url": "/api/v1/secured/usersManagement/userListPagination?page=1&quantityPerPage=3",
             "method": "GET",
             "sortNum": 23750,
             "created": "2023-02-03T10:26:33.559Z",
-            "modified": "2023-02-14T09:23:50.967Z",
+            "modified": "2023-02-18T09:16:14.576Z",
             "headers": [],
             "params": [
                 {
                     "name": "page",
-                    "value": "2",
+                    "value": "1",
                     "isPath": false
                 },
                 {
@@ -1077,16 +1125,16 @@
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
             "name": "Get User Detail",
-            "url": "/api/v1/secured/usersManagement/2",
+            "url": "/api/v1/secured/usersManagement/1",
             "method": "GET",
             "sortNum": 24062.5,
             "created": "2023-02-03T08:15:40.831Z",
-            "modified": "2023-02-14T09:23:24.627Z",
+            "modified": "2023-02-18T09:53:37.383Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzYzNjYyMTYsImV4cCI6MTY3Njk3MTAxNn0.hLKMvaTkdddiZpFlnjgvOwgs7lv1h6juAxPvZh56uZg"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE4MzMsImV4cCI6MTY3NzMxNjYzM30.TB8WBuACL375RcN0OCFmBXoLirD-Mnjm3ZB29v5n0Rk"
             },
             "tests": []
         },
@@ -1095,16 +1143,16 @@
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
             "name": "Search User",
-            "url": "/api/v1/secured/usersManagement/search?page=2&quantityPerPage=3",
+            "url": "/api/v1/secured/usersManagement/search?page=1&quantityPerPage=3",
             "method": "POST",
             "sortNum": 24375,
             "created": "2023-02-03T12:57:20.090Z",
-            "modified": "2023-02-04T09:44:42.780Z",
+            "modified": "2023-02-18T09:26:13.512Z",
             "headers": [],
             "params": [
                 {
                     "name": "page",
-                    "value": "2",
+                    "value": "1",
                     "isPath": false
                 },
                 {
@@ -1115,12 +1163,12 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"searchKeyWord\": \"1\"\n}",
+                "raw": "{\n  \"searchKeyWord\": \"dev1\"\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzU0MzAzNzAsImV4cCI6MTY3NTY4OTU3MH0.rfwCoS8f4MiUajga09AHRX5nEs-nlWGcgGaFquBeiUQ"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE4MzMsImV4cCI6MTY3NzMxNjYzM30.TB8WBuACL375RcN0OCFmBXoLirD-Mnjm3ZB29v5n0Rk"
             },
             "tests": []
         },
@@ -1133,17 +1181,17 @@
             "method": "POST",
             "sortNum": 27187.5,
             "created": "2023-02-03T08:15:40.837Z",
-            "modified": "2023-02-14T09:23:14.165Z",
+            "modified": "2023-02-18T09:47:20.666Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"firstName\": \"dev 12\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev12@g.co\",\n  \"password\": \"12\",\n  \"role\": \"admin\"\n}",
+                "raw": "{  \"account\": \"dev12\",\n  \"firstName\": \"dev 12\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev12@g.co\",\n  \"password\": \"12\",\n  \"role\": \"admin\"}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzQwMzk2NzAsImV4cCI6MTY3NDI5ODg3MH0.oJvEdehyckqIzHcFBqu10pH5JcVsIDHkfXvTJ06On0k"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE4MzMsImV4cCI6MTY3NzMxNjYzM30.TB8WBuACL375RcN0OCFmBXoLirD-Mnjm3ZB29v5n0Rk"
             },
             "tests": []
         },
@@ -1156,12 +1204,12 @@
             "method": "DELETE",
             "sortNum": 30000,
             "created": "2023-02-03T08:15:40.842Z",
-            "modified": "2023-02-03T08:15:40.842Z",
+            "modified": "2023-02-18T09:50:07.299Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzQwMjI4MDIsImV4cCI6MTY3NDI4MjAwMn0.a8y7-jFsfoON0bSl6BCfA3k-Wv_Guq9r2SRZATCeSss"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE4MzMsImV4cCI6MTY3NzMxNjYzM30.TB8WBuACL375RcN0OCFmBXoLirD-Mnjm3ZB29v5n0Rk"
             },
             "tests": []
         },
@@ -1174,7 +1222,7 @@
             "method": "POST",
             "sortNum": 30000,
             "created": "2023-02-03T08:15:40.843Z",
-            "modified": "2023-02-07T01:50:35.514Z",
+            "modified": "2023-02-18T10:44:48.768Z",
             "headers": [],
             "params": [],
             "body": {
@@ -1184,13 +1232,17 @@
                 "files": [
                     {
                         "name": "file",
-                        "value": "c:\\Users\\Kid 1412\\Desktop\\vid1.mp4"
+                        "value": "c:\\Users\\Kid 1412\\Desktop\\1.webp"
+                    },
+                    {
+                        "name": "file",
+                        "value": "c:\\Users\\Kid 1412\\Desktop\\2.webp"
                     }
                 ]
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkZXYyQGcuY28iLCJpYXQiOjE2NzU2OTI3MzUsImV4cCI6MTY3NTk1MTkzNX0.9NgafnqhobauXp2ER6fmn_nctCegC74mqcWDMmPoH6o"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE4MzMsImV4cCI6MTY3NzMxNjYzM30.TB8WBuACL375RcN0OCFmBXoLirD-Mnjm3ZB29v5n0Rk"
             },
             "tests": []
         },
@@ -1199,21 +1251,21 @@
             "colId": "14f77a51-b22d-4f51-a8b7-02fdcfc5309d",
             "containerId": "436bd23f-bae3-4373-bd87-5d47f927228a",
             "name": "Update User",
-            "url": "/api/v1/secured/usersManagement/5",
+            "url": "/api/v1/secured/usersManagement/12",
             "method": "PUT",
             "sortNum": 40000,
             "created": "2023-02-03T08:15:40.845Z",
-            "modified": "2023-02-03T08:15:40.845Z",
+            "modified": "2023-02-18T09:49:42.180Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"id\": 12,\n  \"firstName\": \"dev 12\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev12@g.co\",\n  \"password\": \"12\",\n  \"role\": \"user\"\n}",
+                "raw": "{\n  \"id\": 12,\n  \"firstName\": \"dev 1222222\",\n  \"lastName\": \"dev\",\n  \"email\": \"dev12@g.co\",\n  \"password\": \"12\",\n  \"role\": \"user\"\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJkZXY1QGcuY28iLCJpYXQiOjE2NzQwOTYzNjksImV4cCI6MTY3NDM1NTU2OX0.NJnRBoFoknOq2z6qOuCKda7iV8mkYOsaYfuyHjHnpGI"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkZXYxQGcuY28iLCJpYXQiOjE2NzY3MTE4MzMsImV4cCI6MTY3NzMxNjYzM30.TB8WBuACL375RcN0OCFmBXoLirD-Mnjm3ZB29v5n0Rk"
             },
             "tests": []
         }
